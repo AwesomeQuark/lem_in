@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 10:47:52 by conoel            #+#    #+#             */
-/*   Updated: 2019/02/13 10:17:36 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/18 13:49:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	msg_(char *msg)
 	{
 		write(2, msg, ft_strlen(msg));
 	}
+	write(2, "\n", 1);
 	write(2, "\7", 1);
 }
 
@@ -41,4 +42,21 @@ void		exit_(char *msg)
 {
 	msg_(msg);
 	exit(-1);
+}
+
+size_t		return_free(char *msg, int format, ...)
+{
+	va_list	ap;
+
+	va_start(ap, format);
+	while (format-- > 0)
+		free(va_arg(ap, void *));
+	msg_(msg);
+	return (0);
+}
+
+size_t		return_(char *msg)
+{
+	msg_(msg);
+	return (0);
 }
