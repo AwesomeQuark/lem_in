@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/18 17:48:40 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/18 19:31:43 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_NAME =	main.c\
 			load_structure.c\
 			node_creation.c\
 			free_nodes.c\
+			node_utils.c\
 			solver.c\
 
 SRCDIR = ./src/
@@ -31,7 +32,7 @@ LIB_NAME = haflib.a
 LIB_DIR = ./libft/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = -Wall -Werror -Wextra -Ofast
+FLAGS = #-Wall -Werror -Wextra -Ofast
 CC = clang
 DEPENDENCY = libft.a
 

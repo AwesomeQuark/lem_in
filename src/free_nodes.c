@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:48:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 16:50:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/18 18:39:02 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	free_nodes(t_node *head)
 	{
 		tmp = head;
 		head = head->next;
+		if (tmp->links != NULL)
+		{
+			free(tmp->links);
+		}
 		free(tmp->name);
 		free(tmp);
 	}
