@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 19:34:17 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/18 19:38:05 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static t_node	*load_nodes(char *data, size_t *i)
 		(ft_memcmp(&data[*i], "##end\n", 6) == 0) ? pos = 2 : 0;
 		if (data[*i] != '#')
 		{
-			ft_printf("head: %p | name: %.7s | pos: %d\n", head, &data[*i], pos);
 			if (!(head = add_node(head, &data[*i], pos)))
 				return (NULL);
 			pos = 0;
