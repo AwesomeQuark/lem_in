@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/18 17:35:40 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/18 17:48:40 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ HEADER = include/lem_in.h
 
 SRC_NAME =	main.c\
 			load_data.c\
-			solver.c\
+			load_structure.c\
 			node_creation.c\
-			free_nodes.c
+			free_nodes.c\
+			solver.c\
+
 SRCDIR = ./src/
 SRC = ${addprefix $(SRCDIR), $(SRC_NAME)}
 

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 16:50:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:40:34 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		main(int argc, char **argv)
 	{
 		return((int)return_("Failed to load the map"));
 	}
+	ft_printf("Ants quantity : %d\n", ant_nb);
 	print_nodes(head);
 	free_nodes(head);
 }

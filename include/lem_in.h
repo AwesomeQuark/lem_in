@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 16:50:41 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:47:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "fcntl.h"
 
 /*
-**	Role : (0 = node; 1 = start; 2 = end; 3 = not_initialised)
+**	Role : (0 = node; 1 = start; 2 = end)
 */
 typedef struct		s_node
 {
@@ -27,7 +27,12 @@ typedef struct		s_node
 	int				role;
 }					t_node;
 
+
+/*
+**	PARSING FUNCTIONS
+*/
 t_node		*load_map(int argc, char ** argv, int *ant_nb);
+t_node		*load_structure(char *data, int *ant_nb);
 t_node		*add_node(t_node *head, char *line, int pos);
 void		free_nodes(t_node *head);
 
