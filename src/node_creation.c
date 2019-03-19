@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 19:37:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 16:29:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char			*get_name(char *line)
 		i++;
 	line[i] = '\0';
 	if (!(ret = ft_strdup(line)))
-		return((char *)return_(NULL));
+		return ((char *)return_(NULL));
 	line[i] = ' ';
 	return (ret);
 }
@@ -32,7 +32,7 @@ static t_node		*new_node(char *line, int role)
 	t_node	*new;
 
 	if (!(new = malloc(sizeof(t_node))))
-		return((t_node *)return_(NULL));
+		return ((t_node *)return_(NULL));
 	if (!(new->name = get_name(line)))
 		return (NULL);
 	new->role = role;

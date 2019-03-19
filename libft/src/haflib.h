@@ -6,12 +6,12 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 17:09:22 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 16:44:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AF_LIB_H
-# define AF_LIB_H
+#ifndef HAFLIB_H
+# define HAFLIB_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -25,7 +25,7 @@
 # define BUFF_SIZE 16
 # define ITER_MAX (INT_MAX / BUFF_SIZE)
 
-int				ft_printf(const char *str, ...);
+int					ft_printf(const char *str, ...);
 
 void				exit_free(char *msg, int format, ...);
 void				exit_(char *msg);

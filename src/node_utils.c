@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 12:02:24 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 16:39:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,15 @@ static int		realloc_link_list(t_node *node, t_node *link)
 int				alloc_links_list(t_node *node, t_node *link)
 {
 	if (!node || !link)
-		return(return_("Inexistant node name in links list"));
+		return (return_("Inexistant node name in links list"));
 	if (node->links == NULL)
 	{
 		if (!(node->links = malloc(sizeof(t_node *) * 2)))
-			return(return_(NULL));
+			return (return_(NULL));
 		(node->links)[0] = link;
 		(node->links)[1] = NULL;
 	}
-	else
-		if (!(realloc_link_list(node, link)))
-			return (0);
+	else if (!(realloc_link_list(node, link)))
+		return (0);
 	return (1);
 }

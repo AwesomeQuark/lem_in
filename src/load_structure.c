@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 11:21:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 16:00:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_node	*load_nodes(char *data, size_t *i)
 		while (data[*i + j] != '\n' && data[*i + j])
 			j++;
 		if (ft_memchr(&data[*i], ' ', j) == NULL && data[*i] != '#')
-			break;
+			break ;
 		(ft_memcmp(&data[*i], "##start\n", 8) == 0) ? pos = 1 : 0;
 		(ft_memcmp(&data[*i], "##end\n", 6) == 0) ? pos = 2 : 0;
 		if (data[*i] != '#')
@@ -53,7 +53,7 @@ static int		load_links(t_node *head, char *data)
 		while (data[i + j] != '\n' && data[i + j])
 			j++;
 		if (ft_memchr(&data[i], '-', j) == NULL && data[i] != '#')
-			return(return_("Bad character in the links list\n"));
+			return (return_("Bad character in the links list\n"));
 		if (data[i] != '#')
 		{
 			k = 0;
