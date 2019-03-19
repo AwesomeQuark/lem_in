@@ -6,15 +6,27 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:42:25 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 13:46:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 12:10:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <limits.h>
+static char	*add_one_byte(char *ret)
+{
+	char *tmp;
 
-char	*get_the_file(int fd)
+	tmp = ret;
+	if (!(ret = malloc(sizeof(char) * (ft_strlen(ret) + 2))))
+		return (NULL);
+	ft_bzero(ret, ft_strlen(tmp) + 2);
+	ft_memcpy(ret, tmp, ft_strlen(tmp));
+	free(tmp);
+	return (ret);
+}
+
+
+char		*get_the_file(int fd)
 {
 	char		*ret;
 	char		*tmp;
@@ -40,5 +52,5 @@ char	*get_the_file(int fd)
 			return (NULL);
 		}
 	}
-	return (ret);
+	return (add_one_byte(ret));
 }
