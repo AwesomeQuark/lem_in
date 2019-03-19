@@ -6,12 +6,13 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/18 19:31:43 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/19 11:51:51 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem_in
 HEADER = include/lem_in.h
+AUTEUR = "conoel\nbghandou"
 
 SRC_NAME =	main.c\
 			load_data.c\
@@ -59,7 +60,7 @@ fclean:
 
 ######### COMPILATION #########
 
-$(NAME): $(OBJDIR) $(OBJ) $(HEADER)
+$(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
 	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(DEPENDENCY)"
 	@echo "#######################################################"
@@ -85,6 +86,10 @@ $(OBJDIR):
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
 	@echo "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : $@\033[0m [$(NAME)]";
+
+./auteur:
+	@echo $(AUTEUR) > ./auteur
+	@echo "\033[32m<Created Author file>\033[0m"
 
 ############# LIB #############
 

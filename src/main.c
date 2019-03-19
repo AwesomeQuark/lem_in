@@ -6,17 +6,33 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 11:15:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 12:06:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
+static void		print_links(t_node *node)
+{
+	int	i;
+
+	i = 0;
+	if (node->links == NULL)
+		return;
+	while ((node->links)[i] != NULL)
+	{
+		ft_printf("%8s ", ((node->links)[i])->name);
+		i++;
+	}
+}
+
 static void		print_nodes(t_node *head)
 {
 	while (head != NULL)
 	{
-		ft_printf("Name : %-*s Role : %d  Next : %p\n", 8, head->name, head->role, head->next);
+		ft_printf("NAME : %8s   ROLE : %d   LINKED TO : ", head->name, head->role, head->next);
+		print_links(head);
+		ft_printf("\n");
 		head = head->next;
 	}
 }

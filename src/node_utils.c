@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 19:29:40 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 12:02:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_node			*get_node(char *name, size_t len, t_node *head)
 {
 	size_t		len2;
 
-	ft_printf("name: %.*s\n", len, name, len);
 	while (head != NULL)
 	{
 		len2 = ft_strlen(head->name);
@@ -36,14 +35,17 @@ static int		realloc_link_list(t_node *node, t_node *link)
 	nb_links = 0;
 	while ((node->links)[nb_links] != NULL)
 		nb_links++;
-	if (!(tmp = malloc(sizeof(t_node *) * nb_links + 2)))
+	if (!(tmp = malloc(sizeof(t_node *) * (nb_links + 2))))
 		return (return_(NULL));
 	nb_links = 0;
 	while ((node->links)[nb_links] != NULL)
+	{
 		tmp[nb_links] = (node->links)[nb_links];
-	(node->links)[0] = link;
-	(node->links)[1] = NULL;
+		nb_links++;
+	}
 	free(node->links);
+	tmp[nb_links] = link;
+	tmp[nb_links + 1] = NULL;
 	node->links = tmp;
 	return (1);
 }
