@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 19:38:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 11:17:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_node	*load_nodes(char *data, size_t *i)
 	size_t	j;
 	int		pos;
 
+	head = NULL;
 	while (data[*i])
 	{
 		j = 0;
