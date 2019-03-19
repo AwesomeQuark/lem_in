@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/19 11:51:51 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/19 18:36:16 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ HEADER = include/lem_in.h
 AUTEUR = "conoel\nbghandou"
 
 SRC_NAME =	main.c\
+			verify_data.c\
 			load_data.c\
 			load_structure.c\
 			node_creation.c\
@@ -30,12 +31,11 @@ OBJDIR = ./obj/
 OBJ = ${addprefix $(OBJDIR), $(OBJ_NAME)}
 
 LIB_NAME = haflib.a
-LIB_DIR = ./libft/
+LIB_DIR = ./haflib/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = #-Wall -Werror -Wextra -Ofast
+FLAGS = -Wall -Werror -Wextra -Ofast
 CC = clang
-DEPENDENCY = libft.a
 
 #################################################################################
 ##################################### RULES #####################################
@@ -62,7 +62,7 @@ fclean:
 
 $(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
-	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(DEPENDENCY)"
+	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
 	@echo "#######################################################"
 	@echo "#######################################################  /------------\\"
 	@echo "####   _      ____   _     _           _   _    _  ####  |  BGHANDOU  |"
@@ -81,11 +81,11 @@ $(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
 $(OBJDIR):
 	@clear
 	@mkdir $(OBJDIR)
-	@echo "\n>========= * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * =========<";
+	@echo "\n>=========== * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * ===========<";
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : $@\033[0m [$(NAME)]";
+	@printf "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : %-30s \033[0m [$(NAME)]\n" $@
 
 ./auteur:
 	@echo $(AUTEUR) > ./auteur

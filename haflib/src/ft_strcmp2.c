@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/09 10:43:37 by conoel            #+#    #+#             */
+/*   Updated: 2019/02/13 20:17:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+int	ft_strcmp2(const char *s1, const char *s2)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (data[i])
+	while (*s1 == *s2 && *s1 && *s2)
 	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
+		s1++;
+		s2++;
 	}
-	return (1);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

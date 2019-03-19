@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:30:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 18:36:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_node			*load_map(int argc, char **argv, int *ant_nb)
 
 	if (!(raw_data = load_raw_data(argv[1], argc)))
 		return (NULL);
-//if (!(verify_data(raw_data)))
-//	return (return_("Map reading error"));
+	if (!(verify_data(raw_data)))
+		return ((t_node *)return_("Map reading error"));
 	if (!(head = load_structure(raw_data, ant_nb)))
 		return (NULL);
 	free(raw_data);

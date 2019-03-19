@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   additional_converters.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2019/01/30 11:43:59 by conoel            #+#    #+#             */
+/*   Updated: 2019/02/13 20:17:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+void	print_errno(t_flag *all)
 {
-	size_t	i;
-	size_t	j;
+	char	*tmp;
 
-	i = 0;
-	while (data[i])
-	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
-	}
-	return (1);
+	tmp = strerror(errno);
+	ft_strcat2(tmp, all);
+	all->space = 0;
+}
+
+void	get_charwriten(t_flag *all)
+{
+	int		*ptr;
+
+	ptr = va_arg(all->ap, int *);
+	*ptr = all->buffer_index;
 }

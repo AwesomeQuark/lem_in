@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/09 10:41:10 by conoel            #+#    #+#             */
+/*   Updated: 2019/03/19 16:58:42 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+int	ft_isalnum(int c)
 {
-	size_t	i;
-	size_t	j;
+	return (ft_isdigit(c) || ft_isalpha(c) ? 1 : 0);
+}
 
-	i = 0;
-	while (data[i])
+int	ft_isalphanum_base(int c, int base, int maj)
+{
+	char	verif;
+	int		iteration;
+
+	verif = 48;
+	iteration = 0;
+	while (iteration++ <= base)
 	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
+		if (c == verif)
+			return (1);
+		verif++;
+		if (verif == 59)
+			verif = maj ? 'A' : 'a';
 	}
-	return (1);
+	return (0);
 }

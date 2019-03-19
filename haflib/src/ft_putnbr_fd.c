@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/11 11:51:59 by conoel            #+#    #+#             */
+/*   Updated: 2019/02/13 11:09:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (data[i])
+	if (nb == -2147483648)
 	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		nb = 147483648;
 	}
-	return (1);
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = nb * -1;
+	}
+	if (nb > 9)
+		ft_putnbr_fd(nb / 10, fd);
+	ft_putchar_fd((nb % 10) + 48, fd);
 }

@@ -6,14 +6,14 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/18 19:29:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/19 18:36:07 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN
 # define LEM_IN
 
-# include "../libft/src/haflib.h"
+# include "../haflib/src/haflib.h"
 # include "fcntl.h"
 
 /*
@@ -28,7 +28,6 @@ typedef struct		s_node
 	int				role;
 }					t_node;
 
-
 /*
 **	PARSING FUNCTIONS
 */
@@ -38,5 +37,6 @@ t_node		*add_node(t_node *head, char *line, int pos);
 void		free_nodes(t_node *head);
 t_node		*get_node(char *name, size_t len, t_node *head);
 int			alloc_links_list(t_node *node, t_node *link);
+int			verify_data(char *data);
 
 #endif

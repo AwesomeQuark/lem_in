@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   print_char_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2019/02/02 01:03:37 by conoel            #+#    #+#             */
+/*   Updated: 2019/03/19 16:52:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+void	print_char_str(char c, size_t nb)
 {
-	size_t	i;
-	size_t	j;
+	char	*buff;
+	int		i;
 
-	i = 0;
-	while (data[i])
-	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
-	}
-	return (1);
+	i = nb;
+	if (!(buff = malloc(sizeof(char) * nb + 1)))
+		exit_(NULL);
+	while (i--)
+		buff[i] = c;
+	write(1, buff, nb);
+	free(buff);
 }

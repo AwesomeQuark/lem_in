@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verify_data.c                                      :+:      :+:    :+:   */
+/*   ft_strdup2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:08:56 by conoel           ###   ########.fr       */
+/*   Created: 2018/11/09 10:45:43 by conoel            #+#    #+#             */
+/*   Updated: 2019/03/19 16:53:54 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "libft.h"
 
-int		verify_data(char *data)
+char	*ft_strdup2(const char *s)
 {
-	size_t	i;
-	size_t	j;
+	int		index;
+	char	*end;
 
-	i = 0;
-	while (data[i])
-	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], ' ', j) == NULL && data[i] != '#')
-			break ;
-		i = i + j + 1;
-	}
-	return (1);
+	index = ft_strlen2(s) + 1;
+	if (!(end = (char *)malloc(sizeof(char) * (index))))
+		return (0);
+	while (--index >= 0)
+		end[index] = s[index];
+	return (end);
 }
