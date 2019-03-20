@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:42:25 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:49:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 18:16:40 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static char	*add_one_byte(char *ret)
 {
 	char *tmp;
 
+	if (ret == NULL)
+		return (NULL);
 	tmp = ret;
 	if (!(ret = malloc(sizeof(char) * (ft_strlen(ret) + 2))))
 		return (NULL);
