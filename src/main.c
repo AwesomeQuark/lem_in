@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 16:13:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 18:12:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int				main(int argc, char **argv)
 		return ((int)return_("Failed to load the map"));
 	print_nodes(head);
 	free_nodes(head);
-	ft_printf("Start: %s", (get_start(head))->name);
+	//ft_printf("Start: %s", (get_start(head))->name);
 }

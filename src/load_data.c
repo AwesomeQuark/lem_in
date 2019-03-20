@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 12:55:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 18:11:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ static char		*load_raw_data(char *file_name, int argc)
 	int		fd;
 	char	*raw_data;
 
-	if (argc != 2)
-		return ((char *)return_("Usage : ./lem_in file_name"));
-	if (!(fd = open(file_name, O_RDONLY)))
-		return ((char *)return_("Failed to open the file"));
+	if (argc == 2)
+	{
+		if (!(fd = open(file_name, O_RDONLY)))
+			return ((char *)return_("Failed to open the file"));
+	}
+	else
+		fd = 0;
 	if (!(raw_data = get_the_file(fd)))
 		return ((char *)return_("Failed to read the file"));
 	return (raw_data);
