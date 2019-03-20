@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 15:15:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 16:01:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	error(int line, int type, char c)
 {
 	if (type == 1)
 		ft_printf("Error in the ants number\n");
-	else if (type == 3)
+	else if (type == 2)
+		ft_printf("Error line %d [char: %c]\n", line, c);
+	else 
 		ft_printf("wrong terminating character line %d\n", line);
-	else
-		ft_printf("Error line %d [char: %c] [type: %d]\n", line, c, type);
 	return (0);
 }
 
@@ -28,14 +28,14 @@ static int	verify_line(char *data, size_t *i, int line)
 	while (data[*i] != ' ') // passer le nom de la salle
 	{
 		if (data[*i] == '-')  // c'est un lien ! On quitte, le reste du programme s'en occupe ;P
-			return (1);
+			return (2);
 		*i += 1;
 	}
 	ft_strtoll(&data[*i], i, 10);   // passer coordonnee 1
 	if (data[(*i)++] != ' ')         // verifier l'espace
-		return (error(line, 2, data[*i]));
+		return (error(line, 2, data[(*i) - 1]));
 	ft_strtoll(&data[*i], i, 10); //passer coordonnee 2
-	return (0);
+	return (1);
 }
 
 int			verify_data(char *data)
@@ -53,11 +53,15 @@ int			verify_data(char *data)
 		if (data[i] == '#') // si c'est un commentaire
 			while (data[i] != '\n')
 				i++;
-		else
-			if (verify_line(data, &i, line)) //si c'est une ligne
+		else // si c'est une ligne normale
+		{
+			if (verify_line(data, &i, line) == 2) //c'est un lien, on ;aisse le reste du programme tourner
 				return (1);
-		if (data[i++] != '\n')
-			return (error(line, 3, data[i]));
+			if (verify_line(data, &i, line) == 0) //mauvaise ligne on quitte :()
+				return (0);
+		}
+		if (data[i++] != '\n') //verifie le dernier charactere de la ligne
+			return (error(line, 3, data[i - 1]));
 		line++;
 	}
 	return (1);

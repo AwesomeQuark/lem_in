@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/19 18:36:16 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/20 16:10:39 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_NAME =	main.c\
 			free_nodes.c\
 			node_utils.c\
 			solver.c\
+			alloc_links_list.c
 
 SRCDIR = ./src/
 SRC = ${addprefix $(SRCDIR), $(SRC_NAME)}

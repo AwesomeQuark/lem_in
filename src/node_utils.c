@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:39:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 16:12:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,28 @@ t_node			*get_node(char *name, size_t len, t_node *head)
 	return (NULL);
 }
 
-static int		realloc_link_list(t_node *node, t_node *link)
+t_node			*get_start(t_node *head)
 {
-	int		nb_links;
-	t_node	**tmp;
-
-	nb_links = 0;
-	while ((node->links)[nb_links] != NULL)
-		nb_links++;
-	if (!(tmp = malloc(sizeof(t_node *) * (nb_links + 2))))
-		return (return_(NULL));
-	nb_links = 0;
-	while ((node->links)[nb_links] != NULL)
+	if (head == NULL)
+		return (NULL);
+	while (head->role != 1 && head)
 	{
-		tmp[nb_links] = (node->links)[nb_links];
-		nb_links++;
+		head = head->next;
 	}
-	free(node->links);
-	tmp[nb_links] = link;
-	tmp[nb_links + 1] = NULL;
-	node->links = tmp;
-	return (1);
+	if (head)
+		return (head);
+	return (NULL);
 }
 
-int				alloc_links_list(t_node *node, t_node *link)
+t_node			*get_end(t_node *head)
 {
-	if (!node || !link)
-		return (return_("Inexistant node name in links list"));
-	if (node->links == NULL)
+	if (head == NULL)
+		return (NULL);
+	while (head->role != 2 && head)
 	{
-		if (!(node->links = malloc(sizeof(t_node *) * 2)))
-			return (return_(NULL));
-		(node->links)[0] = link;
-		(node->links)[1] = NULL;
+		head = head->next;
 	}
-	else if (!(realloc_link_list(node, link)))
-		return (0);
-	return (1);
+	if (head)
+		return (head);
+	return (NULL);
 }
