@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:37:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 15:04:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,17 @@ static t_node	*load_nodes(char *data, size_t *i)
 	return (head);
 }
 
+static int		create_link(t_node *node1, t_node *node2)
+{
+	if (!(alloc_links_list(node1, node2)))
+		return (0);
+	if (!(alloc_links_list(node2, node1)))
+		return (0);
+	return (1);
+}
+
 static int		load_links(t_node *head, char *data)
 {
-	t_node	*ptr;
 	size_t	i;
 	size_t	j;
 	size_t	k;
@@ -60,10 +68,8 @@ static int		load_links(t_node *head, char *data)
 			k = 0;
 			while (data[i + k] != '-' && data[i + k])
 				k++;
-			ptr = get_node(&(data[i + k + 1]), j - (k + 1), head);
-			if (!(alloc_links_list(get_node(&(data[i]), k, head), ptr)))
-				return (0);
-			if (!(alloc_links_list(ptr, get_node(&(data[i]), k, head))))
+			if (!(create_link(get_node(&(data[i]), k, head),
+					get_node(&(data[i + k + 1]), j - (k + 1), head))))
 				return (0);
 		}
 		i = i + j + 1;

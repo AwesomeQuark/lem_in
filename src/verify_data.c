@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 14:58:29 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 15:03:17 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	error(int line, int type, char c)
 	return (0);
 }
 
-static int	verify_line(char *data, int *i, int line)
+static int	verify_line(char *data, size_t *i, int line)
 {
 	while (data[*i] != ' ') // passer le nom de la salle
 	{
@@ -26,10 +26,10 @@ static int	verify_line(char *data, int *i, int line)
 			return (1);
 		*i += 1;
 	}
-	ft_strtoll(&data[*i], &i, 10);   // passer coordonnee 1
+	ft_strtoll(&data[*i], i, 10);   // passer coordonnee 1
 	if (data[(*i)++] != ' ')         // verifier l'espace
 		return (error(line, 2, data[*i]));
-	ft_strtoll(&data[*i], &i, 10); //passer coordonnee 2
+	ft_strtoll(&data[*i], i, 10); //passer coordonnee 2
 	return (0);
 }
 
