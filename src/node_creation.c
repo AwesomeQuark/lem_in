@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:29:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 14:46:37 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static t_node		*new_node(char *line, int role)
 	new->role = role;
 	new->next = NULL;
 	new->links = NULL;
+	new->access = 0;
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 18:36:07 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 14:46:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "fcntl.h"
 
 /*
-**	
 **	Role : (0 = node; 1 = start; 2 = end)
 */
 typedef struct		s_node
@@ -26,6 +25,7 @@ typedef struct		s_node
 	struct s_node	*next;
 	char			*name;
 	int				role;
+	int				access;
 }					t_node;
 
 /*
