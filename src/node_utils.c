@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 16:12:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 16:21:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ t_node			*get_end(t_node *head)
 	if (head)
 		return (head);
 	return (NULL);
+}
+
+t_node			*get_next_open_link(t_node *node)
+{
+	int		i;
+
+	i = 0;
+	if (node == NULL)
+		return (NULL);
+	while (node->links[i]->access == 0 && node->links[i]->access)
+		i++;
+	return (node->links[i]);
 }
