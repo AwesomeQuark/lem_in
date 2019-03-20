@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 15:11:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/20 15:15:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	error(int line, int type, char c)
 {
 	if (type == 1)
 		ft_printf("Error in the ants number\n");
+	else if (type == 3)
+		ft_printf("wrong terminating character line %d\n", line);
 	else
 		ft_printf("Error line %d [char: %c] [type: %d]\n", line, c, type);
 	return (0);
