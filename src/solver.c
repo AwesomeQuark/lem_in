@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/21 14:17:13 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/21 14:20:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int		find_path(t_node *node, t_path *path)
 {
 	t_node	*next;
 
-	node->access = 0;
 	if (node->role == 2)
 		return (1);
+	node->access = 0;
 	while ((next = get_next_open_link(node)) != NULL)
 	{
 		add_path(next, path);

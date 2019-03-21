@@ -11,10 +11,16 @@ eight 1 20
 ##end
 nine 2 20
 one-two
+one-four
+one-eight
+one-six
 two-four
 two-six
 two-five
 four-five
+four-eight
 six-three
+six-nine
 five-nine
 five-eight
+eight-nine
