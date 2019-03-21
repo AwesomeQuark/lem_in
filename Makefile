@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/20 16:10:39 by conoel           ###   ########.fr        #
+#    Updated: 2019/03/21 14:08:36 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_NAME =	main.c\
 			node_creation.c\
 			free_nodes.c\
 			node_utils.c\
+			path_utils.c\
 			solver.c\
 			alloc_links_list.c
 

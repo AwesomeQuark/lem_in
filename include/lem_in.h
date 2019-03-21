@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 17:12:45 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/21 14:12:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct		s_node
 	int				access;
 }					t_node;
 
+typedef struct		s_path
+{
+	struct s_path	*next;
+	t_node			*node;
+}					t_path;
+
 /*
 **	PARSING FUNCTIONS
 */
@@ -46,5 +52,14 @@ t_node			*get_start(t_node *head);
 t_node			*get_end(t_node *head);
 t_node			*get_node(char *name, size_t len, t_node *head);
 t_node			*get_next_open_link(t_node *node);
+
+/*
+** PATH MANIPULATION UTILS
+*/
+t_path	*new_path(t_node *node);
+int		add_path(t_node *node, t_path *path);
+void	remove_path(t_path *path);
+
+int		solver(t_node *head);
 
 #endif

@@ -1,0 +1,20 @@
+1
+##start
+one 0 00
+two 1 00
+three 2 00
+four 0 10
+five 1 10
+six 2 20
+seven 0 20
+eight 1 20
+##end
+nine 2 20
+one-two
+two-four
+two-six
+two-five
+four-five
+six-three
+five-nine
+five-eight

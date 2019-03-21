@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 16:01:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/03/21 13:40:19 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			verify_data(char *data)
 {
 	size_t	i;
 	int		line;
+	int		ret;
 
 	i = 0;
 	line = 2;
@@ -55,9 +56,10 @@ int			verify_data(char *data)
 				i++;
 		else // si c'est une ligne normale
 		{
-			if (verify_line(data, &i, line) == 2) //c'est un lien, on ;aisse le reste du programme tourner
+			ret = verify_line(data, &i, line);
+			if (ret == 2) //c'est un lien, on passe la main au reste du programme
 				return (1);
-			if (verify_line(data, &i, line) == 0) //mauvaise ligne on quitte :()
+			if (ret == 0) //mauvaise ligne on quitte :()
 				return (0);
 		}
 		if (data[i++] != '\n') //verifie le dernier charactere de la ligne
