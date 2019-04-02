@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/21 13:58:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:41:07 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,16 @@ t_node			*get_start(t_node *head)
 
 t_node			*get_end(t_node *head)
 {
+	t_node *mem;
+
+	mem = head;
 	if (head == NULL)
 		return (NULL);
 	while (head->role != 2 && head)
 	{
 		head = head->next;
+		if (head == mem)
+			return (NULL);
 	}
 	if (head)
 		return (head);

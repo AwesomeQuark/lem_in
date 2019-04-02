@@ -6,13 +6,14 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/21 14:12:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/01 17:03:04 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN
 # define LEM_IN
 
+# define P ft_printf
 # include "../haflib/src/haflib.h"
 # include "fcntl.h"
 
@@ -52,6 +53,7 @@ t_node			*get_start(t_node *head);
 t_node			*get_end(t_node *head);
 t_node			*get_node(char *name, size_t len, t_node *head);
 t_node			*get_next_open_link(t_node *node);
+void			reset_nodes(t_node *head);
 
 /*
 ** PATH MANIPULATION UTILS
@@ -60,6 +62,6 @@ t_path	*new_path(t_node *node);
 int		add_path(t_node *node, t_path *path);
 void	remove_path(t_path *path);
 
-int		solver(t_node *head);
+int		basic_solver(t_node *head);
 
 #endif

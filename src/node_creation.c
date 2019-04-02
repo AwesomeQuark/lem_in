@@ -6,34 +6,34 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 16:20:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:44:08 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-static char			*get_name(char *line)
+static char			*get_name(char *name)
 {
 	char	*ret;
 	size_t	i;
 
 	i = 0;
-	while (line[i] != ' ' && line[i])
+	while (name[i] != ' ' && name[i])
 		i++;
-	line[i] = '\0';
-	if (!(ret = ft_strdup(line)))
+	name[i] = '\0';
+	if (!(ret = ft_strdup(name)))
 		return ((char *)return_(NULL));
-	line[i] = ' ';
+	name[i] = ' ';
 	return (ret);
 }
 
-static t_node		*new_node(char *line, int role)
+static t_node		*new_node(char *name, int role)
 {
 	t_node	*new;
 
 	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
-	if (!(new->name = get_name(line)))
+	if (!(new->name = get_name(name)))
 		return (NULL);
 	new->role = role;
 	new->next = NULL;
@@ -42,7 +42,7 @@ static t_node		*new_node(char *line, int role)
 	return (new);
 }
 
-t_node				*add_node(t_node *head, char *line, int role)
+t_node				*add_node(t_node *head, char *name, int role)
 {
 	t_node	*ptr;
 	t_node	*last;
@@ -55,7 +55,7 @@ t_node				*add_node(t_node *head, char *line, int role)
 			last = ptr;
 		ptr = ptr->next;
 	}
-	if (!(ptr = new_node(line, role)))
+	if (!(ptr = new_node(name, role)))
 		return (NULL);
 	if (head == NULL)
 		head = ptr;

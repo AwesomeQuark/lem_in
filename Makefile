@@ -6,11 +6,11 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/03/21 14:08:36 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/01 16:50:09 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 HEADER = include/lem_in.h
 AUTEUR = "conoel\nbghandou"
 
@@ -18,12 +18,12 @@ SRC_NAME =	main.c\
 			verify_data.c\
 			load_data.c\
 			load_structure.c\
+			alloc_links_list.c\
 			node_creation.c\
 			free_nodes.c\
 			node_utils.c\
 			path_utils.c\
-			solver.c\
-			alloc_links_list.c
+			basic_solver.c\
 
 SRCDIR = ./src/
 SRC = ${addprefix $(SRCDIR), $(SRC_NAME)}
@@ -36,7 +36,7 @@ LIB_NAME = haflib.a
 LIB_DIR = ./haflib/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = -Wall -Werror -Wextra -Ofast
+FLAGS = #-Wall -Werror -Wextra -Ofast
 CC = clang
 
 #################################################################################
@@ -65,17 +65,17 @@ fclean:
 $(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
 	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
-	@echo "#######################################################"
-	@echo "#######################################################  /------------\\"
-	@echo "####   _      ____   _     _           _   _    _  ####  |  BGHANDOU  |"
-	@echo "####  | |    |  __| | \   / |         |_| |  \ | | ####  \------------/"
-	@echo "####  | |    | |__  |  \_/  |          _  |   \| | ####"
-	@echo "####  | |    |  __| | |\_/| |         | | | |\   | ####"
-	@echo "####  | |__  | |__  | |   | |  _____  | | | | \  | ####"
-	@echo "####  |____| |____| |_|   |_| |_____| |_| |_|  |_| ####   /--------\\"
-	@echo "####                                               ####   | CONOEL |"
-	@echo "#######################################################   \--------/"
-	@echo "#######################################################"
+	@echo "#####################################################"
+	@echo "#####################################################  /------------\\"
+	@echo "####   _      ____   _     _         _   _    _  ####  |  BGHANDOU  |"
+	@echo "####  | |    |  __| | \   / |       |_| |  \ | | ####  \------------/"
+	@echo "####  | |    | |__  |  \_/  |  ___   _  |   \| | ####"
+	@echo "####  | |    |  __| | |\_/| | |___| | | | |\   | ####"
+	@echo "####  | |__  | |__  | |   | |       | | | | \  | ####"
+	@echo "####  |____| |____| |_|   |_|       |_| |_|  |_| ####   /--------\\"
+	@echo "####                                             ####   | CONOEL |"
+	@echo "#####################################################   \--------/"
+	@echo "#####################################################"
 # Oui j'ai passê 20 minutes a faire ca et oui je suis un putain d'autiste
 # Heil Anne Frank
 

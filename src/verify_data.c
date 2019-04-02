@@ -6,17 +6,34 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/21 13:40:19 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/01 16:43:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
+static int	goto_start(size_t *i, char *data, int *line)
+{
+	long	nb;
+
+	while (data[*i] == '#')
+	{
+		while (data[*i] != '\n' && data[*i])
+			*i += 1;
+		*line += 1;
+		*i += 1;
+	}
+	nb = ft_strtoll(&data[(*i)], i, 10);
+	if (nb > 2147483647 || nb < -2147483649)
+		return (return_("Too many ants"));
+	if (data[(*i)++] != '\n')
+		return (return_("error in ants number"));
+	return (1);
+}
+
 static int	error(int line, int type, char c)
 {
-	if (type == 1)
-		ft_printf("Error in the ants number\n");
-	else if (type == 2)
+	if (type == 2)
 		ft_printf("Error line %d [char: %c]\n", line, c);
 	else 
 		ft_printf("wrong terminating character line %d\n", line);
@@ -46,9 +63,8 @@ int			verify_data(char *data)
 
 	i = 0;
 	line = 2;
-	ft_strtoll(&data[i], &i, 10); //passer nombre de fourmis
-	if (data[i++] != '\n')  //verifier fin de ligne
-		return (error(line, 1, data[i]));
+	if (!(goto_start(&i, data, &line)))
+		return (0);
 	while (data[i])
 	{
 		if (data[i] == '#') // si c'est un commentaire

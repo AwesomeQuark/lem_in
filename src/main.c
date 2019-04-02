@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/21 14:17:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/01 16:28:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		print_links(t_node *node)
 		return ;
 	while ((node->links)[i] != NULL)
 	{
-		ft_printf("%8s ", ((node->links)[i])->name);
+		ft_printf("%20s ", ((node->links)[i])->name);
 		i++;
 	}
 }
@@ -30,7 +30,7 @@ static void		print_nodes(t_node *head)
 {
 	while (head != NULL)
 	{
-		ft_printf("NAME : %8s   ROLE : %d   LINKED TO : ", head->name,
+		ft_printf("NAME : %20s   ROLE : %d   LINKED TO : ", head->name,
 			head->role, head->next);
 		print_links(head);
 		ft_printf("\n");
@@ -46,9 +46,7 @@ int				main(int argc, char **argv)
 	if (!(head = load_map(argc, argv, &ant_nb)))
 		return ((int)return_("Failed to load the map"));
 	print_nodes(head);
-	while ((solver(head)))
-	{
-		ft_printf("<+>  Path found :D  <+>\n");
-	}
+	//if (!(basic_solver(head)))
+	//	return(return_("No path possible\n"));
 	free_nodes(head);
 }

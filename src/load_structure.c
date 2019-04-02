@@ -6,11 +6,26 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 15:04:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:52:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+static int		determine_node_role(char *data, size_t *i, t_node *head, int pos)
+{
+	if (ft_memcmp(&data[*i], "##start\n", 8) == 0)
+		pos = 1;
+	else if (ft_memcmp(&data[*i], "##end\n", 6) == 0)
+		pos = 2;
+	while (head && pos != 0)
+	{
+		if (head->role == pos)
+			return (-1);
+		head = head->next;
+	}
+	return (pos);
+}
 
 static t_node	*load_nodes(char *data, size_t *i)
 {
@@ -27,8 +42,8 @@ static t_node	*load_nodes(char *data, size_t *i)
 			j++;
 		if (ft_memchr(&data[*i], ' ', j) == NULL && data[*i] != '#')
 			break ;
-		(ft_memcmp(&data[*i], "##start\n", 8) == 0) ? pos = 1 : 0;
-		(ft_memcmp(&data[*i], "##end\n", 6) == 0) ? pos = 2 : 0;
+		if ((pos = determine_node_role(data, i, head, pos)) == -1)
+			return ((t_node *) return_("Duplicated start or end"));
 		if (data[*i] != '#')
 		{
 			if (!(head = add_node(head, &data[*i], pos)))
@@ -83,11 +98,17 @@ t_node			*load_structure(char *data, int *ant_nb)
 	t_node	*head;
 
 	i = 0;
+	while (data[i] == '#')
+	{
+		while (data[i] != '\n' && data[i])
+			i++;
+		i++;
+	}
 	*ant_nb = ft_strtoll(data, &i, 10);
-	i++;
+	i += 2;
 	if (!(head = load_nodes(data, &i)))
-		return (NULL);
+		return ((t_node *)return_("Failed to load nodes"));
 	if (!(load_links(head, &data[i])))
-		return (NULL);
+		return ((t_node *)return_("Failed to load links"));
 	return (head);
 }
