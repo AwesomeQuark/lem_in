@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/01 16:28:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:53:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void		print_nodes(t_node *head)
 int				main(int argc, char **argv)
 {
 	t_node	*head;
-	int		ant_nb;
+	long	ant_nb;
 
 	if (!(head = load_map(argc, argv, &ant_nb)))
 		return ((int)return_("Failed to load the map"));
 	print_nodes(head);
-	//if (!(basic_solver(head)))
-	//	return(return_("No path possible\n"));
+	if (!(basic_solver(head)))
+		return(return_("No path possible\n"));
 	free_nodes(head);
 }

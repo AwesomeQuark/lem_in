@@ -6,20 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/01 16:08:13 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 14:59:53 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
-
-static void		print_path(t_path *path)
-{
-	while (path)
-	{
-		ft_printf("%s\n", path->node->name);
-		path = path->next;
-	}
-}
 
 static int		find_path(t_node *node, t_path *path)
 {
@@ -28,7 +19,6 @@ static int		find_path(t_node *node, t_path *path)
 	if (node->role == 2)
 		return (1);
 	node->access = 0;
-	print_path(path);
 	while ((next = get_next_open_link(node)) != NULL)
 		if (find_path(next, path) == 1)
 			return (1);

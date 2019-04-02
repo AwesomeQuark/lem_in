@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/01 16:53:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:52:41 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char		*load_raw_data(char *file_name, int argc)
 	return (raw_data);
 }
 
-t_node			*load_map(int argc, char **argv, int *ant_nb)
+t_node			*load_map(int argc, char **argv, long *ant_nb)
 {
 	char	*raw_data;
 	t_node	*head;

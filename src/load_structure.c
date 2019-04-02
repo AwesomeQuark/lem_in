@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 14:52:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:52:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static t_node	*load_nodes(char *data, size_t *i)
 
 static int		create_link(t_node *node1, t_node *node2)
 {
+	if (node1 == node2)
+		return (return_("Link between same room"));
 	if (!(alloc_links_list(node1, node2)))
 		return (0);
 	if (!(alloc_links_list(node2, node1)))
@@ -92,7 +94,8 @@ static int		load_links(t_node *head, char *data)
 	return (1);
 }
 
-t_node			*load_structure(char *data, int *ant_nb)
+
+t_node			*load_structure(char *data, long *ant_nb)
 {
 	size_t	i;
 	t_node	*head;
@@ -104,11 +107,15 @@ t_node			*load_structure(char *data, int *ant_nb)
 			i++;
 		i++;
 	}
-	*ant_nb = ft_strtoll(data, &i, 10);
-	i += 2;
+	*ant_nb = ft_strtoll(&data[i], &i, 10);
+	if (*ant_nb < 0)
+		return ((t_node *)return_("Negative ant quantity"));
+	i++;
 	if (!(head = load_nodes(data, &i)))
 		return ((t_node *)return_("Failed to load nodes"));
 	if (!(load_links(head, &data[i])))
 		return ((t_node *)return_("Failed to load links"));
+	if (get_end(head) == NULL || get_start(head) == NULL)
+		return((t_node *)return_("End or start missing"));
 	return (head);
 }

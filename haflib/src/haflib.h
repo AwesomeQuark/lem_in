@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:54:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 15:49:34 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
+char				*ft_strchr(const char *s, int c);
 
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);

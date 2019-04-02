@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 14:44:08 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 16:04:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ static t_node		*new_node(char *name, int role)
 		return ((t_node *)return_(NULL));
 	if (!(new->name = get_name(name)))
 		return (NULL);
+	if (ft_strchr(new->name, 'L') != NULL)
+		return ((t_node *)return_("Forbidden char 'L' in room name"));
+	if (ft_strchr(new->name, '-') != NULL)
+		return ((t_node *)return_("Forbidden char '-' in room name"));
 	new->role = role;
 	new->next = NULL;
 	new->links = NULL;
