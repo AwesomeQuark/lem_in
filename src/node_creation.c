@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 16:04:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 16:58:09 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static char			*get_name(char *name)
 	if (!(ret = ft_strdup(name)))
 		return ((char *)return_(NULL));
 	name[i] = ' ';
+	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
+	{
+		free(ret);
+		return ((t_node *)return_("Forbidden char in room name (L or -)"));
+	}
 	return (ret);
 }
 
@@ -34,11 +39,10 @@ static t_node		*new_node(char *name, int role)
 	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
 	if (!(new->name = get_name(name)))
+	{
+		free(new);
 		return (NULL);
-	if (ft_strchr(new->name, 'L') != NULL)
-		return ((t_node *)return_("Forbidden char 'L' in room name"));
-	if (ft_strchr(new->name, '-') != NULL)
-		return ((t_node *)return_("Forbidden char '-' in room name"));
+	}
 	new->role = role;
 	new->next = NULL;
 	new->links = NULL;
@@ -60,7 +64,10 @@ t_node				*add_node(t_node *head, char *name, int role)
 		ptr = ptr->next;
 	}
 	if (!(ptr = new_node(name, role)))
+	{
+		free_nodes(head);
 		return (NULL);
+	}
 	if (head == NULL)
 		head = ptr;
 	if (last != NULL)

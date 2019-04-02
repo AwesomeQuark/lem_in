@@ -6,11 +6,23 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 14:59:53 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 16:11:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+static int free_all_path(t_path *path)
+{
+	t_path *tmp;
+
+	while (path != NULL)
+	{
+		tmp = path;
+		path = path->next;
+		free(tmp);
+	}
+}
 
 static int		find_path(t_node *node, t_path *path)
 {
@@ -35,7 +47,11 @@ int		basic_solver(t_node *head)
 	if (!(path = new_path(start)))
 		return (return_(NULL));
 	if (!(find_path(start, path)))
+	{
+		free_all_path(path);
 		return(0);
+	}
+	free_all_path(path);
 	reset_nodes(head);
 	return (1);
 }

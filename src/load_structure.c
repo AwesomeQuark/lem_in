@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 15:52:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 16:54:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static t_node	*load_nodes(char *data, size_t *i)
 		if (ft_memchr(&data[*i], ' ', j) == NULL && data[*i] != '#')
 			break ;
 		if ((pos = determine_node_role(data, i, head, pos)) == -1)
-			return ((t_node *) return_("Duplicated start or end"));
+		{
+			free_nodes(head);
+			return ((t_node *)return_("Duplicated start or end"));
+		}
 		if (data[*i] != '#')
 		{
 			if (!(head = add_node(head, &data[*i], pos)))
@@ -114,8 +117,14 @@ t_node			*load_structure(char *data, long *ant_nb)
 	if (!(head = load_nodes(data, &i)))
 		return ((t_node *)return_("Failed to load nodes"));
 	if (!(load_links(head, &data[i])))
+	{
+		free_nodes(head);
 		return ((t_node *)return_("Failed to load links"));
+	}
 	if (get_end(head) == NULL || get_start(head) == NULL)
+	{
+		free_nodes(head);
 		return((t_node *)return_("End or start missing"));
+	}
 	return (head);
 }
