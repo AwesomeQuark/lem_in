@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 16:11:22 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 17:33:52 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-static int free_all_path(t_path *path)
+static int		free_all_path(t_path *path)
 {
 	t_path *tmp;
 
@@ -22,6 +22,7 @@ static int free_all_path(t_path *path)
 		path = path->next;
 		free(tmp);
 	}
+	return (1);
 }
 
 static int		find_path(t_node *node, t_path *path)
@@ -37,19 +38,19 @@ static int		find_path(t_node *node, t_path *path)
 	return (0);
 }
 
-int		basic_solver(t_node *head)
+int				basic_solver(t_node *head)
 {
 	t_node *start;
 	t_path *path;
 
 	if (!(start = get_start(head)) || start->links == NULL)
-		return(return_("There is no start"));
+		return (return_("There is no start"));
 	if (!(path = new_path(start)))
 		return (return_(NULL));
 	if (!(find_path(start, path)))
 	{
 		free_all_path(path);
-		return(0);
+		return (0);
 	}
 	free_all_path(path);
 	reset_nodes(head);

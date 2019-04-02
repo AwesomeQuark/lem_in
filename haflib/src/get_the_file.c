@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 09:42:25 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 16:01:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 18:18:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ char		*get_the_file(int fd)
 			return (NULL);
 		}
 	}
-		return (add_one_byte(ret));
+	return (add_one_byte(ret));
 }

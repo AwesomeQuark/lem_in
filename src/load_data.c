@@ -6,11 +6,36 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 17:02:39 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 18:16:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
+
+static int		valid_start_end(t_node *head)
+{
+	int		start;
+	int		end;
+	t_node	*mem;
+
+	start = 0;
+	end = 0;
+	mem = head;
+	while (head)
+	{
+		if (head->role == 1)
+			start++;
+		if (head->role == 2)
+			end++;
+		head = head->next;
+	}
+	if (end != 1 || start != 1)
+	{
+		free_nodes(mem);
+		return (return_("Error in start and end (missing or duplicated)"));
+	}
+	return (1);
+}
 
 static char		*load_raw_data(char *file_name, int argc)
 {
@@ -47,5 +72,7 @@ t_node			*load_map(int argc, char **argv, long *ant_nb)
 		return (NULL);
 	}
 	free(raw_data);
+	if (!(valid_start_end(head)))
+		return (NULL);
 	return (head);
 }

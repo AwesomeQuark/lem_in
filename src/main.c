@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 16:09:16 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 17:41:07 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				main(int argc, char **argv)
 	if (!(basic_solver(head)))
 	{
 		free_nodes(head);
-		return(return_("No path possible\n"));
+		return (return_("No path possible\n"));
 	}
 	free_nodes(head);
 }

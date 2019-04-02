@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 16:58:09 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 17:33:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char			*get_name(char *name)
 	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
 	{
 		free(ret);
-		return ((t_node *)return_("Forbidden char in room name (L or -)"));
+		return ((char *)return_("Forbidden char in room name (L or -)"));
 	}
 	return (ret);
 }
