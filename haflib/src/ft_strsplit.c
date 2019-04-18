@@ -6,11 +6,12 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 11:53:38 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:56:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/08 16:37:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "garbage.h"
 
 static int		fill_tab(char *s, char **ret, char c)
 {
@@ -25,7 +26,7 @@ static int		fill_tab(char *s, char **ret, char c)
 	{
 		if (s[i] == c)
 		{
-			if (!(ret[j] = malloc(sizeof(char) * (size + 1))))
+			if (!(ret[j] = malloc_garbage(sizeof(char) * (size + 1))))
 				return (0);
 			ft_bzero(ret[j], size + 1);
 			ret[j] = ft_memcpy(ret[j], &(s[i - size]), size);
@@ -61,7 +62,7 @@ char			**ft_strsplit(char *s, char c)
 	if (s == NULL)
 		return (NULL);
 	nb_word = get_nb_word(s, c);
-	if (!(ret = malloc(sizeof(char *) * (nb_word + 1))))
+	if (!(ret = malloc_garbage(sizeof(char *) * (nb_word + 1))))
 		return (NULL);
 	if (!(fill_tab(s, ret, c)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/19 16:59:54 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/09 16:54:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void				free_tab(char **tab);
 int					ft_isalphanum_base(int c, int base, int maj);
 void				*ft_bzero(void *s, size_t n);
 char				*ft_strdup(const char *s);
+char				*ft_memdup(const char *s, size_t size);
 void				print_int_str(int *tab, size_t len);
 
 void				ft_putchar(char c);

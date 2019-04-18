@@ -23,17 +23,28 @@ SRC_NAME =	main.c\
 			free_nodes.c\
 			node_utils.c\
 			path_utils.c\
-			basic_solver.c\
+\
+			closed_room.c\
+			testing_function.c\
+			choose_path.c\
+			count_edges.c\
+			print_test.c\
+			travel_flux.c\
 
-SRCDIR = ./src/
-SRC = ${addprefix $(SRCDIR), $(SRC_NAME)}
+SRC_DIR = ./src/
+SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
-OBJDIR = ./obj/
-OBJ = ${addprefix $(OBJDIR), $(OBJ_NAME)}
+OBJ_DIR = ./obj/
+OBJ = ${addprefix $(OBJ_DIR), $(OBJ_NAME)}
+
+HEADER_DIR = ./include/
+HEADER_NAME = lem_in.h
+HEADER = ${addprefix $(HEADER_DIR), $(HEADER_NAME)}
 
 LIB_NAME = haflib.a
 LIB_DIR = ./haflib/
+LIB_HEADER = ./haflib/includes/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
 FLAGS = #-Wall -Werror -Wextra -Ofast
@@ -47,23 +58,23 @@ CC = clang
 
 .PHONY: all clean fclean re
 
-all: $(LIB) $(OBJDIR) $(NAME)
+all: $(LIB) $(OBJ_DIR) $(NAME)
 
 re: fclean all
 
 clean:
-	@rm -rf $(OBJDIR)
+	@rm -rf $(OBJ_DIR)
 	@make clean -C $(LIB_DIR)
 
 fclean:
 	@make fclean -C $(LIB_DIR)
-	@rm -rf $(OBJDIR) $(NAME)
+	@rm -rf $(OBJ_DIR) $(NAME)
 	@echo "\033[31m\033[1m\033[4mCleaning\033[0m\033[31m : Everything\033[0m [$(NAME)]";
 
 ######### COMPILATION #########
 
-$(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME)
+$(NAME): ./auteur $(OBJ_DIR) $(OBJ) $(HEADER)
+	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -I$(HEADER_DIR) -I$(LIB_DIR)
 	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
 	@echo "#####################################################"
 	@echo "#####################################################  /-----~~-----\\"
@@ -80,13 +91,13 @@ $(NAME): ./auteur $(OBJDIR) $(OBJ) $(HEADER)
 # Heil Anne Frank
 
 
-$(OBJDIR):
+$(OBJ_DIR):
 	@clear
-	@mkdir $(OBJDIR)
+	@mkdir $(OBJ_DIR)
 	@echo "\n>=========== * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * ===========<";
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)
-	@$(CC) $(FLAGS) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
+	@$(CC) $(FLAGS) -c $< -o $@ -I$(HEADER_DIR) -I$(LIB_HEADER)
 	@printf "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : %-30s \033[0m [$(NAME)]\n" $@
 
 ./auteur:
