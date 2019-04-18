@@ -38,15 +38,21 @@ static t_node		*new_node(char *name, int role)
 
 	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
+	new->links = NULL;
+	new->next = NULL;
+	new->hist = NULL;
 	if (!(new->name = get_name(name)))
 	{
 		free(new);
 		return (NULL);
 	}
 	new->role = role;
-	new->next = NULL;
-	new->links = NULL;
 	new->access = 1;
+	new->vzt = 0;
+	new->flux = NULL;
+	new->weight = 0;
+	new->printed = 0;
+	new->skip = 0;
 	return (new);
 }
 
