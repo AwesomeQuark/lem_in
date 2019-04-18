@@ -12,7 +12,5 @@ mid1 3 3
 start-mid0
 mid0-mid1
 short0-start
-short0-short1
-short1-end
+#short0-end
 mid1-start
-start-end

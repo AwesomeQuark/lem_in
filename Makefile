@@ -23,7 +23,7 @@ SRC_NAME =	main.c\
 			free_nodes.c\
 			node_utils.c\
 			path_utils.c\
-\
+			basic_solver.c\
 			closed_room.c\
 			testing_function.c\
 			choose_path.c\

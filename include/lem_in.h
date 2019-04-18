@@ -62,6 +62,7 @@ void		free_nodes(t_node *head);
 t_node		*get_node(char *name, size_t len, t_node *head);
 int			alloc_links_list(t_node *node, t_node *link);
 int			verify_data(char *data);
+int			basic_solver(t_node *head);
 
 /*
 ** NODE MANIPULATION UTILS

@@ -44,6 +44,11 @@ int				main(int argc, char **argv)
 
 	if (!(head = load_map(argc, argv, &ant_nb)))
 		return ((int)return_("Failed to load the map"));
+	if (!(basic_solver(head)))
+	{
+		free_nodes(head);
+		return (return_("No path possible\n"));
+	}
 	test_function(head);
 	free_nodes(head);
 }
