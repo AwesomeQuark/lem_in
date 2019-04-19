@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 15:49:38 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 17:58:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	test_flux(t_node *room)
 			//ft_printf("in : %s pointing to : %s of value : %d and print : %d\n", room->name, room->links[i]->name, room->flux[i], room->links[i]->printed);
 			if (room->flux[i] == 1 && room->links[i]->printed <= 0)
 			{
-				ft_printf("room %s to %s\n", room->name, room->links[i]->name);
+				//ft_printf("room %s to %s\n", room->name, room->links[i]->name);
 				if (room->links[i]->role == 0)
 					room->links[i]->printed = 1;
 				room = room->links[i];

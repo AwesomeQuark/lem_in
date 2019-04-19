@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 17:58:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	shortest_path(t_node **room, int size, t_node *head)
 	t_node	*start;
 
 	start = get_start(head);
-	ft_printf("==========================\n");
-	print_path_final((*room)->hist);
-	ft_printf("==========================\n");
+	//ft_printf("==========================\n");
+	//print_path_final((*room)->hist);
+	//ft_printf("==========================\n");
 	forward_flux(start, room, size);
 }

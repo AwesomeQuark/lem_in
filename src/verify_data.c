@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:52:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 18:08:54 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	error(int line, int type, char c)
 
 static int	verify_line(char *data, size_t *i, int line)
 {
-	while (data[*i] != ' ')
+	while (data[*i] && data[*i] != ' ')
 	{
 		if (data[*i] == '-')
 			return (2);
@@ -70,7 +70,7 @@ int			verify_data(char *data)
 	while (data[i])
 	{
 		if (data[i] == '#')
-			while (data[i] != '\n')
+			while (data[i] && data[i] != '\n')
 				i++;
 		else
 		{

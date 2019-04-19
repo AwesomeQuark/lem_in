@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:10:46 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 17:59:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 {
 	if (((*room)->links[i])->role == END && (*room)->flux[i] == 0)//put this condition before function start
 	{
-		ft_printf("done to END: %s\n", (*room)->name);
+		//ft_printf("done to END: %s\n", (*room)->name);
 		(*room)->flux[i] = 1;
 		shortest_path(room, i, head);
 		while (*vzt_nxt && (*vzt_nxt)->room->role != END)
@@ -122,7 +122,7 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 				&& ((room->flux[i] <= 0 && room->links[i]->access == OPEN)
 				/*|| (reverse_flux_case(room, i) && room->links[i]->access == CLSD)*/)) // might not need condition after last "||"
 		{
-			ft_printf("FIRST CONDITIONS ROOM ADD: %s\n", room->links[i]->name);
+			//ft_printf("FIRST CONDITIONS ROOM ADD: %s\n", room->links[i]->name);
 			if (!vzt_nxt)
 				vzt_nxt = new_path(room->links[i]);
 			else
@@ -155,7 +155,7 @@ void	test_function(t_node *head)
 		while (1)
 		{
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
-			print_path_test(vzt_nxt);//
+			//print_path_test(vzt_nxt);//
 			if ((vzt_nxt && vzt_nxt->room->role == END)/*|| !vzt_nxt*/) //might not need thislast part of condition after "||"
 				break ;
 			//room = build_path(room);
@@ -166,14 +166,14 @@ void	test_function(t_node *head)
 		vzt_nxt = NULL;
 		loops--;
 	}
-	int		test = -1;
-	room = get_start(head);
-	while(room->links[++test])
-	{
-		ft_printf("------\n");
-		test_flux(room);
-		ft_printf("------\n");
-	}
+	//int		test = -1;
+	//room = get_start(head);
+	//while(room->links[++test])
+	//{
+	//	ft_printf("------\n");
+	//	test_flux(room);
+	//	ft_printf("------\n");
+	//}
 	//print_nodes(head);
 	//now adjust relative to n_loops and find correct path again
 }
