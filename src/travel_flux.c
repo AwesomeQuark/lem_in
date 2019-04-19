@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   travel_flux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/15 15:49:53 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:48 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	create_flux(t_node **room)
 	i = -1;
 	while ((*room)->links[++i])
 		;
-	if (!((*room)->flux = (int*)malloc(sizeof(int) * (i + 1))))
+	if (!((*room)->flux = (int*)malloc_garbage(sizeof(int) * (i + 1))))
 		return ;
 	i = -1;
 	while ((*room)->links[++i])

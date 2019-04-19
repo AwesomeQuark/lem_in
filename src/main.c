@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/03 19:12:35 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ int				main(int argc, char **argv)
 	long	ant_nb;
 
 	if (!(head = load_map(argc, argv, &ant_nb)))
+	{
+		malloc_garbage(0);
 		return ((int)return_("Failed to load the map"));
+	}
 	if (!(basic_solver(head)))
 	{
-		free_nodes(head);
+		malloc_garbage(0);
 		return (return_("No path possible\n"));
 	}
 	test_function(head);
-	free_nodes(head);
+	malloc_garbage(0);
 }

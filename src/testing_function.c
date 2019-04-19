@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:10:46 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/18 14:18:39 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:48 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 	{
 		ft_printf("done to END: %s\n", (*room)->name);
 		(*room)->flux[i] = 1;
-		shortest_path(room, i, head);
+		shortest_path(room, head);
 		while (*vzt_nxt && (*vzt_nxt)->room->role != END)
 		{
 			(*vzt_nxt)->room->vzt = FREE; // take care of overflow of vzt_nxt
@@ -67,6 +67,7 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reini
 	t_node *nxt_room;
 	int		i;
 
+	reinit = (t_path **)reinit;
 	i = -1;
 	nxt_room = (*room)->links[idx];
 //				dprintf(1, "*ROOM: %s poiting to : %s\n", (*room)->name, nxt_room->name);
@@ -142,7 +143,6 @@ void	test_function(t_node *head)
 {
 	t_path	*vzt_nxt;
 	t_node	*room;
-	t_node	*start;
 	t_path	*reinit;
 	int		loops;
 

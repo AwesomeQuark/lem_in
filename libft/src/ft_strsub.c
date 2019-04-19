@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:31:25 by conoel            #+#    #+#             */
-/*   Updated: 2018/11/14 18:13:34 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (0);
-	if (!(end = (char *)malloc(len + 1)))
+	if (!(end = (char *)malloc_garbage(len + 1)))
 		return (NULL);
 	end = ft_strncpy(end, (s + start), len);
 	end[len] = '\0';

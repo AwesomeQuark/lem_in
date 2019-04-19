@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 16:52:56 by conoel            #+#    #+#             */
-/*   Updated: 2018/11/14 20:08:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ char			*ft_strtrim(char const *s)
 	index = 0;
 	if (size == 0)
 	{
-		if (!(end = malloc(sizeof(char *) * size)))
+		if (!(end = malloc_garbage(sizeof(char *) * size)))
 			return (NULL);
 	}
 	else
 	{
-		if (!(end = malloc(sizeof(char *) * 1)))
+		if (!(end = malloc_garbage(sizeof(char *) * 1)))
 			return (NULL);
 	}
 	while (*s && ft_isspace(*s))

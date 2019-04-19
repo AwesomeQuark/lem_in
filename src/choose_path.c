@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   choose_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/16 14:28:25 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:37 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			find_index(t_node *prev, t_node *next)
 	return (i);
 }
 
-void		forward_flux(t_node *start, t_node **room, int size)//travers l'historique
+static void		forward_flux(t_node *start, t_node **room)//travers l'historique
 {
 	t_node	*path_tmp;
 	t_path	*cur_room;
@@ -49,7 +49,7 @@ void		forward_flux(t_node *start, t_node **room, int size)//travers l'historique
 	cur_room->room->access = CLSD;
 }
 
-void	shortest_path(t_node **room, int size, t_node *head)
+void	shortest_path(t_node **room, t_node *head)
 {
 	t_node	*start;
 
@@ -57,5 +57,5 @@ void	shortest_path(t_node **room, int size, t_node *head)
 	ft_printf("==========================\n");
 	print_path_final((*room)->hist);
 	ft_printf("==========================\n");
-	forward_flux(start, room, size);
+	forward_flux(start, room);
 }

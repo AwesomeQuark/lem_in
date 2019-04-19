@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 10:47:16 by conoel            #+#    #+#             */
-/*   Updated: 2018/11/14 18:09:55 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:35:32 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnew(size_t size)
 	unsigned long	index;
 
 	index = 0;
-	if (!(start = (char *)malloc(size + 1)))
+	if (!(start = (char *)malloc_garbage(size + 1)))
 		return (NULL);
 	while (index <= size / sizeof(char))
 		start[index++] = '\0';
