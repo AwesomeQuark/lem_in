@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 01:03:37 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_char_str(char c, size_t nb)
 	int		i;
 
 	i = nb;
-	if (!(buff = malloc_garbage(sizeof(char) * nb + 1)))
+	if (!(buff = malloc(sizeof(char) * nb + 1)))
 		exit_(NULL);
 	while (i--)
 		buff[i] = c;

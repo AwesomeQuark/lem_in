@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/19 14:14:59 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/19 14:44:22 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LIB_DIR = ./haflib/
 LIB_HEADER = ./haflib/includes/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = -Wall -Werror -Wextra #-Ofast
+FLAGS = #-Wall -Werror -Wextra -Ofast
 CC = clang
 
 #################################################################################

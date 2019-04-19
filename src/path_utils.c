@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 14:37:00 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_path	*new_path(t_node *node)
 {
 	t_path	*new;
 
-	if (!(new = malloc_garbage(sizeof(t_path))))
+	if (!(new = malloc(sizeof(t_path))))
 		return (NULL);
 	new->next = NULL;
 	new->prev = NULL;
@@ -52,6 +52,7 @@ void	remove_path(t_path *path)
 		while (path->next->next != NULL)
 			path = path->next;
 	}
+	free(path->next);
 	path->next = NULL;
 }
 
@@ -68,7 +69,7 @@ t_path	*copy_path(t_path *path)
 	tmp2 = NULL;
 	while (path)
 	{
-		if (!(tmp = (t_path*)malloc_garbage(sizeof(t_path))))
+		if (!(tmp = (t_path*)malloc(sizeof(t_path))))
 			return (NULL);
 		tmp->room = path->room;
 		tmp->next = NULL;
@@ -127,5 +128,6 @@ void	reinit_visited(t_path **history)
 			remove_path(tmp->room->hist);//maybe doesn't free all history!?
 		tmp = tmp->next;
 	}
+	free(*history);
 	*history = NULL;
 }

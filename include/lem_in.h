@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_path //path to room
 t_node		*load_map(int argc, char ** argv, long *ant_nb);
 t_node		*load_structure(char *data, long *ant_nb);
 t_node		*add_node(t_node *head, char *line, int pos);
+void		free_nodes(t_node *head);
 t_node		*get_node(char *name, size_t len, t_node *head);
 int			alloc_links_list(t_node *node, t_node *link);
 int			verify_data(char *data);
@@ -71,7 +72,6 @@ t_node			*get_end(t_node *head);
 t_node			*get_node(char *name, size_t len, t_node *head);
 t_node			*get_next_open_link(t_node *node);
 void			reset_nodes(t_node *head);
-
 /*
 ** PATH MANIPULATION UTILS
 */
@@ -108,7 +108,7 @@ void	create_flux(t_node **room);
 ** PATH PHASE
 */
 void		test_function(t_node *head);
-void		shortest_path(t_node **room, t_node *head);
+void		shortest_path(t_node **room, int size, t_node *head);
 t_node		*build_paths(t_node *room);
 
 t_node		*build_path(t_node *room, int i);

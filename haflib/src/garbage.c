@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 17:16:57 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static t_malloc		*init_garbage(int size)
 {
 	t_malloc	*head;
 
-	if (!(head = malloc_garbage(sizeof(t_malloc))))
+	if (!(head = malloc(sizeof(t_malloc))))
 		return (NULL);
 	head->next = NULL;
-	if (!(head->elem = malloc_garbage(size)))
+	if (!(head->elem = malloc(size)))
 		return (NULL);
 	return (head);
 }
@@ -51,10 +51,10 @@ static int			add_mem(t_malloc *head, int size)
 {
 	t_malloc	*new;
 
-	if (!(new = malloc_garbage(sizeof(t_malloc))))
+	if (!(new = malloc(sizeof(t_malloc))))
 		return (0);
 	new->next = NULL;
-	if (!(new->elem = malloc_garbage(size)))
+	if (!(new->elem = malloc(size)))
 		return (0);
 	get_top(head)->next = new;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:54 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static char			*get_name(char *name)
 		return ((char *)return_(NULL));
 	name[i] = ' ';
 	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
+	{
+		free(ret);
 		return ((char *)return_("Forbidden char in room name (L or -)"));
+	}
 	return (ret);
 }
 
@@ -33,13 +36,16 @@ static t_node		*new_node(char *name, int role)
 {
 	t_node	*new;
 
-	if (!(new = malloc_garbage(sizeof(t_node))))
+	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
 	new->links = NULL;
 	new->next = NULL;
 	new->hist = NULL;
 	if (!(new->name = get_name(name)))
+	{
+		free(new);
 		return (NULL);
+	}
 	new->role = role;
 	new->access = 1;
 	new->vzt = 0;
@@ -64,7 +70,10 @@ t_node				*add_node(t_node *head, char *name, int role)
 		ptr = ptr->next;
 	}
 	if (!(ptr = new_node(name, role)))
+	{
+		free_nodes(head);
 		return (NULL);
+	}
 	if (head == NULL)
 		head = ptr;
 	if (last != NULL)

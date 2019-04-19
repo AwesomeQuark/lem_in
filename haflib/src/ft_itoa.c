@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:05:18 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			*ft_itoa(int n)
 	size = ft_size(n);
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	if (!(end = (char *)malloc_garbage(sizeof(char) * size--)))
+	if (!(end = (char *)malloc(sizeof(char) * size--)))
 		return (0);
 	end[size--] = '\0';
 	if (n < 0)

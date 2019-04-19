@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:27:42 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/02 18:16:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static int		valid_start_end(t_node *head)
 		head = head->next;
 	}
 	if (end != 1 || start != 1)
+	{
+		free_nodes(mem);
 		return (return_("Error in start and end (missing or duplicated)"));
+	}
 	return (1);
 }
 
@@ -59,9 +62,16 @@ t_node			*load_map(int argc, char **argv, long *ant_nb)
 	if (!(raw_data = load_raw_data(argv[1], argc)))
 		return (NULL);
 	if (!(verify_data(raw_data)))
+	{
+		free(raw_data);
 		return (NULL);
+	}
 	if (!(head = load_structure(raw_data, ant_nb)))
+	{
+		free(raw_data);
 		return (NULL);
+	}
+	free(raw_data);
 	if (!(valid_start_end(head)))
 		return (NULL);
 	return (head);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 10:45:43 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:36:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:16 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup2(const char *s)
 	char	*end;
 
 	index = ft_strlen2(s) + 1;
-	if (!(end = (char *)malloc_garbage(sizeof(char) * (index))))
+	if (!(end = (char *)malloc(sizeof(char) * (index))))
 		return (0);
 	while (--index >= 0)
 		end[index] = s[index];

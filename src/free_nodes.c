@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   free_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 16:41:16 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:35:32 by conoel           ###   ########.fr       */
+/*   Created: 2019/03/18 16:48:32 by conoel            #+#    #+#             */
+/*   Updated: 2019/03/20 18:19:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	free_nodes(t_node *head)
 {
-	char	*end;
-	size_t		index;
+	t_node	*tmp;
 
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	index = 0;
-	if (!(end = malloc_garbage(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
-		return (NULL);
-	while (*s1)
-		end[index++] = *(s1++);
-	while (*s2)
-		end[index++] = *(s2++);
-	end[index] = '\0';
-	return (end);
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		if (tmp->links != NULL)
+		{
+			free(tmp->links);
+			tmp->links = NULL;
+		}
+		free(tmp->name);
+		tmp->name = NULL;
+		free(tmp);
+		tmp = NULL;
+	}
 }
