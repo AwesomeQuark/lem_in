@@ -6,23 +6,32 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:57:59 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 16:36:53 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 17:03:48 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	nb_paths(t_node *head)
+static int	*nb_paths(t_node *head, int *ant_index)
 {
 	int	i;
 	int	nb;
+	int	*ret;
 
 	i = 0;
 	nb = 0;
 	while (head->flux[i] != -1)
 		if (head->flux[i++] == 1)
 			nb++;
-	return (nb);
+	ret = malloc(sizeof(int *) * nb);
+	i = 0;
+	while (i < nb)
+	{
+		ret[i] = i;
+		i++;
+	}
+	*ant_index = nb - 1;
+	return (ret);
 }
 
 static t_node	*next_path(t_node *current)
@@ -35,10 +44,7 @@ static t_node	*next_path(t_node *current)
 	while (current->flux[i] != -1)
 	{
 		if (current->flux[i] == 1)
-		{
-			current->links[i]->access = current->access;
 			return (current->links[i]);
-		}
 		i++;
 	}
 	return (NULL);
@@ -65,8 +71,7 @@ static t_node	**get_firsts(t_node *head)
 	{
 		if (start->flux[i] == 1)
 		{
-			list[size] = start->links[i];
-			start->links[i]->access = size--;
+			list[size--] = start->links[i];
 		}
 		i++;
 	}
@@ -80,22 +85,22 @@ int		display_end(t_node *head, long ant_nb, char *opt)
 	int		i;
 	int		op_count;
 	int		*ants;
+	int		ant_index;
 
 	op_count = 0;
 	if (!(currents = get_firsts(head)) || !(memory = get_firsts(head)))
 		return (return_free(NULL, 1, currents));
-	ant = nb_paths(get_start(head));
-	while (ant_nb > ant)
+	ants = nb_paths(get_start(head), &ant_index);
+	while (ant_nb > ant_index)
 	{
 		i = 0;
 		while (currents[i] != NULL)
 		{
-			ft_printf("L%d-%s ", currents[i]->access, currents[i]->name);
+			ft_printf("L%d-%s ", ants[i] + 1, currents[i]->name);
 			if (currents[i] == get_end(head))
 			{
 				currents[i] = memory[i];
-				currents[i]->access = ant;
-				ant++;
+				ants[i] = ++ant_index;
 			}
 			else if (!(currents[i] = next_path(currents[i])))
 				return (return_free(NULL, 2, currents, memory));
