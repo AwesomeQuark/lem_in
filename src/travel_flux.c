@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 15:49:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	create_flux(t_node **room)
 {
 	int		i;
 
-	i = -1;
-	while ((*room)->links[++i])
-		;
+	i = 0;
+	while ((*room)->links[i] != NULL)
+		i++;
 	if (!((*room)->flux = (int*)malloc(sizeof(int) * (i + 1))))
 		return ;
-	i = -1;
-	while ((*room)->links[++i])
-		(*room)->flux[i] = 0;
+	(*room)->flux[i--] = -1;
+	while ((*room)->links[i])
+		(*room)->flux[i--] = 0;
 }
 
 int		reverse_flux_case(t_node *room, int idx)

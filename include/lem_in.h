@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 15:58:46 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ void		print_flux(t_node *room);
 
 void		test_flux(t_node *room);
 
+/*
+**	LAST DISPLAY
+*/
+
+int		display_end(t_node *head, long ant_nb, char *opt);
 
 /*
 ** TESTNG PHASE
@@ -127,5 +132,6 @@ void		test_flux(t_node *room);
 
 int		count_edges(t_node *room);
 int		count_iterations(t_node *head);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/09 16:54:32 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 16:11:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "ft_printf.h"
 # include "quit.h"
 # include "ft_is.h"
+# include "colors.h"
 
 # define BUFF_SIZE 16
 # define ITER_MAX (INT_MAX / BUFF_SIZE)
