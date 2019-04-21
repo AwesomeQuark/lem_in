@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 15:58:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 16:54:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ typedef struct		s_path //path to room
 	t_node			*room;
 	struct s_path	*next;
 }					t_path;
+
+typedef struct		s_ant
+{
+	struct s_ant	*next;
+	t_node			*room;
+	int				nb;
+}					t_ant;
 
 /*
 **	PARSING FUNCTIONS
