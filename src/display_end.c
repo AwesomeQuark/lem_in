@@ -5,33 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 14:57:59 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 17:03:48 by conoel           ###   ########.fr       */
+/*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
+/*   Updated: 2019/04/21 17:05:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	*nb_paths(t_node *head, int *ant_index)
+static t_ant	*allocate_ants(long ant_nb, t_node *start)
 {
-	int	i;
-	int	nb;
-	int	*ret;
+	t_ant	*head;
+	t_ant	*ptr;
+	t_ant	*ptr2;
 
-	i = 0;
-	nb = 0;
-	while (head->flux[i] != -1)
-		if (head->flux[i++] == 1)
-			nb++;
-	ret = malloc(sizeof(int *) * nb);
-	i = 0;
-	while (i < nb)
+	if (!(head = malloc(sizeof(t_ant))))
+		return (NULL);
+	head->room = start;
+	head->next = NULL;
+	ptr2 = head;
+	while (--ant_nb)
 	{
-		ret[i] = i;
-		i++;
+		ptr = ptr2;
+		if (!(ptr2 = malloc(sizeof(t_ant))))
+			return (NULL);
+		ptr2->next = NULL;
+		ptr2->room = start;
+		ptr->next = ptr2;
 	}
-	*ant_index = nb - 1;
-	return (ret);
+	return (head);
 }
 
 static t_node	*next_path(t_node *current)
@@ -50,71 +51,47 @@ static t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-static t_node	**get_firsts(t_node *head)
+static int	update_ants(t_ant *ants, t_node *start, t_node * end, long *ant_nb)
 {
-	t_node **list;
-	t_node *start;
-	int size;
-	int	i;
+	t_node		*next;
+	int			finished;
 
-	i = 0;
-	size = 0;
-	if (!head || !(start = get_start(head)))
-		return (NULL);
-	while (start->flux[i] != -1)
-		start->flux[i++] == 1 ? size++ : 0;
-	if (!(list = malloc(sizeof(t_node *) * (size + 1))))
-		return (NULL);
-	list[size--] = NULL;
-	i = 0;
-	while (start->flux[i] != -1)
+	finished = 1;
+	while (ants != NULL)
 	{
-		if (start->flux[i] == 1)
+		if (ants->room == end && *ant_nb > 0)
 		{
-			list[size--] = start->links[i];
+			ants->room = start;
 		}
-		i++;
+		if (ants->room != end && (next = next_path(ants->room))->access == 1)
+		{
+			finished = 0;
+			if (ants->room == start)
+				ants->nb = *ant_nb--;
+			ft_printf("[L\033[31m%d\033[0m\033[32m%s-%s\033[0m]  ", ants->nb, ants->room->name, next->name);
+			ants->room->access = 1;
+			ants->room = next;
+			ants->room->access = 0;
+		}
+		ants = ants->next;
 	}
-	return (list);
+	return (finished);
 }
 
-int		display_end(t_node *head, long ant_nb, char *opt)
+int			display_end(t_node *head, long ant_nb, char *opt)
 {
-	t_node	**currents;
-	t_node	**memory;
-	int		i;
-	int		op_count;
-	int		*ants;
-	int		ant_index;
+	t_ant	*ants;
+	t_node	*start;
+	t_node	*end;
+	int		ant;
 
-	op_count = 0;
-	if (!(currents = get_firsts(head)) || !(memory = get_firsts(head)))
-		return (return_free(NULL, 1, currents));
-	ants = nb_paths(get_start(head), &ant_index);
-	while (ant_nb >= ant_index)
+	ant = 0;
+	start = get_start(head);
+	end = get_end(head);
+	ants = allocate_ants(ant_nb, start);
+	reset_nodes(head);
+	while (update_ants(ants, start, end, &ant) == 0)
 	{
-		i = 0;
-		while (currents[i] != NULL)
-		{
-			if (ants[i] != -1)
-				ft_printf("L%d-%s ", ants[i] + 1, currents[i]->name);
-			if (currents[i]->role == END)
-			{
-				currents[i] = memory[i];
-				ants[i] = ++ant_index;
-				if (ant_index == ant_nb)
-					ants[i] = -1;
-			}
-			else if (!(currents[i] = next_path(currents[i])))
-				return (return_free(NULL, 2, currents, memory));
-			i++;
-		}
-		op_count++;
-		ft_printf("\n");
+		write(1,"\n", 1);
 	}
-	if (ft_memcmp(opt, "-c", 3) == 0)
-		ft_printf("Total operations : %s%d%s\n", RED, op_count, DEF);
-	free(memory);
-	free(currents);
-	return (1);
 }
