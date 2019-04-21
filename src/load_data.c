@@ -71,6 +71,7 @@ t_node			*load_map(int argc, char **argv, long *ant_nb)
 		free(raw_data);
 		return (NULL);
 	}
+	printf("%s\n", raw_data);
 	free(raw_data);
 	if (!(valid_start_end(head)))
 		return (NULL);
