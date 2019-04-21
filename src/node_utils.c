@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 18:16:08 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/02 17:06:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/03 20:51:56 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 t_node			*get_node(char *name, size_t len, t_node *head)
 {
@@ -31,7 +31,7 @@ t_node			*get_start(t_node *head)
 {
 	if (head == NULL)
 		return (NULL);
-	while (head && head->role != 1)
+	while (head->role != 1 && head)
 	{
 		head = head->next;
 	}
@@ -44,7 +44,7 @@ t_node			*get_end(t_node *head)
 {
 	if (head == NULL)
 		return (NULL);
-	while (head && head->role != 2)
+	while (head->role != 2 && head)
 	{
 		head = head->next;
 	}
@@ -60,7 +60,7 @@ t_node			*get_next_open_link(t_node *node)
 	i = 0;
 	if (node == NULL)
 		return (NULL);
-	while (node->links[i] && node->links[i]->access == 0)
+	while (node->links[i]->access == 0 && node->links[i]->access)
 		i++;
 	return (node->links[i]);
 }

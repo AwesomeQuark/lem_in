@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   choose_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 17:58:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 17:27:09 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 int			find_index(t_node *prev, t_node *next)
 {
@@ -54,8 +54,8 @@ void	shortest_path(t_node **room, int size, t_node *head)
 	t_node	*start;
 
 	start = get_start(head);
-	//ft_printf("==========================\n");
-	//print_path_final((*room)->hist);
-	//ft_printf("==========================\n");
+	ft_printf("==========================\n");
+	print_path_final((*room)->hist);
+	ft_printf("==========================\n");
 	forward_flux(start, room, size);
 }

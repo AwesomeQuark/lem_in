@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 15:21:02 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 t_path	*new_path(t_node *node)
 {
@@ -47,6 +47,21 @@ int		add_path(t_node *node, t_path *path)
 
 void	remove_path(t_path *path)
 {
+	t_path	*tmp;
+
+	tmp = NULL;
+	while (path->next)
+	{
+		tmp = path;
+		path = path->next;
+		free(tmp);
+		tmp = NULL;
+	}
+}
+
+/*
+void	remove_path(t_path *path)
+{
 	if (path->next)
 	{
 		while (path->next->next != NULL)
@@ -55,7 +70,7 @@ void	remove_path(t_path *path)
 	free(path->next);
 	path->next = NULL;
 }
-
+*/
 t_path	*copy_path(t_path *path)
 {
 	t_path	*head;
@@ -125,7 +140,10 @@ void	reinit_visited(t_path **history)
 		tmp->room->skip = 0;
 		tmp->room->weight = 0;
 		if (tmp->room->hist)
+		{
 			remove_path(tmp->room->hist);//maybe doesn't free all history!?
+			tmp->room->hist = NULL;
+		}
 		tmp = tmp->next;
 	}
 	free(*history);

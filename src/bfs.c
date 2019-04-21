@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testing_function.c                                 :+:      :+:    :+:   */
+/*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/20 14:10:46 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/19 17:59:28 by conoel           ###   ########.fr       */
+/*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
+/*   Updated: 2019/04/21 18:41:44 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit)//use ft_ to find leaking  deprecated paths
 {
-//	if (*vzt_nxt) // might not need
-//	{
-		*room = (*vzt_nxt)->room;
-		reinit = deprecate_first(vzt_nxt, reinit);
-//	}
+	*room = (*vzt_nxt)->room;
+	reinit = deprecate_first(vzt_nxt, reinit);
 	return (reinit);
 }
 
@@ -26,12 +23,12 @@ void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 {
 	if (((*room)->links[i])->role == END && (*room)->flux[i] == 0)//put this condition before function start
 	{
-		//ft_printf("done to END: %s\n", (*room)->name);
+		ft_printf("done to END: %s\n", (*room)->name);
 		(*room)->flux[i] = 1;
 		shortest_path(room, i, head);
 		while (*vzt_nxt && (*vzt_nxt)->room->role != END)
 		{
-			(*vzt_nxt)->room->vzt = FREE; // take care of overflow of vzt_nxt
+			(*vzt_nxt)->room->vzt = FREE;
 			(*vzt_nxt) = (*vzt_nxt)->next;
 		}
 	}
@@ -45,19 +42,19 @@ t_node	*build_path(t_node *room, int i)
 			{
 				room->links[i]->weight++;
 				(room->links[i])->hist = new_path(room->links[i]);
-			//ft_printf("INROOM:%s__i:%d))targeting:%s...visit:%d\n", room->name, i, (room->links[i])->name, room->links[i]->vzt);
 			}
 	}
 	else
 	{
 			if ((room->links[i])->role == 0 && (room->links[i])->vzt == FREE)
 			{
-	//		ft_printf("2.INROOM:%s__i:%d))targeting:%s...visit:%d\n", room->name, i, (room->links[i])->name, room->links[i]->vzt);
-				room->links[i]->weight = room->weight + 1;
+				if (reverse_flux_case(room, i))
+					room->links[i]->weight = room->weight - 1;
+				else
+					room->links[i]->weight = room->weight + 1;
 				(room->links[i])->hist = copy_path(room->hist);
 				add_path(room->links[i], (room->links[i])->hist);
 			}
-	//	free(room->hist);
 	}
 	return (room);
 }
@@ -69,31 +66,38 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reini
 
 	i = -1;
 	nxt_room = (*room)->links[idx];
-//				dprintf(1, "*ROOM: %s poiting to : %s\n", (*room)->name, nxt_room->name);
 	if ((*room)->flux[idx] <= 0)
 	{
+		if ((*room)->access == OPEN && nxt_room->vzt == FREE)
+			nxt_room->skip = 1;
 		while (nxt_room->links[++i])
 		{
-//	dprintf(1, "*room_nxt is: %s and aiming to %s with flux: %d\n", nxt_room->name, nxt_room->links[i]->name, nxt_room->flux[i]);
-			if (reverse_flux_case(nxt_room, i))
+			if ((*room)->access == CLSD && nxt_room->hist)
+				compare_weights(&nxt_room, i);
+			if (reverse_flux_case(nxt_room, i) && nxt_room->links[i]->vzt == FREE)
 			{
-//			ft_printf("*****CONDITIONS ROOM ADD: %s....pointing to :%s__%s\n", nxt_room->name, nxt_room->links[i]->name, (*room)->name);
 				if (!*vzt_nxt)
 				{
 					*vzt_nxt = new_path(nxt_room);
-					add_path(nxt_room->links[i], *vzt_nxt); //too much?
+					add_path(nxt_room->links[i], *vzt_nxt);
 				}
 				else
 				{
-					add_path(nxt_room,*vzt_nxt);
-					add_path(nxt_room->links[i], *vzt_nxt);//maybe too much to skip2 
+					if (nxt_room->vzt == FREE && !check_outwardflux(room))
+						add_path(nxt_room,*vzt_nxt);
+					add_path(nxt_room->links[i], *vzt_nxt);
 				}
 				*room = build_path(*room, idx);
 				nxt_room = build_path(nxt_room, i);
-				nxt_room->weight -= 1;
+				if ((*room)->access == OPEN)
+					nxt_room->weight = (*room)->weight + 1;
 				nxt_room->vzt = VISITED;
-				nxt_room->links[i]->vzt = VISITED; //too much?
-				nxt_room->skip = 1;
+				nxt_room->links[i]->vzt = VISITED;
+				if (nxt_room->links[i]->access == CLSD)
+				{
+					nxt_room->links[i]->weight = nxt_room->weight - 1;
+					closed_access_case(&nxt_room, vzt_nxt, i, reinit);
+				}
 				break  ;
 			}
 		}
@@ -111,18 +115,23 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 	{
 		if  (room->skip == 1)
 		{
-		//	room = build_path(room, i);
-			//if (room->links[i]->access == CLSD && room->flux[i] <= 0)
-			//	closed_access_case(&room, &vzt_nxt, i, &reinit);
 			room->skip = 0;
+			room->vzt = 0;
 			break ; 
 		}
-//			ft_printf("'''INROOM:%s__i:%d))targeting:%s...visit:%d\n", room->name, i, (room->links[i])->name, room->links[i]->vzt);
-		if ((room->links[i])->vzt == FREE /*&& room->access == OPEN/test*/ && (room->links[i])->role != START
-				&& ((room->flux[i] <= 0 && room->links[i]->access == OPEN)
-				/*|| (reverse_flux_case(room, i) && room->links[i]->access == CLSD)*/)) // might not need condition after last "||"
+		if (room->access == CLSD && room->links[i]->access == OPEN
+				&& room->flux[i] <= 0)
 		{
-			//ft_printf("FIRST CONDITIONS ROOM ADD: %s\n", room->links[i]->name);
+			if (skip_from_close(&room, i))
+				;
+		}
+		if (room->links[i]->access == CLSD && room->role != START)
+		{
+			closed_access_case(&room, &vzt_nxt, i, &reinit);
+		}
+		else if ((room->links[i])->vzt == FREE && (room->links[i])->role != START
+				&& ((room->flux[i] <= 0 && room->links[i]->access == OPEN)))
+		{
 			if (!vzt_nxt)
 				vzt_nxt = new_path(room->links[i]);
 			else
@@ -130,8 +139,6 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 			room = build_path(room, i);
 			(room->links[i])->vzt = VISITED;
 		}
-		if (room->links[i]->access == CLSD/* && room->links[i]->vzt == FREE*/)//add condition for when room im in is CLSD!
-			closed_access_case(&room, &vzt_nxt, i, &reinit); // this whole condition might be wrong, only here for testing
 		flux_to_end(&room, &vzt_nxt, i, head);
 	}
 	return (vzt_nxt);
@@ -152,13 +159,14 @@ void	test_function(t_node *head)
 	while (loops > 0)
 	{
 		room = get_start(head);
+		dprintf(1, "=======================================\n");
 		while (1)
 		{
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
-			//print_path_test(vzt_nxt);//
-			if ((vzt_nxt && vzt_nxt->room->role == END)/*|| !vzt_nxt*/) //might not need thislast part of condition after "||"
+			if (vzt_nxt && vzt_nxt->room->role == END)
 				break ;
-			//room = build_path(room);
+			dprintf(1, "\n");
+			print_path_test(vzt_nxt);//
 			reinit = visit_paths(&room, &vzt_nxt, reinit);
 		}
 		reinit_visited(&reinit);
@@ -166,14 +174,14 @@ void	test_function(t_node *head)
 		vzt_nxt = NULL;
 		loops--;
 	}
-	//int		test = -1;
-	//room = get_start(head);
-	//while(room->links[++test])
-	//{
-	//	ft_printf("------\n");
-	//	test_flux(room);
-	//	ft_printf("------\n");
-	//}
+	int		test = -1;
+	room = get_start(head);
+	while(room->links[++test])
+	{
+		ft_printf("------\n");
+		test_flux(room);
+		ft_printf("------\n");
+	}
 	//print_nodes(head);
 	//now adjust relative to n_loops and find correct path again
 }

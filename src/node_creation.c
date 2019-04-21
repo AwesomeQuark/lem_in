@@ -6,57 +6,50 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 14:44:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 15:20:54 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
-static char			*get_name(char *name)
+static char			*get_name(char *line)
 {
 	char	*ret;
 	size_t	i;
 
 	i = 0;
-	while (name[i] != ' ' && name[i])
+	while (line[i] != ' ' && line[i])
 		i++;
-	name[i] = '\0';
-	if (!(ret = ft_strdup(name)))
+	line[i] = '\0';
+	if (!(ret = ft_strdup(line)))
 		return ((char *)return_(NULL));
-	name[i] = ' ';
-	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
-	{
-		free(ret);
-		return ((char *)return_("Forbidden char in room name (L or -)"));
-	}
+	line[i] = ' ';
 	return (ret);
 }
 
-static t_node		*new_node(char *name, int role)
+static t_node		*new_node(char *line, int role)
 {
 	t_node	*new;
 
 	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
-	new->links = NULL;
-	new->next = NULL;
-	new->hist = NULL;
-	if (!(new->name = get_name(name)))
-	{
-		free(new);
+	if (!(new->name = get_name(line)))
 		return (NULL);
-	}
 	new->role = role;
-	new->access = 1;
-	new->vzt = 0;
+	new->hist = NULL;
+	new->next = NULL;
+	new->links = NULL;
+	new->access = OPEN;
+	new->vzt = FREE;
 	new->flux = NULL;
-	new->weight = 0;
-	new->printed = 0;
 	new->skip = 0;
+	new->weight = 0;
+
+	new->printed = 0;
 	return (new);
 }
 
-t_node				*add_node(t_node *head, char *name, int role)
+t_node				*add_node(t_node *head, char *line, int role)
 {
 	t_node	*ptr;
 	t_node	*last;
@@ -69,11 +62,8 @@ t_node				*add_node(t_node *head, char *name, int role)
 			last = ptr;
 		ptr = ptr->next;
 	}
-	if (!(ptr = new_node(name, role)))
-	{
-		free_nodes(head);
+	if (!(ptr = new_node(line, role)))
 		return (NULL);
-	}
 	if (head == NULL)
 		head = ptr;
 	if (last != NULL)

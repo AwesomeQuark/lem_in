@@ -6,11 +6,11 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 21:16:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/16 17:18:16 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/20 19:47:50 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 void		print_path_test(t_path *head)
 {

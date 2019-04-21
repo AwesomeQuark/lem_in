@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/19 15:39:17 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/21 18:41:53 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC_NAME =	main.c\
 			path_utils.c\
 			basic_solver.c\
 			closed_room.c\
-			testing_function.c\
+			bfs.c\
 			choose_path.c\
 			count_edges.c\
 			print_test.c\
