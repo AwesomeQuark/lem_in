@@ -91,16 +91,19 @@ int		display_end(t_node *head, long ant_nb, char *opt)
 	if (!(currents = get_firsts(head)) || !(memory = get_firsts(head)))
 		return (return_free(NULL, 1, currents));
 	ants = nb_paths(get_start(head), &ant_index);
-	while (ant_nb > ant_index)
+	while (ant_nb >= ant_index)
 	{
 		i = 0;
 		while (currents[i] != NULL)
 		{
-			ft_printf("L%d-%s ", ants[i] + 1, currents[i]->name);
-			if (currents[i] == get_end(head))
+			if (ants[i] != -1)
+				ft_printf("L%d-%s ", ants[i] + 1, currents[i]->name);
+			if (currents[i]->role == END)
 			{
 				currents[i] = memory[i];
 				ants[i] = ++ant_index;
+				if (ant_index == ant_nb)
+					ants[i] = -1;
 			}
 			else if (!(currents[i] = next_path(currents[i])))
 				return (return_free(NULL, 2, currents, memory));
