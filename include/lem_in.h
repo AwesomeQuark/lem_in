@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 16:54:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 18:46:03 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct		s_node
 	int				vzt; //visited or not
 	int				*flux; //value of path
 	int				weight;
+	int				skip;
 
 	int				printed;//only a test variable for printing
 
-	int				skip;
 }					t_node;
 
 typedef struct		s_path //path to room
@@ -100,6 +100,9 @@ t_path	*new_path(t_node *node);
 int		add_path(t_node *node, t_path *path);
 t_path	*deprecate_first(t_path **path, t_path *deprecated);
 void	reinit_visited(t_path **history);
+int		compare_weights(t_node **room, int idx);
+int		skip_from_close(t_node **room, int idx);
+int		check_outwardflux(t_node **room);
 
 /*
 ** FLUX MANIPULATION UTILS
