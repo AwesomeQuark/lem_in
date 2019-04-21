@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/21 18:41:53 by bghandou         ###   ########.fr        #
+#    Updated: 2019/04/21 18:51:31 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@ -I$(HEADER_DIR) -I$(LIB_HEADER)
-	@printf "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : %-30s \033[0m [$(NAME)]\n" $@
+	@printf "\033[32m\033[1m\033[4mCompiling\033[0m\033[32m : %-30s \033[0m [$(NAME)]\n" $@
 
 ./auteur:
 	@echo $(AUTEUR) > ./auteur

@@ -6,7 +6,7 @@
 #    By: conoel <conoelstudent.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/15 13:53:47 by conoel            #+#    #+#              #
-#    Updated: 2019/02/13 17:41:55 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/21 18:51:49 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #V2.2
@@ -71,7 +71,7 @@ $(NAME) : $(OBJDIR) $(OBJ) $(HEADER)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)
 	@clang $(FLAGS) -c $< -o $@ -I$(HEADER_DIR)
-	@printf "\033[32m\033[1m\033[4mCompilating\033[0m\033[32m : %-30s\033[0m [$(NAME)]\n" $@
+	@printf "\033[32m\033[1m\033[4mCompiling\033[0m\033[32m : %-30s\033[0m [$(NAME)]\n" $@
 
 $(OBJDIR):
 	@clear
