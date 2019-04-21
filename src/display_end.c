@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 17:05:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 18:07:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_ant	*allocate_ants(long ant_nb, t_node *start)
+static t_ant	*allocate_ants(long ant_nb, t_node *end)
 {
 	t_ant	*head;
 	t_ant	*ptr;
@@ -20,7 +20,7 @@ static t_ant	*allocate_ants(long ant_nb, t_node *start)
 
 	if (!(head = malloc(sizeof(t_ant))))
 		return (NULL);
-	head->room = start;
+	head->room = end;
 	head->next = NULL;
 	ptr2 = head;
 	while (--ant_nb)
@@ -29,7 +29,7 @@ static t_ant	*allocate_ants(long ant_nb, t_node *start)
 		if (!(ptr2 = malloc(sizeof(t_ant))))
 			return (NULL);
 		ptr2->next = NULL;
-		ptr2->room = start;
+		ptr2->room = end;
 		ptr->next = ptr2;
 	}
 	return (head);
@@ -44,34 +44,35 @@ static t_node	*next_path(t_node *current)
 		return (NULL);
 	while (current->flux[i] != -1)
 	{
-		if (current->flux[i] == 1)
+		if (current->flux[i] == 1 && current->links[i]->access == 1)
 			return (current->links[i]);
 		i++;
 	}
 	return (NULL);
 }
 
-static int	update_ants(t_ant *ants, t_node *start, t_node * end, long *ant_nb)
+static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 {
+	static next_ant_index = 1;
 	t_node		*next;
 	int			finished;
 
 	finished = 1;
 	while (ants != NULL)
 	{
-		if (ants->room == end && *ant_nb > 0)
+		if (ants->room == end && ant_nb > next_ant_index)
 		{
 			ants->room = start;
+			ants->nb = next_ant_index++;
 		}
-		if (ants->room != end && (next = next_path(ants->room))->access == 1)
+		if (ants->room != end && (next = next_path(ants->room)))
 		{
 			finished = 0;
-			if (ants->room == start)
-				ants->nb = *ant_nb--;
-			ft_printf("[L\033[31m%d\033[0m\033[32m%s-%s\033[0m]  ", ants->nb, ants->room->name, next->name);
+			ft_printf("[L%d%s-%s ", ants->nb, ants->room->name, next->name);
 			ants->room->access = 1;
 			ants->room = next;
-			ants->room->access = 0;
+			if (next != end)
+				ants->room->access = 0;
 		}
 		ants = ants->next;
 	}
@@ -88,9 +89,9 @@ int			display_end(t_node *head, long ant_nb, char *opt)
 	ant = 0;
 	start = get_start(head);
 	end = get_end(head);
-	ants = allocate_ants(ant_nb, start);
+	ants = allocate_ants(ant_nb, end);
 	reset_nodes(head);
-	while (update_ants(ants, start, end, &ant) == 0)
+	while (update_ants(ants, start, end, ant_nb) == 0)
 	{
 		write(1,"\n", 1);
 	}
