@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 15:04:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/21 18:43:01 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int		load_links(t_node *head, char *data)
 	return (1);
 }
 
-t_node			*load_structure(char *data, int *ant_nb)
+t_node			*load_structure(char *data, long *ant_nb)
 {
 	size_t	i;
 	t_node	*head;
