@@ -6,11 +6,11 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/21 18:44:15 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/21 19:36:54 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit)//use ft_ to find leaking  deprecated paths
 {
@@ -23,7 +23,7 @@ void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 {
 	if (((*room)->links[i])->role == END && (*room)->flux[i] == 0)//put this condition before function start
 	{
-		ft_printf("done to END: %s\n", (*room)->name);
+//		ft_printf("done to END: %s\n", (*room)->name);
 		(*room)->flux[i] = 1;
 		shortest_path(room, i, head);
 		while (*vzt_nxt && (*vzt_nxt)->room->role != END)
