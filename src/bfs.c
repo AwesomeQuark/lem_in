@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/21 18:41:44 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/22 07:25:23 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit)//use ft_ to find leaking  deprecated paths
 {
-	*room = (*vzt_nxt)->room;
+	if (!*vzt_nxt)
+		return (reinit);
+	else
+		*room = (*vzt_nxt)->room;
 	reinit = deprecate_first(vzt_nxt, reinit);
 	return (reinit);
 }
 
 void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 {
-	if (((*room)->links[i])->role == END && (*room)->flux[i] == 0)//put this condition before function start
+	if (((*room)->links[i])->role == END && (*room)->flux[i] == 0)
 	{
-		ft_printf("done to END: %s\n", (*room)->name);
 		(*room)->flux[i] = 1;
 		shortest_path(room, i, head);
 		while (*vzt_nxt && (*vzt_nxt)->room->role != END)
@@ -159,14 +161,13 @@ void	test_function(t_node *head)
 	while (loops > 0)
 	{
 		room = get_start(head);
-		dprintf(1, "=======================================\n");
 		while (1)
 		{
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
 			if (vzt_nxt && vzt_nxt->room->role == END)
 				break ;
-			dprintf(1, "\n");
-			print_path_test(vzt_nxt);//
+			if (!vzt_nxt)
+				break;
 			reinit = visit_paths(&room, &vzt_nxt, reinit);
 		}
 		reinit_visited(&reinit);
@@ -174,14 +175,14 @@ void	test_function(t_node *head)
 		vzt_nxt = NULL;
 		loops--;
 	}
-	int		test = -1;
+/*	int		test = -1;
 	room = get_start(head);
 	while(room->links[++test])
 	{
 		ft_printf("------\n");
 		test_flux(room);
 		ft_printf("------\n");
-	}
+	}*/
 	//print_nodes(head);
 	//now adjust relative to n_loops and find correct path again
 }

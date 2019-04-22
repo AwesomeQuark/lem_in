@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 18:07:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/22 07:05:23 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_node	*next_path(t_node *current)
 	i = 0;
 	if (!current || !current->flux || !current->flux)
 		return (NULL);
-	while (current->flux[i] != -1)
+	while (current->links[i]/*current->flux[i] != -1*/)
 	{
 		if (current->flux[i] == 1 && current->links[i]->access == 1)
 			return (current->links[i]);
@@ -53,7 +53,7 @@ static t_node	*next_path(t_node *current)
 
 static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 {
-	static next_ant_index = 1;
+	static long	next_ant_index = 1;
 	t_node		*next;
 	int			finished;
 

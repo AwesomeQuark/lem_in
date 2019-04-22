@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/15 15:49:53 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/22 07:25:47 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	adjust_reverse_flux(t_node **room, int idx)
 	t_node	*nxt_room;
 
 	nxt_room = (*room)->links[idx];
-	dprintf(1, "room: %s, and %s and index %d\n", (*room)->name, nxt_room->name, idx);
 	idx_rvse = find_index(nxt_room, *room);
 	nxt_room->flux[idx_rvse] = 0;
 }
@@ -61,7 +60,6 @@ void	test_flux(t_node *room)
 	{
 		if (room->flux)
 		{
-			//ft_printf("in : %s pointing to : %s of value : %d and print : %d\n", room->name, room->links[i]->name, room->flux[i], room->links[i]->printed);
 			if (room->flux[i] == 1 && room->links[i]->printed <= 0)
 			{
 				ft_printf("room %s to %s\n", room->name, room->links[i]->name);
