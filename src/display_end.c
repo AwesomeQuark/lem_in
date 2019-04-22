@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/22 18:04:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/22 18:05:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_node	*next_path(t_node *current)
 
 static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 {
-	static long	next_ant_index = 1;
+	static long	next_ant_index = 0;
 	t_node		*next;
 	int			finished;
 
@@ -63,7 +63,7 @@ static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 		if (ants->room == end && ant_nb > next_ant_index)
 		{
 			ants->room = start;
-			ants->nb = next_ant_index++;
+			ants->nb = ++next_ant_index;
 		}
 		if (ants->room != end && (next = next_path(ants->room)))
 		{
