@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 18:43:01 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:20 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 static t_node	*load_nodes(char *data, size_t *i)
 {
@@ -42,6 +42,8 @@ static t_node	*load_nodes(char *data, size_t *i)
 
 static int		create_link(t_node *node1, t_node *node2)
 {
+	if (node1 == node2)
+		return (return_("Link between same room"));
 	if (!(alloc_links_list(node1, node2)))
 		return (0);
 	if (!(alloc_links_list(node2, node1)))
@@ -83,11 +85,20 @@ t_node			*load_structure(char *data, long *ant_nb)
 	t_node	*head;
 
 	i = 0;
-	*ant_nb = ft_strtoll(data, &i, 10);
+	while (data[i] == '#')
+	{
+		while (data[i] != '\n' && data[i])
+			i++;
+		i++;
+	}
+	*ant_nb = ft_strtoll(&data[i], &i, 10);
 	i++;
 	if (!(head = load_nodes(data, &i)))
-		return (NULL);
+		return ((t_node *)return_("Failed to load nodes"));
 	if (!(load_links(head, &data[i])))
-		return (NULL);
+	{
+		free_nodes(head);
+		return ((t_node *)return_("Failed to load links"));
+	}
 	return (head);
 }

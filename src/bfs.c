@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/21 18:44:15 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/21 18:41:44 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,10 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 				;
 		}
 		if (room->links[i]->access == CLSD && room->role != START)
+		{
 			closed_access_case(&room, &vzt_nxt, i, &reinit);
-		else if ((room->links[i])->vzt == FREE
-				&& (room->links[i])->role != START
+		}
+		else if ((room->links[i])->vzt == FREE && (room->links[i])->role != START
 				&& ((room->flux[i] <= 0 && room->links[i]->access == OPEN)))
 		{
 			if (!vzt_nxt)
@@ -164,6 +165,7 @@ void	test_function(t_node *head)
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
 			if (vzt_nxt && vzt_nxt->room->role == END)
 				break ;
+			dprintf(1, "\n");
 			print_path_test(vzt_nxt);//
 			reinit = visit_paths(&room, &vzt_nxt, reinit);
 		}

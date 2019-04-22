@@ -6,24 +6,29 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 15:20:54 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/22 06:21:59 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
-static char			*get_name(char *line)
+static char			*get_name(char *name)
 {
 	char	*ret;
 	size_t	i;
 
 	i = 0;
-	while (line[i] != ' ' && line[i])
+	while (name[i] != ' ' && name[i])
 		i++;
-	line[i] = '\0';
-	if (!(ret = ft_strdup(line)))
+	name[i] = '\0';
+	if (!(ret = ft_strdup(name)))
 		return ((char *)return_(NULL));
-	line[i] = ' ';
+	name[i] = ' ';
+	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
+	{
+		free(ret);
+		return ((char *)return_("Forbidden char in room name (L or -)"));
+	}
 	return (ret);
 }
 

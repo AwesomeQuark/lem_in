@@ -6,11 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 16:10:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 16:10:23 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/19 14:44:22 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 static int		realloc_link_list(t_node *node, t_node *link)
 {
