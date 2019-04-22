@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/22 07:25:23 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/22 08:16:19 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reini
 		{
 			if ((*room)->access == CLSD && nxt_room->hist)
 				compare_weights(&nxt_room, i);
-			if (reverse_flux_case(nxt_room, i) && nxt_room->links[i]->vzt == FREE)
+			if (reverse_flux_case(nxt_room, i) 
+					&& nxt_room->links[i]->vzt == FREE)
 			{
 				if (!*vzt_nxt)
 				{
@@ -85,7 +86,7 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reini
 				}
 				else
 				{
-					if (nxt_room->vzt == FREE && !check_outwardflux(room))
+					if (nxt_room->vzt == FREE && !check_outwardflux(room) && !reverse_flux_case(nxt_room, i))
 						add_path(nxt_room,*vzt_nxt);
 					add_path(nxt_room->links[i], *vzt_nxt);
 				}
@@ -164,6 +165,7 @@ void	test_function(t_node *head)
 		while (1)
 		{
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
+			print_path_test(vzt_nxt);
 			if (vzt_nxt && vzt_nxt->room->role == END)
 				break ;
 			if (!vzt_nxt)
@@ -175,14 +177,14 @@ void	test_function(t_node *head)
 		vzt_nxt = NULL;
 		loops--;
 	}
-/*	int		test = -1;
+	int		test = -1;
 	room = get_start(head);
 	while(room->links[++test])
 	{
 		ft_printf("------\n");
 		test_flux(room);
 		ft_printf("------\n");
-	}*/
+	}
 	//print_nodes(head);
 	//now adjust relative to n_loops and find correct path again
 }
