@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/22 07:05:23 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:03:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_node	*next_path(t_node *current)
 	i = 0;
 	if (!current || !current->flux || !current->flux)
 		return (NULL);
-	while (current->links[i]/*current->flux[i] != -1*/)
+	while (current->links[i])
 	{
 		if (current->flux[i] == 1 && current->links[i]->access == 1)
 			return (current->links[i]);
@@ -68,7 +68,7 @@ static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 		if (ants->room != end && (next = next_path(ants->room)))
 		{
 			finished = 0;
-			ft_printf("[L%d%s-%s ", ants->nb, ants->room->name, next->name);
+			ft_printf("L%d%s-%s ", ants->nb, ants->room->name, next->name);
 			ants->room->access = 1;
 			ants->room = next;
 			if (next != end)
@@ -89,10 +89,12 @@ int			display_end(t_node *head, long ant_nb, char *opt)
 	ant = 0;
 	start = get_start(head);
 	end = get_end(head);
-	ants = allocate_ants(ant_nb, end);
 	reset_nodes(head);
+	if (!(ants = allocate_ants(ant_nb, end)))
+		return (0);
 	while (update_ants(ants, start, end, ant_nb) == 0)
 	{
 		write(1,"\n", 1);
 	}
+	return (1);
 }
