@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/21 18:51:31 by bghandou         ###   ########.fr        #
+#    Updated: 2019/04/22 08:31:56 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ fclean:
 
 $(NAME): ./auteur $(OBJ_DIR) $(OBJ) $(HEADER)
 	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -I$(HEADER_DIR) -I$(LIB_DIR)
-	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
+	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compiling \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
 	@echo "#####################################################"
 	@echo "#####################################################  /-----~~-----\\"
 	@echo "####   _      ____   _     _         _   _    _  ####  |  BGHANDOU  |"

@@ -6,7 +6,7 @@
 #    By: conoel <conoelstudent.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/15 13:53:47 by conoel            #+#    #+#              #
-#    Updated: 2019/04/21 18:51:49 by bghandou         ###   ########.fr        #
+#    Updated: 2019/04/22 08:31:40 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #V2.2
@@ -67,7 +67,7 @@ re : fclean all
 $(NAME) : $(OBJDIR) $(OBJ) $(HEADER)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compilate \\^/\033[0m [$(NAME)] --> $(DEPENDENCY)"
+	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compiling \\^/\033[0m [$(NAME)] --> $(DEPENDENCY)"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)
 	@clang $(FLAGS) -c $< -o $@ -I$(HEADER_DIR)
