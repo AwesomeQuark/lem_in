@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/23 16:46:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 17:30:10 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ int		skip_from_close(t_node **room, int idx)
 	t_path	*tmp;
 	int		i;
 
+	if (room == NULL || *room == NULL)
+		return (0);
 	i = -1;
 	check = NULL;
 	tmp = (*room)->hist;
 	while (tmp->next)
 		tmp = tmp->next;
+	if (!tmp->prev)
+		return (0);
 	check = tmp->prev->room;
 	while (ft_strcmp((*room)->links[++i]->name, check->name))
 		;
