@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 15:25:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:04:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int				main(int argc, char **argv)
 		return (return_("No path possible\n"));
 	}*/
 	test_function(head);
-	if (argc == 3 && ft_strcmp(argv[2], "-v") == 0)
-		display_end_visu(head, ant_nb);
+	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
+		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]));
 	else
 		display_end(head, ant_nb);
 	free_nodes(head);

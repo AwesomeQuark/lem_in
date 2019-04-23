@@ -6,11 +6,12 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 15:26:11 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:44:36 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "visu.h"
 
 static t_ant	*allocate_ants(long ant_nb, t_node *end)
 {
@@ -99,22 +100,27 @@ int			display_end(t_node *head, long ant_nb)
 	return (1);
 }
 
-int			display_end_visu(t_node *head, long ant_nb)
+int			display_end_visu(t_node *head, long ant_nb, int factor)
 {
-	t_ant	*ants;
-	t_node	*start;
-	t_node	*end;
-	int		ant;
+	t_visu		var;
+	SDL_Event 	e;
 
-	ant = 0;
-	start = get_start(head);
-	end = get_end(head);
+	var.ant = 0;
+	var.start = get_start(head);
+	var.end = get_end(head);
+	sdl_start(&var.win, &var.ren);
 	reset_nodes(head);
-	if (!(ants = allocate_ants(ant_nb, end)))
+	if (!(var.ants = allocate_ants(ant_nb, var.end)))
 		return (0);
-	while (update_ants(ants, start, end, ant_nb) == 0)
+	while (1)
 	{
-		write(1,"\n", 1);
+		SDL_PollEvent(&e);
+			if (e.button.button == SDL_BUTTON_LEFT)
+				draw(head, var.ren, factor);
+			if (e.button.button == SDL_BUTTON_RIGHT)
+				break ;
+		SDL_Delay(20);
 	}
+	sdl_end(var.win, var.ren);
 	return (1);
 }

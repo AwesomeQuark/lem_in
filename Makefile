@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/23 15:24:35 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/23 15:32:17 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ OBJ_DIR = ./obj/
 OBJ = ${addprefix $(OBJ_DIR), $(OBJ_NAME)}
 
 HEADER_DIR = ./include/
-HEADER_NAME = lem_in.h
+HEADER_NAME =	lem_in.h\
+				visu.h
 HEADER = ${addprefix $(HEADER_DIR), $(HEADER_NAME)}
 
 LIB_NAME = haflib.a
