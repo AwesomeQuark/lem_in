@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:57:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 18:30:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,51 +38,6 @@ int			sdl_start(SDL_Window **win, SDL_Renderer **ren)
 	return (1);
 }
 
-static void	draw_links(t_node *current, SDL_Renderer *ren, int factor)
-{
-	int		i;
-
-	i = 0;
-	if (!current || !current->links || !current->flux)
-		return ;
-	while (current->links[i] != NULL)
-	{
-		if (current->flux[i] == 1)
-			SDL_SetRenderDrawColor(ren, 0, 255, 0, 255);
-		else
-			SDL_SetRenderDrawColor(ren, 0, 100, 0, 255);
-		SDL_RenderDrawLine(ren, (current->x * factor) + (SIZE / 2),
-			(current->y * factor) + (SIZE / 2), (current->links[i]->x * factor)
-			+ (SIZE / 2), (current->links[i]->y * factor) + (SIZE / 2));
-		i++;
-	}
-}
-
-void		draw_map(t_node *head, SDL_Renderer *ren, int factor)
-{
-	SDL_Rect	node;
-
-	node.w = SIZE;
-	node.h = SIZE;
-	while (head)
-	{
-		if (head->role == 0)
-			SDL_SetRenderDrawColor(ren, 100, 100, 100, 255);
-		if (head->role == START)
-			SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
-		if (head->role == END)
-			SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
-		node.x = head->x * factor;
-		node.y = head->y * factor;
-		SDL_RenderDrawRect(ren, &node);
-		SDL_RenderFillRect(ren, &node);
-		draw_links(head, ren, factor);
-		head = head->next;
-	}
-	SDL_RenderPresent(ren);
-	SDL_Delay(5000);
-}
-
 void		draw(t_node *head, SDL_Renderer *ren, int factor)
 {
 	draw_map(head, ren, factor);
@@ -97,4 +52,30 @@ void		sdl_end(SDL_Window *win, SDL_Renderer *renderer)
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(win);
 	SDL_Quit();
+}
+
+int				display_end_visu(t_node *head, long ant_nb, int factor)
+{
+	t_visu		var;
+	SDL_Event	e;
+
+	var.ant = 0;
+	var.start = get_start(head);
+	var.end = get_end(head);
+	sdl_start(&var.win, &var.ren);
+	reset_nodes(head);
+	if (!(var.ants = allocate_ants(ant_nb, var.end)))
+		return (0);
+	while (1)
+	{
+		if (SDL_PollEvent(&e))
+		{
+			if (e.button.button == SDL_BUTTON_LEFT)
+				draw(head, var.ren, factor);
+			if (e.button.button == SDL_BUTTON_RIGHT)
+				break ;
+		}
+	}
+	sdl_end(var.win, var.ren);
+	return (1);
 }
