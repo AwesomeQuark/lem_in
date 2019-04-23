@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:44:36 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:50:43 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
+static int		update_ants(t_ant *ants, t_node *start, t_node *end
+	, long ant_nb)
 {
 	static long	next_ant_index = 0;
 	t_node		*next;
@@ -80,7 +81,7 @@ static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 	return (finished);
 }
 
-int			display_end(t_node *head, long ant_nb)
+int				display_end(t_node *head, long ant_nb)
 {
 	t_ant	*ants;
 	t_node	*start;
@@ -95,15 +96,15 @@ int			display_end(t_node *head, long ant_nb)
 		return (0);
 	while (update_ants(ants, start, end, ant_nb) == 0)
 	{
-		write(1,"\n", 1);
+		write(1, "\n", 1);
 	}
 	return (1);
 }
 
-int			display_end_visu(t_node *head, long ant_nb, int factor)
+int				display_end_visu(t_node *head, long ant_nb, int factor)
 {
 	t_visu		var;
-	SDL_Event 	e;
+	SDL_Event	e;
 
 	var.ant = 0;
 	var.start = get_start(head);
@@ -114,11 +115,13 @@ int			display_end_visu(t_node *head, long ant_nb, int factor)
 		return (0);
 	while (1)
 	{
-		SDL_PollEvent(&e);
+		if (SDL_PollEvent(&e))
+		{
 			if (e.button.button == SDL_BUTTON_LEFT)
 				draw(head, var.ren, factor);
 			if (e.button.button == SDL_BUTTON_RIGHT)
 				break ;
+		}
 		SDL_Delay(20);
 	}
 	sdl_end(var.win, var.ren);

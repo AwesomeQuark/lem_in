@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   closed_room.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/21 17:01:53 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:46:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-
-int		compare_weights(t_node **room, int idx) //only when node already visited
+int		compare_weights(t_node **room, int idx)
 {
 	t_node	*nxt_room;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   choose_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/22 07:25:11 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:45:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ void		forward_flux(t_node *start, t_node **room, int size)
 	cur_room->room->access = CLSD;
 }
 
-void	start_end(t_node **room)
+void		start_end(t_node **room)
 {
 	int		i;
 
 	i = -1;
-	while((*room)->links[++i]->role != END)
+	while ((*room)->links[++i]->role != END)
 		;
 	if ((*room)->links[i]->role == END)
 		(*room)->flux[i] = 1;
 }
 
-void	shortest_path(t_node **room, int size, t_node *head)
+void		shortest_path(t_node **room, int size, t_node *head)
 {
 	t_node	*start;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/21 15:21:02 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:59:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,6 @@ void	remove_path(t_path *path)
 	}
 }
 
-/*
-void	remove_path(t_path *path)
-{
-	if (path->next)
-	{
-		while (path->next->next != NULL)
-			path = path->next;
-	}
-	free(path->next);
-	path->next = NULL;
-}
-*/
 t_path	*copy_path(t_path *path)
 {
 	t_path	*head;
@@ -133,7 +121,7 @@ void	reinit_visited(t_path **history)
 
 	tmp = NULL;
 	if (*history)
-		tmp	= *history;
+		tmp = *history;
 	while (tmp)
 	{
 		tmp->room->vzt = FREE;
@@ -141,7 +129,7 @@ void	reinit_visited(t_path **history)
 		tmp->room->weight = 0;
 		if (tmp->room->hist)
 		{
-			remove_path(tmp->room->hist);//maybe doesn't free all history!?
+			remove_path(tmp->room->hist);
 			tmp->room->hist = NULL;
 		}
 		tmp = tmp->next;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   count_edges.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 20:32:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/03 20:51:54 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:45:38 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-int		count_edges(t_node	*room)
+int		count_edges(t_node *room)
 {
 	int		i;
 

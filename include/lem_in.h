@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:03:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:56:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,13 @@ void		free_nodes(t_node *head);
 t_node		*get_node(char *name, size_t len, t_node *head);
 int			alloc_links_list(t_node *node, t_node *link);
 int			verify_data(char *data);
-int			basic_solver(t_node *head);
+
+/*
+**	LAST DISPLAY
+*/
+
+int			display_end(t_node *head, long ant_nb);
+int			display_end_visu(t_node *head, long ant_nb, int factor);
 
 /*
 ** NODE MANIPULATION UTILS
@@ -132,12 +138,6 @@ void		print_flux(t_node *room);
 
 void		test_flux(t_node *room);
 
-/*
-**	LAST DISPLAY
-*/
-
-int			display_end(t_node *head, long ant_nb);
-int			display_end_visu(t_node *head, long ant_nb, int factor);
 
 /*
 ** TESTNG PHASE

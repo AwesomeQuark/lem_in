@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 21:16:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/20 19:47:50 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:58:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void		print_path_test(t_path *head)
 {
 	while (head != NULL)
 	{
-		ft_printf("room %s wgt %d  --->>    ", head->room->name, head->room->weight);
+		ft_printf("room %s wgt %d  --->>    ", head->room->name,
+			head->room->weight);
 		head = head->next;
 	}
 	ft_printf("\n");
@@ -32,12 +33,12 @@ void		print_path_final(t_path *head)
 	ft_printf("\n");
 }
 
-void	print_flux(t_node *room)
+void		print_flux(t_node *room)
 {
 	int		i;
 
 	i = -1;
-	while(room->links[++i])
+	while (room->links[++i])
 	{
 		ft_printf("()()Room %s to %s with flux %d()()\n", room->name,
 				room->links[i]->name, room->flux[i]);

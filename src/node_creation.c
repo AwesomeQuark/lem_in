@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 15:50:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:57:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static t_node		*new_node(char *line, int role)
 	new->flux = NULL;
 	new->skip = 0;
 	new->weight = 0;
-
 	new->printed = 0;
 	return (new);
 }

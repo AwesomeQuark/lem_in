@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 18:08:54 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:54:37 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	goto_start(size_t *i, char *data, int *line)
 	}
 	nb = ft_strtoll(&data[(*i)], i, 10);
 	if (nb > 2147483647 || nb <= 0)
-		return (return_("Error in ants number : Value may be too big or negative"));
+		return (
+			return_("Error in ants number : Value may be too big or negative"));
 	if (data[(*i)++] != '\n')
 		return (return_("Error in ants number : wrong format"));
 	return (1);

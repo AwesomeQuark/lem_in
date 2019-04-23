@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   travel_flux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/22 07:25:47 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:58:35 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	create_flux(t_node **room)
 
 int		reverse_flux_case(t_node *room, int idx)
 {
-	int	 	idx_rvse;
+	int		idx_rvse;
 	t_node	*nxt_room;
 
 	nxt_room = room->links[idx];
@@ -43,7 +43,7 @@ int		reverse_flux_case(t_node *room, int idx)
 
 void	adjust_reverse_flux(t_node **room, int idx)
 {
-	int	 	idx_rvse;
+	int		idx_rvse;
 	t_node	*nxt_room;
 
 	nxt_room = (*room)->links[idx];
