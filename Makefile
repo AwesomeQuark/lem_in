@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/22 08:31:56 by bghandou         ###   ########.fr        #
+#    Updated: 2019/04/23 15:24:35 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC_NAME =	main.c\
 			count_edges.c\
 			print_test.c\
 			travel_flux.c\
-			display_end.c
+			display_end.c\
+			display_end_visu.c
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}
@@ -75,7 +76,7 @@ fclean:
 ######### COMPILATION #########
 
 $(NAME): ./auteur $(OBJ_DIR) $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -I$(HEADER_DIR) -I$(LIB_DIR)
+	@$(CC) $(FLAGS) $(OBJ) $(LIB) -o $(NAME) -I$(HEADER_DIR) -I$(LIB_DIR) `sdl2-config --cflags --libs`
 	@echo "\n \033[1m\033[4m\033[35m\\^/ Done compiling \\^/\033[0m [$(NAME)] --> $(LIB_NAME)"
 	@echo "#####################################################"
 	@echo "#####################################################  /-----~~-----\\"
@@ -98,7 +99,7 @@ $(OBJ_DIR):
 	@echo "\n>=========== * \033[32m\033[1mCreating $(NAME) obj dir\033[0m * ===========<";
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@$(CC) $(FLAGS) -c $< -o $@ -I$(HEADER_DIR) -I$(LIB_HEADER)
+	@$(CC) $(FLAGS) -c $< -o $@ -I$(HEADER_DIR) -I$(LIB_HEADER) `sdl2-config --cflags`
 	@printf "\033[32m\033[1m\033[4mCompiling\033[0m\033[32m : %-30s \033[0m [$(NAME)]\n" $@
 
 ./auteur:

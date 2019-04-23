@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/21 18:47:15 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/23 15:26:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct		s_node
 	int				*flux; //value of path
 	int				weight;
 	int				skip;
+	int				x;
+	int				y;
 
 	int				printed;//only a test variable for printing
 
@@ -134,7 +136,8 @@ void		test_flux(t_node *room);
 **	LAST DISPLAY
 */
 
-int		display_end(t_node *head, long ant_nb, char *opt);
+int			display_end(t_node *head, long ant_nb);
+int			display_end_visu(t_node *head, long ant_nb);
 
 /*
 ** TESTNG PHASE

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/22 18:05:35 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 15:26:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,27 @@ static int	update_ants(t_ant *ants, t_node *start, t_node * end, long ant_nb)
 	return (finished);
 }
 
-int			display_end(t_node *head, long ant_nb, char *opt)
+int			display_end(t_node *head, long ant_nb)
+{
+	t_ant	*ants;
+	t_node	*start;
+	t_node	*end;
+	int		ant;
+
+	ant = 0;
+	start = get_start(head);
+	end = get_end(head);
+	reset_nodes(head);
+	if (!(ants = allocate_ants(ant_nb, end)))
+		return (0);
+	while (update_ants(ants, start, end, ant_nb) == 0)
+	{
+		write(1,"\n", 1);
+	}
+	return (1);
+}
+
+int			display_end_visu(t_node *head, long ant_nb)
 {
 	t_ant	*ants;
 	t_node	*start;
