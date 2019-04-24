@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/23 18:31:42 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/23 15:32:17 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME =	main.c\
 			free_nodes.c\
 			node_utils.c\
 			path_utils.c\
+			basic_solver.c\
 			closed_room.c\
 			bfs.c\
 			choose_path.c\
@@ -30,8 +31,7 @@ SRC_NAME =	main.c\
 			print_test.c\
 			travel_flux.c\
 			display_end.c\
-			display_end_visu.c\
-			draw.c
+			display_end_visu.c
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}

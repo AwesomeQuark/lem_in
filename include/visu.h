@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 18:25:07 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/23 16:21:49 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ int		sdl_start(SDL_Window **win, SDL_Renderer **ren);
 void	sdl_end(SDL_Window *win, SDL_Renderer *ren);
 void	draw(t_node *head, SDL_Renderer *ren, int factor);
 void	draw_map(t_node *head, SDL_Renderer *ren, int factor);
-void	draw_nodes(t_node *current, SDL_Renderer *ren, int factor);
-void	draw_links(t_node *current, SDL_Renderer *ren, int factor);
 
 #endif
