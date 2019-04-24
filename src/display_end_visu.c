@@ -6,13 +6,67 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:57:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:03:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-int			sdl_start(SDL_Window **win, SDL_Renderer **ren)
+static int			width_map(t_node *head)
+{
+	t_node	*ptr;
+	int 	max;
+	int		min;
+
+	max = 0;
+	min = head->x;
+	ptr = head;
+	while (ptr)
+	{
+		if (ptr->x < min)
+			min = ptr->x;
+		ptr = ptr->next;
+	}
+	ptr = head;
+	while (ptr)
+	{
+		ptr->x -= min - 1;
+		if (ptr->x > max)
+			max = ptr->x;
+		ptr = ptr->next;
+	}
+	printf("WIDTH (X) : min[%d] max[%d]", min, max);
+	return (max + 2);
+}
+
+static int			height_map(t_node *head)
+{
+	t_node	*ptr;
+	int 	max;
+	int		min;
+
+	max = 0;
+	min = head->y;
+	ptr = head;
+	while (ptr)
+	{
+		if (ptr->y < min)
+			min = ptr->y;
+		ptr = ptr->next;
+	}
+	ptr = head;
+	while (ptr)
+	{
+		ptr->y -= min - 1;
+		if (ptr->y > max)
+			max = ptr->y;
+		ptr = ptr->next;
+	}
+	printf("HEIGHT (Y) : min[%d] max[%d]", min, max);
+	return (max + 2);
+}
+
+static int			sdl_start(SDL_Window **win, SDL_Renderer **ren, int width, int height)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 	{
@@ -20,7 +74,7 @@ int			sdl_start(SDL_Window **win, SDL_Renderer **ren)
 		return (0);
 	}
 	if (!(*win = SDL_CreateWindow("Mes couilles", SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, 700, 700, SDL_WINDOW_SHOWN)))
+		SDL_WINDOWPOS_CENTERED, width * SIZE, height * SIZE, SDL_WINDOW_SHOWN)))
 	{
 		printf("Erreur de creation de fenetre de la SDL : %s", SDL_GetError());
 		return (0);
@@ -38,63 +92,36 @@ int			sdl_start(SDL_Window **win, SDL_Renderer **ren)
 	return (1);
 }
 
-static void	draw_links(t_node *current, SDL_Renderer *ren, int factor)
-{
-	int		i;
-
-	i = 0;
-	if (!current || !current->links || !current->flux)
-		return ;
-	while (current->links[i] != NULL)
-	{
-		if (current->flux[i] == 1)
-			SDL_SetRenderDrawColor(ren, 0, 255, 0, 255);
-		else
-			SDL_SetRenderDrawColor(ren, 0, 100, 0, 255);
-		SDL_RenderDrawLine(ren, (current->x * factor) + (SIZE / 2),
-			(current->y * factor) + (SIZE / 2), (current->links[i]->x * factor)
-			+ (SIZE / 2), (current->links[i]->y * factor) + (SIZE / 2));
-		i++;
-	}
-}
-
-void		draw_map(t_node *head, SDL_Renderer *ren, int factor)
-{
-	SDL_Rect	node;
-
-	node.w = SIZE;
-	node.h = SIZE;
-	while (head)
-	{
-		if (head->role == 0)
-			SDL_SetRenderDrawColor(ren, 100, 100, 100, 255);
-		if (head->role == START)
-			SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
-		if (head->role == END)
-			SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
-		node.x = head->x * factor;
-		node.y = head->y * factor;
-		SDL_RenderDrawRect(ren, &node);
-		SDL_RenderFillRect(ren, &node);
-		draw_links(head, ren, factor);
-		head = head->next;
-	}
-	SDL_RenderPresent(ren);
-	SDL_Delay(5000);
-}
-
-void		draw(t_node *head, SDL_Renderer *ren, int factor)
-{
-	draw_map(head, ren, factor);
-	SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
-	SDL_RenderClear(ren);
-	SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
-	SDL_RenderPresent(ren);
-}
-
-void		sdl_end(SDL_Window *win, SDL_Renderer *renderer)
+static void		sdl_end(SDL_Window *win, SDL_Renderer *renderer)
 {
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(win);
 	SDL_Quit();
+}
+
+int				display_end_visu(t_node *head, long ant_nb)
+{
+	t_visu		var;
+	SDL_Event	e;
+
+	var.ant = 0;
+	var.start = get_start(head);
+	var.end = get_end(head);
+	sdl_start(&var.win, &var.ren, width_map(head), height_map(head));
+	reset_nodes(head);
+	if (!(var.ants = allocate_ants(ant_nb, var.end)))
+		return (0);
+	while (1)
+	{
+		if (SDL_PollEvent(&e))
+		{
+			if (e.button.button == SDL_BUTTON_LEFT)
+				draw(head, var.ren);
+			if (e.button.button == SDL_BUTTON_RIGHT)
+				break ;
+		}
+		SDL_Delay(20);
+	}
+	sdl_end(var.win, var.ren);
+	return (1);
 }

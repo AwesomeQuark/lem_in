@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:56:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 19:09:57 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			main(int argc, char **argv)
 		return ((int)return_("Failed to load the map"));
 	test_function(head);
 	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
-		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]));
+		display_end_visu(head, ant_nb);
 	else
 		display_end(head, ant_nb);
 	free_nodes(head);

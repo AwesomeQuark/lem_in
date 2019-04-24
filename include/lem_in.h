@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:56:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 19:09:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			verify_data(char *data);
 */
 
 int			display_end(t_node *head, long ant_nb);
-int			display_end_visu(t_node *head, long ant_nb, int factor);
+int			display_end_visu(t_node *head, long ant_nb);
 
 /*
 ** NODE MANIPULATION UTILS

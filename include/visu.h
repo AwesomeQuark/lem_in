@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:21:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:03:19 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "haflib.h"
 # include "/Users/conoel/.brew/include/SDL2/SDL.h"
 
-# define SIZE 30
+# define SIZE 0.3
 
 typedef struct		s_visu
 {
@@ -29,9 +29,11 @@ typedef struct		s_visu
 	SDL_Renderer 	*ren;
 }					t_visu;
 
-int		sdl_start(SDL_Window **win, SDL_Renderer **ren);
-void	sdl_end(SDL_Window *win, SDL_Renderer *ren);
-void	draw(t_node *head, SDL_Renderer *ren, int factor);
-void	draw_map(t_node *head, SDL_Renderer *ren, int factor);
+t_ant	*allocate_ants(long ant_nb, t_node *end);
+t_node	*next_path(t_node *current);
+int		update_ants(t_ant *ants, t_node *start, t_node *end, long ant_nb);
+
+void	draw(t_node *head, SDL_Renderer *ren);
+void	draw_map(t_node *head, SDL_Renderer *ren);
 
 #endif

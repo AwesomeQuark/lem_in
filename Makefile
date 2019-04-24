@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/24 18:33:27 by conoel           ###   ########.fr        #
+#    Updated: 2019/04/24 19:06:00 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC_NAME =	main.c\
 			print_test.c\
 			travel_flux.c\
 			display_end.c\
-			display_end_visu.c
+			display_end_visu.c\
+			draw.c
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}
