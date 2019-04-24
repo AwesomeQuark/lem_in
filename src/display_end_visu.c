@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/24 20:03:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:05:36 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int			width_map(t_node *head)
 		ptr = ptr->next;
 	}
 	printf("WIDTH (X) : min[%d] max[%d]", min, max);
-	return (max + 2);
+	return (max + 1);
 }
 
 static int			height_map(t_node *head)
@@ -63,7 +63,7 @@ static int			height_map(t_node *head)
 		ptr = ptr->next;
 	}
 	printf("HEIGHT (Y) : min[%d] max[%d]", min, max);
-	return (max + 2);
+	return (max + 1);
 }
 
 static int			sdl_start(SDL_Window **win, SDL_Renderer **ren, int width, int height)

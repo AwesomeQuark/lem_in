@@ -6,11 +6,34 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/24 19:53:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/24 20:13:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "visu.h"
+
+static void	draw_grid(SDL_Renderer *ren)
+{
+	int	width;
+	int	height;
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	SDL_GetRendererOutputSize(ren, &width, &height);
+	SDL_SetRenderDrawColor(ren, 50, 50, 50, 255);
+	while (x < width)
+	{
+		SDL_RenderDrawLine(ren, x, 0, x, height);
+		x += SIZE;
+	}
+	while (y < height)
+	{
+		SDL_RenderDrawLine(ren, 0, y, height, y);
+		y += SIZE;
+	}
+}
 
 static void	draw_links(t_node *head, SDL_Renderer *ren)
 {
@@ -61,6 +84,7 @@ void		draw(t_node *head, SDL_Renderer *ren)
 {
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
 	SDL_RenderClear(ren);
+	draw_grid(ren);
 	draw_links(head, ren);
 	draw_map(head, ren);
 	SDL_RenderPresent(ren);
