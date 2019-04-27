@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/24 19:09:57 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/25 21:34:26 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void		print_nodes(t_node *head)
 {
 	while (head != NULL)
 	{
-		ft_printf("NAME : %8s ROLE : %d ACCSS : %d VZT : %d LINKED TO : ",
-			head->name, head->role, head->access, head->vzt, head->next);
+		ft_printf("NAME : %8s ROLE : %d ACCSS : %d VZT : %d LINKED TO : ",head->name, head->role, head->access, head->vzt, head->next);
 		print_links(head);
 		ft_printf("\n");
 		head = head->next;
@@ -47,7 +46,7 @@ int			main(int argc, char **argv)
 		return ((int)return_("Failed to load the map"));
 	test_function(head);
 	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
-		display_end_visu(head, ant_nb);
+		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]));
 	else
 		display_end(head, ant_nb);
 	free_nodes(head);

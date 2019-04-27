@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/24 19:09:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/27 16:56:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,6 @@ typedef struct		s_path //path to room
 	struct s_path	*next;
 }					t_path;
 
-typedef struct		s_ant
-{
-	struct s_ant	*next;
-	t_node			*room;
-	int				nb;
-}					t_ant;
-
 /*
 **	PARSING FUNCTIONS
 */
@@ -77,7 +70,7 @@ int			verify_data(char *data);
 */
 
 int			display_end(t_node *head, long ant_nb);
-int			display_end_visu(t_node *head, long ant_nb);
+int			display_end_visu(t_node *head, long ant_nb, int size);
 
 /*
 ** NODE MANIPULATION UTILS
@@ -86,6 +79,7 @@ t_node			*get_start(t_node *head);
 t_node			*get_end(t_node *head);
 t_node			*get_node(char *name, size_t len, t_node *head);
 t_node			*get_next_open_link(t_node *node);
+t_node			*get_next_closed_link(t_node *node);
 void			reset_nodes(t_node *head);
 /*
 ** PATH MANIPULATION UTILS

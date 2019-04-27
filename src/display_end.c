@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/24 19:06:46 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/27 16:55:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-int		update_ants(t_ant *ants, t_node *start, t_node *end
-	, long ant_nb)
+int		update_ants(t_ant *ants, t_node *start, t_node *end, long ant_nb)
 {
 	static long	next_ant_index = 0;
 	t_node		*next;

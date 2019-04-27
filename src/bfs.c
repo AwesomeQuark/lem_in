@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/22 08:16:19 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/04/25 21:34:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,9 +181,9 @@ void	test_function(t_node *head)
 	room = get_start(head);
 	while(room->links[++test])
 	{
-		ft_printf("------\n");
+		//ft_printf("------\n");
 		test_flux(room);
-		ft_printf("------\n");
+		//ft_printf("------\n");
 	}
 	//print_nodes(head);
 	//now adjust relative to n_loops and find correct path again

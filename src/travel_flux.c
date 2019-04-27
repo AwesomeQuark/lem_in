@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/23 16:58:35 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/25 14:37:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	test_flux(t_node *room)
 		{
 			if (room->flux[i] == 1 && room->links[i]->printed <= 0)
 			{
-				ft_printf("room %s to %s\n", room->name, room->links[i]->name);
+				//*ft_printf("room %s to %s\n", room->name, room->links[i]->name);
 				if (room->links[i]->role == 0)
 					room->links[i]->printed = 1;
 				room = room->links[i];

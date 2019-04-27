@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/22 18:27:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/26 11:42:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_node			*load_map(int argc, char **argv, long *ant_nb)
 		free(raw_data);
 		return (NULL);
 	}
-	ft_printf("%s\n", raw_data);
+	ft_printf("%s\n\n", raw_data);
 	free(raw_data);
 	if (!(valid_start_end(head)))
 		return (NULL);
