@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 20:06:54 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:17:24 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:38:00 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	fill_vzt_path(t_node **room, t_node *nxt_room,
 		if (nxt_room->vzt == FREE && !check_outwardflux(room)
 				&& !reverse_flux_case(nxt_room, i))
 		{
-			add_path(nxt_room,*vzt_nxt);
+			add_path(nxt_room, *vzt_nxt);
 			nxt_room->vzt = VISITED;
 		}
 		add_path(nxt_room->links[i], *vzt_nxt);
@@ -44,9 +44,10 @@ void	closed_access_case2(t_node *nxt_room, t_path **vzt_nxt,
 	}
 }
 
-void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reinit)
+void	closed_access_case(t_node **room, t_path **vzt_nxt,
+		int idx, t_path **reinit)
 {
-	t_node *nxt_room;
+	t_node	*nxt_room;
 	int		i;
 
 	i = -1;
@@ -66,10 +67,9 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx, t_path **reini
 				closed_access_case2(nxt_room, vzt_nxt, reinit, i);
 				if ((*room)->access == OPEN)
 					nxt_room->weight = (*room)->weight + 1;
-				break  ;
+				break ;
 			}
 		}
 	}
-	if (check_path_skip(nxt_room, *vzt_nxt, reinit) == 1)
-		nxt_room->skip = 0;
+	check_path_skip(nxt_room, *vzt_nxt, reinit);
 }

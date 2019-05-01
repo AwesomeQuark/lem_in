@@ -6,13 +6,13 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 20:32:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/30 20:57:28 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:43:11 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lem_in.h"
 
-int		count_edges(t_node	*room)
+int		count_edges(t_node *room)
 {
 	int		i;
 

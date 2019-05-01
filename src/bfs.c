@@ -6,17 +6,18 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:55:21 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:44:13 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 void	build_future2(t_node **room, t_path **vzt_nxt, t_path **reinit, int i)
 {
 	if ((*room)->links[i]->access == CLSD && (*room)->role != START)
 		closed_access_case(room, vzt_nxt, i, reinit);
-	else if (((*room)->links[i])->vzt == FREE && ((*room)->links[i])->role != START
+	else if (((*room)->links[i])->vzt == FREE
+			&& ((*room)->links[i])->role != START
 			&& (((*room)->flux[i] <= 0 && (*room)->links[i]->access == OPEN)))
 	{
 		if (!*vzt_nxt)
@@ -28,7 +29,8 @@ void	build_future2(t_node **room, t_path **vzt_nxt, t_path **reinit, int i)
 	}
 }
 
-t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit)
+t_path	*build_future(t_node *room, t_path *vzt_nxt,
+		t_node *head, t_path *reinit)
 {
 	int		i;
 
@@ -37,11 +39,11 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 		create_flux(&room);
 	while (room->links[++i])
 	{
-		if  (room->skip == 1)
+		if (room->skip == 1)
 		{
 			room->skip = 0;
 			room->vzt = 0;
-			break ; 
+			break ;
 		}
 		if (room->access == CLSD && room->links[i]->access == OPEN
 				&& room->flux[i] <= 0)
@@ -55,21 +57,20 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt, t_node *head, t_path *reinit
 	return (vzt_nxt);
 }
 
-
 int		test_function2(t_node *head, int ant_nb, int *loops, int **table)
 {
-		if (*table)
-			free(*table);
-		*table = calc_paths(get_start(head), ant_nb);
-		if (*table == NULL)
-			return (1);
-		*loops = *loops - 1;
-		if (reset_or_not(*table, ant_nb, &head) == -1)
-		{
-			*loops = *loops + 1;
-			return (1);
-		}
-		return (0);
+	if (*table)
+		free(*table);
+	*table = calc_paths(get_start(head), ant_nb);
+	if (*table == NULL)
+		return (1);
+	*loops = *loops - 1;
+	if (reset_or_not(*table, ant_nb, &head) == -1)
+	{
+		*loops = *loops + 1;
+		return (1);
+	}
+	return (0);
 }
 
 int		*test_function(t_node *head, long ant_nb, int *loops)
@@ -88,42 +89,14 @@ int		*test_function(t_node *head, long ant_nb, int *loops)
 		while (1)
 		{
 			vzt_nxt = build_future(room, vzt_nxt, head, reinit);
-			if (vzt_nxt && vzt_nxt->room->role == END)
+			if ((vzt_nxt && vzt_nxt->room->role == END) || !vzt_nxt)
 				break ;
-			if (!vzt_nxt)
-				break;
 			reinit = visit_paths(&room, &vzt_nxt, reinit);
 		}
 		reinit_visited(&reinit);
 		reinit_visited(&vzt_nxt);
-		vzt_nxt = NULL;
 		if (test_function2(head, ant_nb, loops, &table) == 1)
 			break ;
-	/*	if (table)
-			free(table);
-		table = calc_paths(get_start(head), ant_nb);
-		if (table == NULL)
-			break ;
-		*loops = *loops - 1;
-		if (reset_or_not(table, ant_nb, &head) == -1)
-		{
-			*loops = *loops + 1;
-			break ;
-		}*/
 	}
 	return (table);
-/*	int		j = -1;
-	room = get_start(head);
-	while (room->links[++j])
-		flux_or_tag(room, 0);
-	int		test = -1;
-	room = get_start(head);
-	while(room->links[++test])
-	{
-		ft_printf("------\n");
-		test_flux(room);
-		ft_printf("------\n");
-	}*/
-	//print_nodes(head);
-	//now adjust relative to n_loops and find correct path again
 }

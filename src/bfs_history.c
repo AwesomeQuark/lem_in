@@ -6,13 +6,13 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 20:51:55 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:23:21 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:21:18 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
-t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit)//use ft_ to find leaking  deprecated paths
+t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit)
 {
 	if (!*vzt_nxt)
 		return (reinit);
@@ -40,23 +40,23 @@ t_node	*build_path(t_node *room, int i)
 {
 	if (room->hist == NULL)
 	{
-			if (room->links[i]->vzt == FREE)
-			{
-				room->links[i]->weight++;
-				(room->links[i])->hist = new_path(room->links[i]);
-			}
+		if (room->links[i]->vzt == FREE)
+		{
+			room->links[i]->weight++;
+			(room->links[i])->hist = new_path(room->links[i]);
+		}
 	}
 	else
 	{
-			if ((room->links[i])->role == 0 && (room->links[i])->vzt == FREE)
-			{
-				if (reverse_flux_case(room, i))
-					room->links[i]->weight = room->weight - 1;
-				else
-					room->links[i]->weight = room->weight + 1;
-				(room->links[i])->hist = copy_path(room->hist);
-				add_path(room->links[i], (room->links[i])->hist);
-			}
+		if ((room->links[i])->role == 0 && (room->links[i])->vzt == FREE)
+		{
+			if (reverse_flux_case(room, i))
+				room->links[i]->weight = room->weight - 1;
+			else
+				room->links[i]->weight = room->weight + 1;
+			(room->links[i])->hist = copy_path(room->hist);
+			add_path(room->links[i], (room->links[i])->hist);
+		}
 	}
 	return (room);
 }

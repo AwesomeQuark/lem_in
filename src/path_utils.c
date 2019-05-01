@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:51:49 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:48:53 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,20 @@ void	remove_path(t_path *path)
 	t_path	*tmp;
 
 	tmp = NULL;
-	while (path->next)
+	if (path)
 	{
-		tmp = path;
-		path = path->next;
-		free(tmp);
-		tmp = NULL;
+		while (path->next)
+		{
+			tmp = path;
+			path = path->next;
+			free(tmp);
+			tmp = NULL;
+		}
 	}
 	if (tmp)
 		tmp = NULL;
 }
-
 /*
-void	remove_path(t_path *path)
-{
-	if (path->next)
-	{
-		while (path->next->next != NULL)
-			path = path->next;
-	}
-	free(path->next);
-	path->next = NULL;
-}
-*/
 t_path	*copy_path(t_path *path)
 {
 	t_path	*head;
@@ -108,7 +99,7 @@ t_path	*copy_path(t_path *path)
 	}
 	return (head);
 }
-
+*/
 t_path	*deprecate_first(t_path **path, t_path *deprecated)
 {
 	t_path	*tmp;

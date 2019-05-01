@@ -6,13 +6,13 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:22:39 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:21:35 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
-int			find_index(t_node *prev, t_node *next)
+int		find_index(t_node *prev, t_node *next)
 {
 	int		i;
 
@@ -23,7 +23,7 @@ int			find_index(t_node *prev, t_node *next)
 	return (i);
 }
 
-void		forward_flux(t_node *start, t_node **room)
+void	forward_flux(t_node *start, t_node **room)
 {
 	t_node	*path_tmp;
 	t_path	*cur_room;
@@ -54,7 +54,7 @@ void	start_end(t_node **room)
 	int		i;
 
 	i = -1;
-	while((*room)->links[++i]->role != END)
+	while ((*room)->links[++i]->role != END)
 		;
 	if ((*room)->links[i]->role == END)
 		(*room)->flux[i] = 1;
@@ -69,9 +69,6 @@ void	shortest_path(t_node **room, t_node *head)
 		start_end(room);
 		return ;
 	}
-/*	dprintf(1, "====================\n");
-	print_path_final((*room)->hist);
-	dprintf(1, "====================\n");*/
 	start = get_start(head);
 	forward_flux(start, room);
 }

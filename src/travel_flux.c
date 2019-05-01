@@ -6,11 +6,11 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/30 19:47:53 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:51:06 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 void	create_flux(t_node **room)
 {
@@ -28,7 +28,7 @@ void	create_flux(t_node **room)
 
 int		reverse_flux_case(t_node *room, int idx)
 {
-	int	 	idx_rvse;
+	int		idx_rvse;
 	t_node	*nxt_room;
 
 	nxt_room = room->links[idx];
@@ -43,7 +43,7 @@ int		reverse_flux_case(t_node *room, int idx)
 
 void	adjust_reverse_flux(t_node **room, int idx)
 {
-	int	 	idx_rvse;
+	int		idx_rvse;
 	t_node	*nxt_room;
 
 	nxt_room = (*room)->links[idx];

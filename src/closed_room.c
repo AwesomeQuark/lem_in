@@ -6,14 +6,13 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 12:58:41 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 15:45:32 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-int		compare_weights(t_node **room, int idx) //only when node already visited
+int		compare_weights(t_node **room, int idx)
 {
 	t_node	*nxt_room;
 
@@ -99,12 +98,13 @@ int		check_path_skip(t_node *node, t_path *path, t_path **reinit)
 	while (path)
 	{
 		if (!ft_strcmp(node->name, path->room->name))
-				return (0); 
+			return (0);
 		path = path->next;
 	}
 	if (!*reinit)
 		*reinit = new_path(node);
 	else
 		add_path(node, *reinit);
+	node->skip = 0;
 	return (1);
 }
