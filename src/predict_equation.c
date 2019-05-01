@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 18:31:43 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:53:05 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		*solve_equation(int n_paths, int *table, long ant_nb, int total_len)
 	{
 		while (table[++i])
 		{
+		dprintf(1, "ant_nb:%ld, n_paths:%d, total_len:%d, path_len:%d with i = %d\n", ant_nb, n_paths, total_len, table[i], i/*, path_len*/);
 			table[i] = (ant_nb - (((n_paths - 1) * table[i])
 						- (total_len - table[i]))) / n_paths;
 			if (table[i] < 0)
