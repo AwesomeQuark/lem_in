@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 16:35:00 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:24:33 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ int			display_end_visu(t_node *head, long ant_nb, int factor);
 */
 
 int		count_edges(t_node *room);
+int		count_paths(t_node *start);
 int		count_iterations(t_node *head);
 
 /*

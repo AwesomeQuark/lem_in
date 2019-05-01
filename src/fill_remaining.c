@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:25:35 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 15:46:03 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:29:07 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ void	fill_remaining(int *table, long ant_nb)
 	i = -1;
 	sum = 0;
 	rem = 0;
+	if (table == NULL)
+		return ;
 	while (table[++i])
+	{
+		if (ant_nb == table[i])
+			return ;
 		sum += table[i];
+	}
 	if (sum == (int)ant_nb)
 		return ;
 	else

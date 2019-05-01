@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 16:02:26 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:31:43 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,11 @@ int		*calc_paths(t_node *start, int ant_nb)
 	n_paths = 0;
 	path_len = 0;
 	total_len = 0;
-	while (start->links[++i])
-	{
-		if (start->flux[i] == 1)
-			n_paths++;
-	}
+	if ((n_paths = count_paths(start)) == 0)
+			return (NULL);
 	if (!(table = (int*)malloc(sizeof(int) * (n_paths + 1))))
 		return NULL;
 	table[n_paths] = '\0';
-	i = -1;
 	while (start->links[++i] && i < n_paths)
 	{
 		path_len = path_length(start);

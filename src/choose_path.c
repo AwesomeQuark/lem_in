@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 17:44:42 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 15:21:35 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:05:53 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	shortest_path(t_node **room, t_node *head)
 		start_end(room);
 		return ;
 	}
+	dprintf(1, "======================\n");
+	print_path_final((*room)->hist);
+	dprintf(1, "======================\n");
 	start = get_start(head);
 	forward_flux(start, room);
 }

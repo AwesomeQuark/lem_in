@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 15:44:13 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/01 18:16:27 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,17 @@ int		*test_function(t_node *head, long ant_nb, int *loops)
 		if (test_function2(head, ant_nb, loops, &table) == 1)
 			break ;
 	}
+/*	int		j = -1;
+	room = get_start(head);
+	while (room->links[++j])
+		flux_or_tag(room, 0);
+	int		test = -1;
+	room = get_start(head);
+	while(room->links[++test])
+	{
+		ft_printf("------\n");
+		test_flux(room);
+		ft_printf("------\n");
+	}*/
 	return (table);
 }
