@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/27 17:22:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/30 20:45:23 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ int					display_end_visu(t_node *head, long ant_nb, int size)
 	reset_nodes(head);
 	if (!(var.ants = allocate_ants(ant_nb, var.end)))
 		return (0);
+	update_ants_visu(var.ants, var.start, var.end, ant_nb);
 	while (1)
 	{
-		draw(head, &var);
+		draw(head, &var, NULL);
 		if (update_ants_visu(var.ants, var.start, var.end, ant_nb) == 1)
 			break ;
 	}

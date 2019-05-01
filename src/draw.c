@@ -6,38 +6,63 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/27 17:16:26 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/30 20:46:53 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "visu.h"
 
+t_node	*next_path_visu(t_node *current, int last)
+{
+	static int	current_nb = 1;
+	int i;
+	int	count;
+
+	i = 0;
+	if (!current || !current->flux || !current->flux)
+		return (NULL);
+	current_nb++;
+	while (current->links[i])
+	{
+		if (current->flux[i] == 1)
+			count++;
+		if (count == current_nb)
+			break ;
+		i++;
+	}
+	if (last)
+		current_nb = 1;
+	return (current->links[i]);
+}
+
 static void	draw_ants(t_node *head, t_visu *var)
 {
 	t_node		*next;
+	t_ant		*ants;
 	SDL_Rect	ant;
-	t_ant		*ptr;
 	static int			i = 1;
 
-	ptr = var->ants;
 	ant.w = var->size / 4;
 	ant.h = var->size / 4;
-	while (var->ants)
+	ants = var->ants;
+	while (ants)
 	{
-		next = next_path(var->ants->room);
+		if (ants->next)
+			next = next_path_visu(ants->room, 1);
+		else
+			next = next_path_visu(ants->room, 0);
 		if (next == NULL)
 		{
-			var->ants = var->ants->next;
+			ants = ants->next;
 			continue ;
 		}
-		ant.x = var->ants->room->x * var->size + (((next->x - var->ants->room->x) * var->size * i) / STEP);
-		ant.y = var->ants->room->y * var->size + (((next->y - var->ants->room->y) * var->size * i) / STEP);
+		ant.x = (ants->room->x * var->size) + (((next->x - ants->room->x) * var->size * i) / STEP) - var->size / 8;
+		ant.y = (ants->room->y * var->size) + (((next->y - ants->room->y) * var->size * i) / STEP) - var->size / 8;
 		SDL_SetRenderDrawColor(var->ren, 255, 255, 255, 255);
 		SDL_RenderDrawRect(var->ren, &ant);
 		SDL_RenderFillRect(var->ren, &ant);
-		var->ants = var->ants->next;
+		ants = ants->next;
 	}
-	var->ants = ptr;
 	if (i == STEP)
 		i = 1;
 	else
@@ -112,12 +137,13 @@ void		draw_map(t_node *head, SDL_Renderer *ren, int size)
 	}
 }
 
-void		draw(t_node *head, t_visu *var)
+void		draw(t_node *head, t_visu *var, t_ant *ants_old)
 {
 	int		i;
 
 	i = 0;
-	printf("| x[%d] y[%d] %s|\n", var->ants->room->x, var->ants->room->y, var->ants->room->name);
+	ants_old = NULL;
+	//printf("| x[%d] y[%d] %s|\n", var->ants->room->x, var->ants->room->y, var->ants->room->name);
 	while (i++ < STEP)
 	{
 		SDL_SetRenderDrawColor(var->ren, 0, 0, 0, 255);
