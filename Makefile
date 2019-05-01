@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/05/01 15:09:25 by bghandou         ###   ########.fr        #
+#    Updated: 2019/05/01 16:35:24 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_NAME =	main.c\
 			free_nodes.c\
 			node_utils.c\
 			path_utils.c\
+			copy_path.c\
 			closed_room.c\
 			bfs.c\
 			bfs_history.c\
