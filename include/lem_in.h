@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:56:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 15:01:18 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ typedef struct		s_node
 	int				skip;
 	int				x;
 	int				y;
-
-	int				printed;//only a test variable for printing
-
+	int				tag;
 }					t_node;
 
 typedef struct		s_path //path to room
@@ -71,13 +69,7 @@ void		free_nodes(t_node *head);
 t_node		*get_node(char *name, size_t len, t_node *head);
 int			alloc_links_list(t_node *node, t_node *link);
 int			verify_data(char *data);
-
-/*
-**	LAST DISPLAY
-*/
-
-int			display_end(t_node *head, long ant_nb);
-int			display_end_visu(t_node *head, long ant_nb, int factor);
+int			basic_solver(t_node *head);
 
 /*
 ** NODE MANIPULATION UTILS
@@ -87,12 +79,17 @@ t_node			*get_end(t_node *head);
 t_node			*get_node(char *name, size_t len, t_node *head);
 t_node			*get_next_open_link(t_node *node);
 void			reset_nodes(t_node *head);
+
+void			reinit_all(t_node *head);
+
 /*
 ** PATH MANIPULATION UTILS
 */
 
 void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx,
 		t_path **reinit);
+void	closed_access_case2(t_node *nxt_room, t_path **vzt_nxt,
+		t_path **reinit, int i);
 
 /*
 ** PATH MANIPULATION UTILS
@@ -111,6 +108,7 @@ void	reinit_visited(t_path **history);
 int		compare_weights(t_node **room, int idx);
 int		skip_from_close(t_node **room, int idx);
 int		check_outwardflux(t_node **room);
+int		check_path_skip(t_node *node, t_path *path, t_path **reinit);
 
 /*
 ** FLUX MANIPULATION UTILS
@@ -123,21 +121,36 @@ void	create_flux(t_node **room);
 
 
 /*
+** BFS
+*/
+
+void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx,
+		t_path **reinit);
+void	fill_vzt_path(t_node **room, t_node *nxt_room, t_path **vzt_nxt, int i);
+t_node	*build_path(t_node *room, int i);
+t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit);
+void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head);
+t_node	*build_path(t_node *room, int i);
+
+/*
 ** PATH PHASE
 */
-void		test_function(t_node *head);
-void		shortest_path(t_node **room, int size, t_node *head);
-t_node		*build_paths(t_node *room);
+int		*test_function(t_node *head, long ant_nb, int *loops);
+void	shortest_path(t_node **room, t_node *head);
 
-t_node		*build_path(t_node *room, int i);
+void	print_nodes(t_node *head);
+void	print_path_test(t_path *head);
+void	print_path_final(t_path *head);
+void	print_flux(t_node *room);
 
-void		print_nodes(t_node *head);
-void		print_path_test(t_path *head);
-void		print_path_final(t_path *head);
-void		print_flux(t_node *room);
+void	test_flux(t_node *room);
 
-void		test_flux(t_node *room);
+/*
+**	LAST DISPLAY
+*/
 
+int			display_end(t_node *head, long ant_nb);
+int			display_end_visu(t_node *head, long ant_nb, int factor);
 
 /*
 ** TESTNG PHASE
@@ -146,5 +159,16 @@ void		test_flux(t_node *room);
 int		count_edges(t_node *room);
 int		count_iterations(t_node *head);
 
+/*
+** EQUATION
+*/
+
+int		path_length(t_node *start);
+int		*solve_equation(int n_paths, int *table,/*int path_len,*/ long ant_nb, int total_len);
+int		*calc_paths(t_node *start, int ant_nb);
+int		check_viability(int *table, int ant_nb, t_node *head);
+int		reset_or_not(int *table, int ant_nb, t_node **head);
+void	flux_or_tag(t_node *start, int actv);
+void	fill_remaining(int *table, long ant_nb);
 
 #endif

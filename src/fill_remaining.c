@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_edges.c                                      :+:      :+:    :+:   */
+/*   fill_remaining.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/03 20:32:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/30 20:57:28 by bghandou         ###   ########.fr       */
+/*   Created: 2019/05/01 11:25:35 by bghandou          #+#    #+#             */
+/*   Updated: 2019/05/01 12:15:25 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
-int		count_edges(t_node	*room)
+
+void	fill_remaining(int *table, long ant_nb)
 {
 	int		i;
+	int		sum;
+	int		rem;
 
 	i = -1;
-	if (room->links)
+	sum = 0;
+	rem = 0;
+	while (table[++i])
+		sum += table[i];
+	if (sum == (int)ant_nb)
+		return ;
+	else
 	{
-		while (room->links[++i])
-			;
+		i = 0;
+		rem = (int)ant_nb - sum;
+		while (rem > 0 && table[i])
+		{
+			table[i] = table[i] + 1;
+			i++;
+			rem--;
+		}
 	}
-	return (i);
-}
-
-int		count_iterations(t_node *head)
-{
-	t_node	*room;
-	int		strt;
-	int		end;
-
-	room = get_start(head);
-	strt = count_edges(room);
-	room = get_end(head);
-	end = count_edges(room);
-	if (end < strt)
-		return (end);
-	else if (strt <= end)
-		return (strt);
-	return (0);
 }

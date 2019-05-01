@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:21:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 15:10:47 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "lem_in.h"
 # include "haflib.h"
-# include "/Users/conoel/.brew/include/SDL2/SDL.h"
+// include "/Users/conoel/.brew/include/SDL2/SDL.h"
+# include "SDL2/SDL.h"
 
 # define SIZE 30
 

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:56:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 15:06:48 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,28 @@ int			main(int argc, char **argv)
 {
 	t_node	*head;
 	long	ant_nb;
+	int		loops;
+	int		diff;
+	int		*table;
 
 	if (!(head = load_map(argc, argv, &ant_nb)))
 		return ((int)return_("Failed to load the map"));
-	test_function(head);
+	loops = count_iterations(head);
+	diff = loops;
+	table = test_function(head, ant_nb, &loops);
+	diff -= loops;
+	if (loops > 0)
+	{
+		free(table);
+		reinit_all(head);
+		table = test_function(head, ant_nb, &diff);
+	}
+	fill_remaining(table, ant_nb);
+	/*int  i = -1;
+	while (table[++i])
+	{
+	dprintf(1, " in table[%d] value is : %d\n", i, table[i]);
+	}*/
 	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
 		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]));
 	else

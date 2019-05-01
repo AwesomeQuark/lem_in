@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/23 16:59:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 12:51:49 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
 t_path	*new_path(t_node *node)
 {
@@ -57,8 +57,22 @@ void	remove_path(t_path *path)
 		free(tmp);
 		tmp = NULL;
 	}
+	if (tmp)
+		tmp = NULL;
 }
 
+/*
+void	remove_path(t_path *path)
+{
+	if (path->next)
+	{
+		while (path->next->next != NULL)
+			path = path->next;
+	}
+	free(path->next);
+	path->next = NULL;
+}
+*/
 t_path	*copy_path(t_path *path)
 {
 	t_path	*head;
@@ -121,7 +135,7 @@ void	reinit_visited(t_path **history)
 
 	tmp = NULL;
 	if (*history)
-		tmp = *history;
+		tmp	= *history;
 	while (tmp)
 	{
 		tmp->room->vzt = FREE;

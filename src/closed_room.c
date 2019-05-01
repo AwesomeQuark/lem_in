@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   closed_room.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/04/23 17:30:10 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/01 12:58:41 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lem_in.h"
+#include "lem_in.h"
 
-int		compare_weights(t_node **room, int idx)
+
+int		compare_weights(t_node **room, int idx) //only when node already visited
 {
 	t_node	*nxt_room;
 
@@ -38,15 +39,11 @@ int		skip_from_close(t_node **room, int idx)
 	t_path	*tmp;
 	int		i;
 
-	if (room == NULL || *room == NULL)
-		return (0);
 	i = -1;
 	check = NULL;
 	tmp = (*room)->hist;
 	while (tmp->next)
 		tmp = tmp->next;
-	if (!tmp->prev)
-		return (0);
 	check = tmp->prev->room;
 	while (ft_strcmp((*room)->links[++i]->name, check->name))
 		;
@@ -69,4 +66,45 @@ int		check_outwardflux(t_node **room)
 			return (1);
 	}
 	return (0);
+}
+
+void	reinit_all(t_node *head)
+{
+	int		i;
+
+	i = -1;
+	while (head)
+	{
+		head->access = OPEN;
+		head->vzt = FREE;
+		remove_path(head->hist);
+		head->weight = 0;
+		head->skip = 0;
+		head->tag = 0;
+		if (head->links)
+		{
+			while (head->links[++i])
+			{
+				if (head->flux)
+					head->flux[i] = 0;
+			}
+		}
+		i = -1;
+		head = head->next;
+	}
+}
+
+int		check_path_skip(t_node *node, t_path *path, t_path **reinit)
+{
+	while (path)
+	{
+		if (!ft_strcmp(node->name, path->room->name))
+				return (0); 
+		path = path->next;
+	}
+	if (!*reinit)
+		*reinit = new_path(node);
+	else
+		add_path(node, *reinit);
+	return (1);
 }

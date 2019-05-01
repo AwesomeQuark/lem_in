@@ -6,22 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/23 16:57:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/04/26 11:13:06 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static void			get_coord(char *line, int *x, int *y)
-{
-	size_t	i;
-
-	i = 0;
-	while (line[i] != ' ' && line[i])
-		i++;
-	*x = ft_strtoll(&line[i], &i, 10);
-	*y = ft_strtoll(&line[i], &i, 10);
-}
 
 static char			*get_name(char *name)
 {
@@ -51,7 +40,6 @@ static t_node		*new_node(char *line, int role)
 		return ((t_node *)return_(NULL));
 	if (!(new->name = get_name(line)))
 		return (NULL);
-	get_coord(line, &new->x, &new->y);
 	new->role = role;
 	new->hist = NULL;
 	new->next = NULL;
@@ -61,7 +49,7 @@ static t_node		*new_node(char *line, int role)
 	new->flux = NULL;
 	new->skip = 0;
 	new->weight = 0;
-	new->printed = 0;
+	new->tag = 0;
 	return (new);
 }
 

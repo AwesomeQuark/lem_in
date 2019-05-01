@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/04/24 18:33:27 by conoel           ###   ########.fr        #
+#    Updated: 2019/05/01 15:09:25 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,14 @@ SRC_NAME =	main.c\
 			path_utils.c\
 			closed_room.c\
 			bfs.c\
+			bfs_history.c\
+			bfs_zwei.c\
 			choose_path.c\
 			count_edges.c\
 			print_test.c\
 			travel_flux.c\
+			fill_remaining.c\
+			predict_equation.c\
 			display_end.c\
 			display_end_visu.c
 
