@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:25:35 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 19:21:18 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:25:06 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	fill_remaining(int *table, long ant_nb)
 	rem = 0;
 	if (table == NULL)
 		return ;
-	while (table[++i])
+	while (table[++i] != INT_MIN)
 		sum += table[i];
 	if (sum == (int)ant_nb)
 		return ;
@@ -31,7 +31,7 @@ void	fill_remaining(int *table, long ant_nb)
 	{
 		i = 0;
 		rem = (int)ant_nb - sum;
-		while (rem > 0 && table[i])
+		while (rem > 0 && table[i] != INT_MIN)
 		{
 			table[i] = table[i] + 1;
 			i++;
@@ -45,7 +45,7 @@ void	check_startend(int *table, long ant_nb, t_node *start)
 	int		i;
 	int		j;
 	int		flag;
-	
+
 	i = -1;
 	j = 0;
 	flag = 0;

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:48:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/03/20 18:19:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:36:13 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	free_nodes(t_node *head)
 		if (tmp->links != NULL)
 		{
 			free(tmp->links);
+			if (tmp->flux)
+				free(tmp->flux);
 			tmp->links = NULL;
 		}
 		free(tmp->name);

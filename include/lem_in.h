@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 16:15:19 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:25:01 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "haflib.h"
 # include "fcntl.h"
+# include <limits.h>
 
 # include <stdio.h> //will need to delete
 
@@ -171,5 +172,6 @@ int		check_viability(int *table, int ant_nb, t_node *head);
 int		reset_or_not(int *table, int ant_nb, t_node **head);
 void	flux_or_tag(t_node *start, int actv);
 void	fill_remaining(int *table, long ant_nb);
+void	check_startend(int *table, long ant_nb, t_node *start);
 
 #endif

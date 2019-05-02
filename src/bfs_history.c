@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 20:51:55 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/02 16:36:19 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:17:33 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head)
 	{
 		(*room)->flux[i] = 1;
 		shortest_path(room, head);
-		while (*vzt_nxt && (*vzt_nxt)->room->role != END) // LEAKING, put all in reinit!!
+		while (*vzt_nxt && (*vzt_nxt)->room->role != END)//perhaps leak here
 		{
 			(*vzt_nxt)->room->vzt = FREE;
 			(*vzt_nxt) = (*vzt_nxt)->next;

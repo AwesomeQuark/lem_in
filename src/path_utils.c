@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 15:48:53 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:18:25 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,43 +63,7 @@ void	remove_path(t_path *path)
 	if (tmp)
 		tmp = NULL;
 }
-/*
-t_path	*copy_path(t_path *path)
-{
-	t_path	*head;
-	t_path	*tmp;
-	t_path	*prv;
-	t_path	*tmp2;
 
-	tmp = NULL;
-	head = NULL;
-	prv = NULL;
-	tmp2 = NULL;
-	while (path)
-	{
-		if (!(tmp = (t_path*)malloc(sizeof(t_path))))
-			return (NULL);
-		tmp->room = path->room;
-		tmp->next = NULL;
-		tmp->prev = NULL;
-		if (!head)
-		{
-			head = tmp;
-			prv = head;
-			tmp2 = head;
-		}
-		else
-		{
-			prv->next = tmp;
-			prv = prv->next;
-			prv->prev = tmp2;
-			tmp2 = tmp;
-		}
-		path = path->next;
-	}
-	return (head);
-}
-*/
 t_path	*deprecate_first(t_path **path, t_path *deprecated)
 {
 	t_path	*tmp;
@@ -126,7 +90,7 @@ void	reinit_visited(t_path **history)
 
 	tmp = NULL;
 	if (*history)
-		tmp	= *history;
+		tmp = *history;
 	while (tmp)
 	{
 		tmp->room->vzt = FREE;

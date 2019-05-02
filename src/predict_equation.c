@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/02 16:29:36 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:27:18 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ int		*solve_equation(int n_paths, int *table, long ant_nb, int total_len)
 	i = -1;
 	if (n_paths > 1)
 	{
-		while (table[++i])
+		while (table[++i] != INT_MIN)
 		{
-//		dprintf(1, "ant_nb:%ld, n_paths:%d, total_len:%d, path_len:%d with i = %d\n", ant_nb, n_paths, total_len, table[i], i/*, path_len*/);
 			table[i] = (ant_nb - (((n_paths - 1) * table[i])
 						- (total_len - table[i]))) / n_paths;
 			if (table[i] < 0)
@@ -79,7 +78,7 @@ int		*calc_paths(t_node *start, int ant_nb)
 			return (NULL);
 	if (!(table = (int*)malloc(sizeof(int) * (n_paths + 1))))
 		return NULL;
-	table[n_paths] = '\0';
+	table[n_paths] = INT_MIN;
 	while (start->links[++i] && i < n_paths)
 	{
 		path_len = path_length(start);
@@ -99,7 +98,7 @@ int		check_viability(int *table, int ant_nb, t_node *head)
 
 	i = -1;
 	loops = count_iterations(head);
-	while (table[++i] && loops > 0)
+	while (table[++i] != INT_MIN && loops > 0)
 	{
 		if (table[i] == ant_nb)
 			return (0);
