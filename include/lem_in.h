@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 18:24:33 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:15:19 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	closed_access_case(t_node **room, t_path **vzt_nxt, int idx,
 void	fill_vzt_path(t_node **room, t_node *nxt_room, t_path **vzt_nxt, int i);
 t_node	*build_path(t_node *room, int i);
 t_path	*visit_paths(t_node **room, t_path **vzt_nxt, t_path *reinit);
-void	flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head);
+int		flux_to_end(t_node **room, t_path **vzt_nxt, int i, t_node *head);
 t_node	*build_path(t_node *room, int i);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 18:16:27 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:14:33 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt,
 				;
 		}
 		build_future2(&room, &vzt_nxt, &reinit, i);
-		flux_to_end(&room, &vzt_nxt, i, head);
+		if (flux_to_end(&room, &vzt_nxt, i, head) == 1)
+			break ;
 	}
 	return (vzt_nxt);
 }
