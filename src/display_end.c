@@ -6,12 +6,40 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 16:02:25 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/03 11:52:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "visu.h"
+
+static int	remaining_space(int *table, t_node *start, int mode)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!start || !start->links || !table)
+	{
+		printf("johnson it's broken\n");
+		printf("start: %p links: %p table: %p\n", start, start->links, table);
+		return (-1);
+	}
+	while (start->links[i])
+	{
+		if (table[j] != 0 && start->links[i]->access == 1)
+		{
+			if (mode == 1)
+				table[j]--;
+			return (i);
+		}
+		if (start->flux[i] == 1)
+			j++;
+		i++;
+	}
+	return (-1);
+}
 
 static t_ant	*allocate_ants(long ant_nb, t_node *end)
 {
@@ -52,28 +80,45 @@ static t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-static int		update_ants(t_ant *ants, t_node *start, t_node *end
-	, long ant_nb)
+static int		update_ants(t_ant *ants, t_node *head, int *table)
 {
 	static long	next_ant_index = 0;
 	t_node		*next;
 	int			finished;
 
 	finished = 1;
+	if (!table)
+	{
+		printf("You shall not pass\n");
+		return (1);
+	}
 	while (ants != NULL)
 	{
-		if (ants->room == end && ant_nb > next_ant_index)
-		{
-			ants->room = start;
-			ants->nb = ++next_ant_index;
-		}
-		if (ants->room != end && (next = next_path(ants->room)))
+		if (ants->room == get_end(head) && remaining_space(table, get_start(head), 0) != -1)
 		{
 			finished = 0;
+			ants->room = get_start(head);
+			ants->nb = ++next_ant_index;
+		}
+		if (ants->room != get_end(head) && (ants->room != get_start(head) || remaining_space(table, get_start(head), 0) != -1)
+		&& next_path(ants->room))
+		{
+			finished = 0;
+			if (ants->room == get_start(head) && get_start(head)->access == 1)
+				next = ants->room->links[remaining_space(table, get_start(head), 1)];
+			else
+			{
+				next = next_path(ants->room);
+				if (!next)
+				{
+					printf("wadafuk\n");
+					return (1);
+				}
+			}
 			ft_printf("L%d-%s ", ants->nb, next->name);
 			ants->room->access = 1;
 			ants->room = next;
-			if (next != end)
+			if (next != get_end(head) && next != get_start(head))
 				ants->room->access = 0;
 		}
 		ants = ants->next;
@@ -81,49 +126,22 @@ static int		update_ants(t_ant *ants, t_node *start, t_node *end
 	return (finished);
 }
 
-int				display_end(t_node *head, long ant_nb)
+int				display_end(t_node *head, long ant_nb, int *table)
 {
 	t_ant	*ants;
-	t_node	*start;
-	t_node	*end;
 	int		ant;
+	int		count;
 
 	ant = 0;
-	start = get_start(head);
-	end = get_end(head);
+	count = 0;
 	reset_nodes(head);
-	if (!(ants = allocate_ants(ant_nb, end)))
+	if (!(ants = allocate_ants(ant_nb, get_end(head))))
 		return (0);
-	while (update_ants(ants, start, end, ant_nb) == 0)
+	while (update_ants(ants, head, table) == 0)
 	{
 		write(1, "\n", 1);
+		count++;
 	}
-	return (1);
-}
-
-int				display_end_visu(t_node *head, long ant_nb, int factor)
-{
-	t_visu		var;
-	SDL_Event	e;
-
-	var.ant = 0;
-	var.start = get_start(head);
-	var.end = get_end(head);
-	sdl_start(&var.win, &var.ren);
-	reset_nodes(head);
-	if (!(var.ants = allocate_ants(ant_nb, var.end)))
-		return (0);
-	while (1)
-	{
-		if (SDL_PollEvent(&e))
-		{
-			if (e.button.button == SDL_BUTTON_LEFT)
-				draw(head, var.ren, factor);
-			if (e.button.button == SDL_BUTTON_RIGHT)
-				break ;
-		}
-		SDL_Delay(20);
-	}
-	sdl_end(var.win, var.ren);
+	printf("TOTAL: %d", count);
 	return (1);
 }

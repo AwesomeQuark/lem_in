@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 18:27:37 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:41:13 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ int			main(int argc, char **argv)
 	}
 	fill_remaining(table, ant_nb);
 	check_startend(table, ant_nb, get_start(head));
-	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
-		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]));
-	else
-		display_end(head, ant_nb);
+	display_end(head, ant_nb, table);
 	free_nodes(head);
 }

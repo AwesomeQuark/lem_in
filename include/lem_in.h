@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 18:25:01 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:41:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,7 @@ void	test_flux(t_node *room);
 **	LAST DISPLAY
 */
 
-int			display_end(t_node *head, long ant_nb);
-int			display_end_visu(t_node *head, long ant_nb, int factor);
-
+int		display_end(t_node *head, long ant_nb, int *table);
 /*
 ** TESTNG PHASE
 */

@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/05/01 19:20:55 by bghandou         ###   ########.fr        #
+#    Updated: 2019/05/03 11:01:56 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRC_NAME =	main.c\
 			fill_remaining.c\
 			predict_equation.c\
 			display_end.c\
-			display_end_visu.c
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}
@@ -54,7 +53,7 @@ LIB_DIR = ./haflib/
 LIB_HEADER = ./haflib/includes/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = #-Wall -Werror -Wextra -Ofast
+FLAGS = -Wall -Werror -Wextra -Ofast
 CC = clang -g3 -fsanitize=address
 
 #################################################################################
