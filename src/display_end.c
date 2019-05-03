@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 11:52:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/03 11:59:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ int				display_end(t_node *head, long ant_nb, int *table)
 		write(1, "\n", 1);
 		count++;
 	}
-	printf("TOTAL: %d", count);
+	printf("Here is the number of line required: %d", count);
 	return (1);
 }
