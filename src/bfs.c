@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/02 18:17:15 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/03 14:53:39 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ int		test_function2(t_node *head, int ant_nb, int *loops, int **table)
 		free(*table);
 	*table = calc_paths(get_start(head), ant_nb);
 	if (*table == NULL)
+	{
+		*loops = 0;
 		return (1);
+	}
 	*loops = *loops - 1;
 	if (reset_or_not(*table, ant_nb, &head) == -1)
 	{
