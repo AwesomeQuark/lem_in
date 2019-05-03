@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/03 14:49:00 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/03 15:04:25 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int		*calc_paths(t_node *start, int ant_nb)
 	while (start->links[++i] && i < n_paths)
 	{
 		path_len = path_length(start);
-		if (n_paths == 1 && path_len >= ant_nb) //had just return (NULL);
-			return (NULL);
+	//	if (n_paths == 1 && path_len >= ant_nb) //had just return (NULL);
+	//		return (NULL);
 		total_len += path_len;
 		table[i] = path_len;
 	}
