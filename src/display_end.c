@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/03 11:59:56 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:04:19 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	remaining_space(int *table, t_node *start, int mode)
 	return (-1);
 }
 
-static t_ant	*allocate_ants(long ant_nb, t_node *end)
+t_ant	*allocate_ants(long ant_nb, t_node *end)
 {
 	t_ant	*head;
 	t_ant	*ptr;
@@ -64,7 +64,7 @@ static t_ant	*allocate_ants(long ant_nb, t_node *end)
 	return (head);
 }
 
-static t_node	*next_path(t_node *current)
+t_node	*next_path(t_node *current)
 {
 	int i;
 
@@ -87,11 +87,6 @@ static int		update_ants(t_ant *ants, t_node *head, int *table)
 	int			finished;
 
 	finished = 1;
-	if (!table)
-	{
-		printf("You shall not pass\n");
-		return (1);
-	}
 	while (ants != NULL)
 	{
 		if (ants->room == get_end(head) && remaining_space(table, get_start(head), 0) != -1)
@@ -135,6 +130,14 @@ int				display_end(t_node *head, long ant_nb, int *table)
 	ant = 0;
 	count = 0;
 	reset_nodes(head);
+	if (table == NULL && next_path(get_start(head)) == NULL)
+		return (0);
+	else if (table == NULL)
+	{
+		if (!(table = malloc(sizeof(int) * 1)))
+			return (0);
+		table[0] = ant_nb;
+	}
 	if (!(ants = allocate_ants(ant_nb, get_end(head))))
 		return (0);
 	while (update_ants(ants, head, table) == 0)

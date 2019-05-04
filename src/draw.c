@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 10:37:14 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:02:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	draw_ants(t_node *head, t_visu *var)
 	t_node		*next;
 	t_ant		*ants;
 	SDL_Rect	ant;
-	static int			i = 1;
+	static int	i = 1;
 
 	ant.w = var->size / 4;
 	ant.h = var->size / 4;

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 10:47:04 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:00:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int		update_ants_visu(t_ant *ants, t_node *start, t_node *end, long ant_nb)
 int					display_end_visu(t_node *head, long ant_nb, int size)
 {
 	t_visu		var;
-	SDL_Event	e;
 
 	var.ant = 0;
 	var.size = size != 0 ? size : SIZE;
