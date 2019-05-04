@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:41:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:27:19 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // include "SDL2/SDL.h"
 
 # define SIZE 30
-# define STEP 150
+# define STEP 100
 # define TIME_MOV 1000
 
 typedef struct		s_visu

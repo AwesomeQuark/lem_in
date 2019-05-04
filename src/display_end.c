@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:39:33 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:25:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int		update_ants(t_ant *ants, t_node *head, int *table)
 	int			finished;
 
 	finished = 1;
-	while (ants != NULL)
+	while (ants)
 	{
 		if (ants->room == get_end(head) && remaining_space(table, get_start(head), 0) != -1)
 		{
@@ -106,11 +106,6 @@ static int		update_ants(t_ant *ants, t_node *head, int *table)
 			else
 			{
 				next = next_path(ants->room);
-				if (!next)
-				{
-					printf("wadafuk\n");
-					return (1);
-				}
 			}
 			ft_printf("L%d-%s ", ants->nb, next->name);
 			ants->room->access = 1;

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:41:44 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:24:01 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	draw_ants(t_node *head, t_visu *var, int *table)
 	while (ants)
 	{
 		if (ants->room->role == START && ants->room->access == 1 && remaining_space(table, get_start(head), 0) != -1)
-			next = ants->room->links[remaining_space(table, get_start(head), 1)];
+			next = ants->room->links[remaining_space(table, get_start(head), 0)];
 		else
 			next = next_path(ants->room);
 		if (next == NULL)
