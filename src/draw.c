@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 12:24:01 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:31:51 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 static void	draw_ants(t_node *head, t_visu *var, int *table)
 {
-	t_node		*next;
+	//t_node		*next;
 	t_ant		*ants;
 	SDL_Rect	ant;
 	static int	i = 1;
 
+	head = NULL;
+	table = NULL;
 	ant.w = var->size / 4;
 	ant.h = var->size / 4;
 	ants = var->ants;
 	while (ants)
 	{
-		if (ants->room->role == START && ants->room->access == 1 && remaining_space(table, get_start(head), 0) != -1)
-			next = ants->room->links[remaining_space(table, get_start(head), 0)];
-		else
-			next = next_path(ants->room);
-		if (next == NULL)
-		{
-			ants = ants->next;
-			continue ;
-		}
-		ant.x = (ants->room->x * var->size) + ((((next->x - ants->room->x) * var->size) * i) / STEP) - (var->size / 8);
-		ant.y = (ants->room->y * var->size) + ((((next->y - ants->room->y) * var->size) * i) / STEP) - (var->size / 8);
+		//if (ants->room->role == START && ants->room->access == 1 && remaining_space(table, get_start(head), 0) != -1)
+	//		next = ants->room->links[remaining_space(table, get_start(head), 0)];
+	//	else
+	//		next = next_path(ants->room);
+		///if (next == NULL)
+		//{
+		///	ants = ants->next;
+	///		continue ;
+		//}
+		ant.x = (ants->room->x * var->size) ;///+ ((((next->x - ants->room->x) * var->size) * i) / STEP) - (var->size / 8);
+		ant.y = (ants->room->y * var->size) ;//+ ((((next->y - ants->room->y) * var->size) * i) / STEP) - (var->size / 8);
 		SDL_SetRenderDrawColor(var->ren, 255, 255, 255, 255);
 		SDL_RenderDrawRect(var->ren, &ant);
 		SDL_RenderFillRect(var->ren, &ant);

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:28:43 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:46:15 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ t_node			*load_structure(char *data, long *ant_nb)
 		return ((t_node *)return_("Failed to load nodes"));
 	if (!(load_links(head, &data[i])))
 	{
-		free_nodes(head);
-		return ((t_node *)return_("Failed to load links"));
+		return (head);
 	}
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:38:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:50:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			main(int argc, char **argv)
 
 	if (!(head = load_map(argc, argv, &ant_nb)))
 		return ((int)return_("Failed to load the map"));
+	print_nodes(head);
 	loops = count_iterations(head);
 	diff = loops;
 	table = test_function(head, ant_nb, &loops);

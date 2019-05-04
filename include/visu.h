@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 12:27:19 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 12:28:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void draw(t_node *head, t_visu *var, int *table);
 t_node	*next_path(t_node *current);
 t_ant	*allocate_ants(long ant_nb, t_node *end);
 int	remaining_space(int *table, t_node *start, int mode);
+int		update_ants(t_ant *ants, t_node *head, int *table);
 
 #endif
