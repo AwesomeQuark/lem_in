@@ -6,40 +6,46 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/26 11:13:06 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/04 11:29:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char			*get_name(char *name)
+static char			*get_name(char **name)
 {
 	char	*ret;
 	size_t	i;
 
 	i = 0;
-	while (name[i] != ' ' && name[i])
+	while ((*name)[i] != ' ' && (*name)[i])
 		i++;
-	name[i] = '\0';
-	if (!(ret = ft_strdup(name)))
+	(*name)[i] = '\0';
+	if (!(ret = ft_strdup(*name)))
 		return ((char *)return_(NULL));
-	name[i] = ' ';
+	(*name)[i] = ' ';
 	if (ft_strchr(ret, 'L') != NULL || ft_strchr(ret, '-') != NULL)
 	{
 		free(ret);
 		return ((char *)return_("Forbidden char in room name (L or -)"));
 	}
+	*name = (*name + i);
 	return (ret);
 }
 
 static t_node		*new_node(char *line, int role)
 {
 	t_node	*new;
+	size_t	i;
 
+	i = 0;
 	if (!(new = malloc(sizeof(t_node))))
 		return ((t_node *)return_(NULL));
-	if (!(new->name = get_name(line)))
+	if (!(new->name = get_name(&line)))
 		return (NULL);
+	new->x = ft_strtoll(&line[i], &i, 10);
+	i++;
+	new->y = ft_strtoll(&line[i], &i, 10);
 	new->role = role;
 	new->hist = NULL;
 	new->next = NULL;
@@ -50,6 +56,8 @@ static t_node		*new_node(char *line, int role)
 	new->skip = 0;
 	new->weight = 0;
 	new->tag = 0;
+
+	ft_printf("name %s x%d y%d %ld\n", new->name, new->x, new->y, i);
 	return (new);
 }
 
