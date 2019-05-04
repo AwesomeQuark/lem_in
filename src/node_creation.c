@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:29:58 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:32:50 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static t_node		*new_node(char *line, int role)
 	new->skip = 0;
 	new->weight = 0;
 	new->tag = 0;
-
-	ft_printf("name %s x%d y%d %ld\n", new->name, new->x, new->y, i);
 	return (new);
 }
 

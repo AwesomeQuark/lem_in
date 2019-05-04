@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:00:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:38:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		update_ants_visu(t_ant *ants, t_node *start, t_node *end, long ant_nb)
 	return (finished);
 }
 
-int					display_end_visu(t_node *head, long ant_nb, int size)
+int					display_end_visu(t_node *head, long ant_nb, int size, int *table)
 {
 	t_visu		var;
 
@@ -54,7 +54,7 @@ int					display_end_visu(t_node *head, long ant_nb, int size)
 		return (0);
 	while (1)
 	{
-		draw(head, &var, NULL);
+		draw(head, &var, table);
 		if (update_ants_visu(var.ants, var.start, var.end, ant_nb) == 1)
 			break ;
 	}

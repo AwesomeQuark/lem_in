@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:01:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:41:05 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // include "SDL2/SDL.h"
 
 # define SIZE 30
-# define STEP 100
+# define STEP 150
 # define TIME_MOV 1000
 
 typedef struct		s_visu
@@ -37,8 +37,9 @@ int sdl_start(t_visu *var, int width, int height);
 void sdl_end(SDL_Window *win, SDL_Renderer *ren);
 int height_map(t_node *head);
 int	width_map(t_node *head);
-void draw(t_node *head, t_visu *var, t_ant *ants_old);
+void draw(t_node *head, t_visu *var, int *table);
 t_node	*next_path(t_node *current);
 t_ant	*allocate_ants(long ant_nb, t_node *end);
+int	remaining_space(int *table, t_node *start, int mode);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:04:19 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:39:33 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "visu.h"
 
-static int	remaining_space(int *table, t_node *start, int mode)
+int	remaining_space(int *table, t_node *start, int mode)
 {
 	int		i;
 	int		j;
@@ -69,6 +69,8 @@ t_node	*next_path(t_node *current)
 	int i;
 
 	i = 0;
+	if (current->role == END)
+		return (NULL);
 	if (!current || !current->flux || !current->flux)
 		return (NULL);
 	while (current->links[i])

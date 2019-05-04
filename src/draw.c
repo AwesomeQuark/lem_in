@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:02:29 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/04 11:41:44 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "visu.h"
 
-static void	draw_ants(t_node *head, t_visu *var)
+static void	draw_ants(t_node *head, t_visu *var, int *table)
 {
 	t_node		*next;
 	t_ant		*ants;
@@ -24,13 +24,10 @@ static void	draw_ants(t_node *head, t_visu *var)
 	ants = var->ants;
 	while (ants)
 	{
-		ft_printf("ENTER| ");
-		if (ants->room == get_end(head))
-		{
-			ants = ants->next;
-			continue ;
-		}
-		next = next_path(ants->room);
+		if (ants->room->role == START && ants->room->access == 1 && remaining_space(table, get_start(head), 0) != -1)
+			next = ants->room->links[remaining_space(table, get_start(head), 1)];
+		else
+			next = next_path(ants->room);
 		if (next == NULL)
 		{
 			ants = ants->next;
@@ -38,7 +35,6 @@ static void	draw_ants(t_node *head, t_visu *var)
 		}
 		ant.x = (ants->room->x * var->size) + ((((next->x - ants->room->x) * var->size) * i) / STEP) - (var->size / 8);
 		ant.y = (ants->room->y * var->size) + ((((next->y - ants->room->y) * var->size) * i) / STEP) - (var->size / 8);
-		ft_printf("ANT: x:%d y:%d\n", ant.x, ant.y);
 		SDL_SetRenderDrawColor(var->ren, 255, 255, 255, 255);
 		SDL_RenderDrawRect(var->ren, &ant);
 		SDL_RenderFillRect(var->ren, &ant);
@@ -118,12 +114,11 @@ void		draw_map(t_node *head, SDL_Renderer *ren, int size)
 	}
 }
 
-void		draw(t_node *head, t_visu *var, t_ant *ants_old)
+void		draw(t_node *head, t_visu *var, int *table)
 {
 	int		i;
 
 	i = 0;
-	ants_old = NULL;
 	while (i < STEP)
 	{
 		SDL_SetRenderDrawColor(var->ren, 0, 0, 0, 255);
@@ -131,7 +126,7 @@ void		draw(t_node *head, t_visu *var, t_ant *ants_old)
 		draw_grid(var->ren, var->size);
 		draw_links(head, var->ren, var->size);
 		draw_map(head, var->ren, var->size);
-		draw_ants(head, var);
+		draw_ants(head, var, table);
 		SDL_RenderPresent(var->ren);
 		SDL_Delay(TIME_MOV / STEP);
 		i++;
