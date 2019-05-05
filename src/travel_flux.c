@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/03 14:51:58 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:35:52 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ void	create_flux(t_node **room)
 	i = -1;
 	while ((*room)->links[++i])
 		;
-	if (!((*room)->flux = (int*)malloc(sizeof(int) * (i + 1))))
-		return ;
+	if (!(*room)->flux)
+	{
+		if (!((*room)->flux = (int*)malloc(sizeof(int) * (i + 1))))
+			return ;
+	}
 	i = -1;
 	while ((*room)->links[++i])
 		(*room)->flux[i] = 0;

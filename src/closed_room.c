@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/01 18:35:15 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:38:02 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ int		compare_weights(t_node **room, int idx)
 			&& nxt_room->vzt == VISITED
 			&& ft_strcmp((*room)->hist->next->room->name, nxt_room->name))
 	{
-		remove_path(nxt_room->hist);
+		if (nxt_room->hist != NULL)
+		{
+			remove_path(nxt_room->hist);
+			nxt_room->hist = NULL;
+		}
 		nxt_room->weight = (*room)->weight + 1;
+		if (nxt_room->hist)
+			remove_path(nxt_room->hist);
 		nxt_room->hist = copy_path((*room)->hist);
 		add_path(nxt_room, nxt_room->hist);
 		return (1);

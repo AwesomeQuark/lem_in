@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/24 18:10:40 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/02 18:18:25 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/05 23:42:11 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,12 @@ void	remove_path(t_path *path)
 {
 	t_path	*tmp;
 
-	tmp = NULL;
-	if (path)
+	while (path)
 	{
-		while (path->next)
-		{
-			tmp = path;
-			path = path->next;
-			free(tmp);
-			tmp = NULL;
-		}
+		tmp = path;
+		path = path->next;
+		free(tmp);
 	}
-	if (tmp)
-		tmp = NULL;
 }
 
 t_path	*deprecate_first(t_path **path, t_path *deprecated)
@@ -87,6 +80,7 @@ t_path	*deprecate_first(t_path **path, t_path *deprecated)
 void	reinit_visited(t_path **history)
 {
 	t_path	*tmp;
+	t_path	*tmp2;
 
 	tmp = NULL;
 	if (*history)
@@ -101,8 +95,9 @@ void	reinit_visited(t_path **history)
 			remove_path(tmp->room->hist);
 			tmp->room->hist = NULL;
 		}
+		tmp2 = tmp;
 		tmp = tmp->next;
+		free(tmp2);
 	}
-	free(*history);
 	*history = NULL;
 }

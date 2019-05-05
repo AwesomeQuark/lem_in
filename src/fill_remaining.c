@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:25:35 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/05 16:51:32 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/05 23:55:07 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ void	check_startend(int *table, long ant_nb, t_node *start)
 			if (start->links[i]->role == END)
 				table[j++] = ant_nb;
 			else if (start->flux[i] == 1)
-			{
-				table[j] = 0;
-				j++;
-			}
+				table[j++] = 0;
 		}
 	}
 }

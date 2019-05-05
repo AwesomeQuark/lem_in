@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:48:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/02 17:36:13 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/05 21:06:39 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ void	free_nodes(t_node *head)
 		if (tmp->links != NULL)
 		{
 			free(tmp->links);
-			if (tmp->flux)
-				free(tmp->flux);
 			tmp->links = NULL;
 		}
+		remove_path(tmp->hist);
+		if (tmp->flux)
+			free(tmp->flux);
 		free(tmp->name);
 		tmp->name = NULL;
 		free(tmp);

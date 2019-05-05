@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 12:38:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/05 23:46:40 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,16 @@ int					display_end_visu(t_node *head, long ant_nb, int size, int *table)
 	}
 	sdl_end(var.win, var.ren);
 	return (1);
+}
+
+void	free_ants(t_ant *head)
+{
+	t_ant	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
 }
