@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 03:02:22 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 14:59:09 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ t_ant	*allocate_ants(long ant_nb, t_node *end)
 	t_ant	*ptr;
 	t_ant	*ptr2;
 
+	srand(time(NULL));
 	if (!(head = malloc(sizeof(t_ant))))
 		return (NULL);
 	head->room = end;
 	head->next = NULL;
+	head->color = rand();
 	ptr2 = head;
 	while (--ant_nb)
 	{
@@ -59,6 +61,7 @@ t_ant	*allocate_ants(long ant_nb, t_node *end)
 			return (NULL);
 		ptr2->next = NULL;
 		ptr2->room = end;
+		ptr2->color = rand();
 		ptr->next = ptr2;
 	}
 	return (head);
@@ -87,22 +90,26 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 	static long	next_ant_index = 0;
 	t_node		*next;
 	int			finished;
+	t_node		*start;
+	t_node		*end;
 
 	finished = 1;
+	end = get_end(head);
+	start = get_start(head);
 	while (ants)
 	{
-		if (ants->room == get_end(head) && remaining_space(table, get_start(head), 0) != -1)
+		if (ants->room == end && remaining_space(table, start, 0) != -1)
 		{
 			finished = 0;
-			ants->room = get_start(head);
+			ants->room = start;
 			ants->nb = ++next_ant_index;
 		}
-		if (ants->room != get_end(head) && (ants->room != get_start(head) || remaining_space(table, get_start(head), 0) != -1)
+		if (ants->room != end && (ants->room != start || remaining_space(table, start, 0) != -1)
 		&& next_path(ants->room))
 		{
 			finished = 0;
-			if (ants->room == get_start(head) && get_start(head)->access == 1)
-				next = ants->room->links[remaining_space(table, get_start(head), 1)];
+			if (ants->room == start && start->access == 1)
+				next = ants->room->links[remaining_space(table, start, 1)];
 			else
 			{
 				next = next_path(ants->room);
@@ -110,7 +117,7 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 			ft_printf("L%d-%s ", ants->nb, next->name);
 			ants->room->access = 1;
 			ants->room = next;
-			if (next != get_end(head) && next != get_start(head))
+			if (next != end && next != start)
 				ants->room->access = 0;
 		}
 		ants = ants->next;

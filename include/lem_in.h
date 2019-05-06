@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 02:46:58 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 14:37:23 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_ant
 	struct s_ant	*next;
 	t_node			*room;
 	int				nb;
+	int				color;
 }					t_ant;
 
 /*

@@ -6,11 +6,25 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 23:46:40 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 14:59:11 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
+
+int					flux_value(t_node *node, char *name)
+{
+	int	i;
+
+	i = 0;
+	while (node->links[i])
+	{
+		if (ft_strcmp(node->links[i]->name, name) == 0)
+			return (node->flux[i]);
+		i++;
+	}
+	return (0);
+}
 
 int					display_end_visu(t_node *head, long ant_nb, int size, int *table)
 {

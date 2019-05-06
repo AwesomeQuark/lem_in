@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 12:31:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:03:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ static void	draw_ants(t_node *head, t_visu *var, int *table)
 		///	ants = ants->next;
 	///		continue ;
 		//}
-		ant.x = (ants->room->x * var->size) ;///+ ((((next->x - ants->room->x) * var->size) * i) / STEP) - (var->size / 8);
-		ant.y = (ants->room->y * var->size) ;//+ ((((next->y - ants->room->y) * var->size) * i) / STEP) - (var->size / 8);
-		SDL_SetRenderDrawColor(var->ren, 255, 255, 255, 255);
-		SDL_RenderDrawRect(var->ren, &ant);
-		SDL_RenderFillRect(var->ren, &ant);
+		if (ants->room->role != END)
+		{
+			ant.x = (ants->room->x * var->size) - (var->size / 8); ///+ ((((next->x - ants->room->x) * var->size) * i) / STEP) ;
+			ant.y = (ants->room->y * var->size)  - (var->size / 8);//+ ((((next->y - ants->room->y) * var->size) * i) / STEP);
+			SDL_SetRenderDrawColor(var->ren, ants->color % 0xfff0000000 , 0, ants->color % 0x000000fff, SDL_ALPHA_OPAQUE);
+			SDL_RenderDrawRect(var->ren, &ant);
+			SDL_RenderFillRect(var->ren, &ant);
+		}
 		ants = ants->next;
 	}
 	if (i == STEP)
@@ -85,7 +88,10 @@ static void	draw_links(t_node *head, SDL_Renderer *ren, int size)
 		}
 		while (head->links[i] != NULL)
 		{
-			SDL_SetRenderDrawColor(ren, 0, 100, 0, 255);
+			if (head->flux[i] == 1 || flux_value(head->links[i], head->name))
+				SDL_SetRenderDrawColor(ren, 0, 250, 0, 255);
+			else
+				SDL_SetRenderDrawColor(ren, 0, 70, 0, 255);
 			SDL_RenderDrawLine(ren, head->x * size, head->y * size,
 				head->links[i]->x * size, head->links[i]->y * size);
 			i++;
