@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/05 20:04:26 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 02:50:01 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,14 @@ t_path	*build_future(t_node *room, t_path *vzt_nxt,
 
 int		test_function2(t_node *head, int ant_nb, int *loops, int **table)
 {
+	int		*prv_tbl;
+
+	prv_tbl = NULL;
 	if (*table)
+	{
+		prv_tbl = save_table(*table);
 		free(*table);
+	}
 	*table = calc_paths(get_start(head), ant_nb);
 	if (*table == NULL)
 		return (1);
@@ -70,6 +76,11 @@ int		test_function2(t_node *head, int ant_nb, int *loops, int **table)
 	{
 		*loops = *loops + 1;
 		return (1);
+	}
+	else if (compare_tables(*table, prv_tbl))
+	{
+		*loops = 0;
+	   return (0);	
 	}
 	return (0);
 }

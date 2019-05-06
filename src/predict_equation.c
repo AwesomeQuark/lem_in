@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/05 20:04:38 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 03:01:55 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,25 @@ int		*solve_equation(int n_paths, int *table, long ant_nb, int total_len)
 {
 	int		send_ants;
 	int		i;
+	int		j;
 
 	send_ants = 0;
 	i = -1;
+	j = -1;
 	if (n_paths > 1)
 	{
+		while (table[++j] != INT_MIN)
+			;
 		while (table[++i] != INT_MIN)
 		{
 //	dprintf(1, "ant_nb : %ld n_paths : %d path_len : %d total_len : %d\n", ant_nb, n_paths, table[i], total_len);
+			table[j + 1 + i] = table[i];
 			table[i] = (ant_nb - (((n_paths - 1) * table[i])
 						- (total_len - table[i]))) / n_paths;
+			table[j + 1 + i] += table[i];
+//			dprintf(1, "SEND Ants : %d\n", table[i]);
 			if (table[i] < 0)
 				return (table);
-//			dprintf(1, "SEND Ants : %d\n", table[i]);
 		}
 		return (table);
 	}
@@ -78,14 +84,12 @@ int		*calc_paths(t_node *start, int ant_nb)
 	total_len = 0;
 	if ((n_paths = count_paths(start)) == 0)
 			return (NULL);
-	if (!(table = (int*)malloc(sizeof(int) * (n_paths + 1))))
+	if (!(table = (int*)malloc(sizeof(int) * (n_paths + 1) * 2)))
 		return NULL;
 	table[n_paths] = INT_MIN;
 	while (start->links[++i] && i < n_paths)
 	{
 		path_len = path_length(start);
-	//	if (n_paths == 1 && path_len >= ant_nb) //had just return (NULL);
-	//		return (NULL);
 		total_len += path_len;
 		table[i] = path_len;
 	}

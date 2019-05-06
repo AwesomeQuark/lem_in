@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/05/05 23:56:08 by bghandou         ###   ########.fr        #
+#    Updated: 2019/05/06 01:02:42 by bghandou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME =	main.c\
 			travel_flux.c\
 			fill_remaining.c\
 			predict_equation.c\
+			save_table.c\
 			display_end.c\
 			display_end_visu.c\
 			draw.c\
@@ -56,7 +57,7 @@ LIB_DIR = ./haflib/
 LIB_HEADER = ./haflib/includes/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = -Wall -Werror -Wextra -g3
+FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 CC = clang
 
 #################################################################################

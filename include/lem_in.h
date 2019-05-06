@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 19:57:55 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 02:46:58 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,8 @@ int		reset_or_not(int *table, int ant_nb, t_node **head);
 void	flux_or_tag(t_node *start, int actv);
 void	fill_remaining(int *table, long ant_nb);
 void	check_startend(int *table, long ant_nb, t_node *start);
+int		*save_table(int *table);
+int		compare_tables(int *table, int *prv_tbl);
+
 
 #endif
