@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 12:46:15 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 13:40:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_node			*load_structure(char *data, long *ant_nb)
 			i++;
 		i++;
 	}
-	*ant_nb = ft_strtoll(&data[i], &i, 10);
+	*ant_nb = ft_strtoll(&data[i], &i);
 	i++;
 	if (!(head = load_nodes(data, &i)))
 		return ((t_node *)return_("Failed to load nodes"));

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 03:04:54 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 14:20:37 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			main(int argc, char **argv)
 	}
 	fill_remaining(table, ant_nb);
 	check_startend(table, ant_nb, get_start(head));
-/*
+
 	int i = -1;
 	t_node *start = get_start(head);
 	while (start->links[++i])
@@ -72,7 +72,7 @@ int			main(int argc, char **argv)
 	i = -1;
 	while (table[++i] != INT_MIN)
 		dprintf(1, "table[%d] = %d\n", i, table[i]);
-*/
+
 	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
 		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]), table);
 	else

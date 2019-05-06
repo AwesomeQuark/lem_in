@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   travel_flux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/05 20:35:52 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 13:22:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	test_flux(t_node *room)
 		{
 			if (room->flux[i] == 1 && room->links[i]->tag <= 0)
 			{
-				ft_printf("room %s to %s\n", room->name, room->links[i]->name);
+				//ft_printf("room %s to %s\n", room->name, room->links[i]->name);
 				if (room->links[i]->role == 0)
 					room->links[i]->tag = 1;
 				room = room->links[i];

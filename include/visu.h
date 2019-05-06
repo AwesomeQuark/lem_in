@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/05 23:46:32 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 13:22:58 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "lem_in.h"
 # include "haflib.h"
-// include "/Users/conoel/.brew/include/SDL2/SDL.h"
-# include "SDL2/SDL.h"
+# include "/Users/conoel/.brew/include/SDL2/SDL.h"
+// include "SDL2/SDL.h"
 
 # define SIZE 30
 # define STEP 100

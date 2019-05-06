@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:03:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/19 16:11:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 13:39:29 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "ft_is.h"
 # include "colors.h"
 
-# define BUFF_SIZE 16
+# define BUFF_SIZE 256
 # define ITER_MAX (INT_MAX / BUFF_SIZE)
 
 
@@ -33,7 +33,7 @@ void				free_tab(char **tab);
 
 char				*ft_strjoin(char const *s1, char const *s2);
 char				**ft_strsplit(char *s, char c);
-long long			ft_strtoll(char *ptr, size_t *index, int base);
+long long			ft_strtoll(char *ptr, size_t *index);
 int					ft_getc(int fd);
 char				*get_the_file(int fd);
 

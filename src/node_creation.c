@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:32:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 13:41:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static t_node		*new_node(char *line, int role)
 		return ((t_node *)return_(NULL));
 	if (!(new->name = get_name(&line)))
 		return (NULL);
-	new->x = ft_strtoll(&line[i], &i, 10);
+	new->x = ft_strtoll(&line[i], &i);
 	i++;
-	new->y = ft_strtoll(&line[i], &i, 10);
+	new->y = ft_strtoll(&line[i], &i);
 	new->role = role;
 	new->hist = NULL;
 	new->next = NULL;

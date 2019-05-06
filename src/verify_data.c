@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 14:50:26 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/01 15:51:21 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/06 13:40:18 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	goto_start(size_t *i, char *data, int *line)
 		*line += 1;
 		*i += 1;
 	}
-	nb = ft_strtoll(&data[(*i)], i, 10);
+	nb = ft_strtoll(&data[(*i)], i);
 	if (nb > 2147483647 || nb <= 0)
 		return (return_("Error in ants number : Value may be too big or negative"));
 	if (data[(*i)++] != '\n')
@@ -48,10 +48,10 @@ static int	verify_line(char *data, size_t *i, int line)
 			return (2);
 		*i += 1;
 	}
-	ft_strtoll(&data[*i], i, 10);
+	ft_strtoll(&data[*i], i);
 	if (data[(*i)++] != ' ')
 		return (error(line, 2, data[(*i) - 1]));
-	ft_strtoll(&data[*i], i, 10);
+	ft_strtoll(&data[*i], i);
 	if (data[*i] != '\n')
 		return (error(line, 3, data[*i]));
 	return (1);

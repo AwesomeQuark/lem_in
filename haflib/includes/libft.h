@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:22:48 by conoel            #+#    #+#             */
-/*   Updated: 2019/04/09 16:54:49 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 13:39:24 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define BUFF_SIZE 256
 # define ITER_MAX (INT_MAX / BUFF_SIZE)
-# define BUFF 2048
+# define BUFF 256
 # define I all->str_index
 
 int					ft_atoi(const char *nptr);
@@ -72,7 +72,7 @@ void				exit_free(char *msg, int format, ...);
 void				exit_(char *msg);
 char				**ft_strsplit(char *s, char c);
 void				print_char_str(char c, size_t nb);
-long long			ft_strtoll(char *ptr, size_t *index, int base);
+long long			ft_strtoll(char *ptr, size_t *index);
 int					ft_getc(int fd);
 char				*get_the_file(int fd);
 void				free_tab(char **tab);
