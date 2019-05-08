@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 13:41:12 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/08 18:37:29 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,30 @@ t_node				*add_node(t_node *head, char *line, int role)
 		last->next = ptr;
 	return (head);
 }
+
+void		reinit_all(t_node *head)
+{
+	int		i;
+
+	i = -1;
+	while (head)
+	{
+		head->access = OPEN;
+		head->vzt = FREE;
+		remove_path(head->hist);
+		head->weight = 0;
+		head->skip = 0;
+		head->tag = 0;
+		if (head->links)
+		{
+			while (head->links[++i])
+			{
+				if (head->flux)
+					head->flux[i] = 0;
+			}
+		}
+		i = -1;
+		head = head->next;
+	}
+}
+
