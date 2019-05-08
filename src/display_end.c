@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 14:59:09 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/08 16:38:08 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,10 @@ int	remaining_space(int *table, t_node *start, int mode)
 	int		j;
 
 	i = 0;
-	j = 0;
-	if (!start || !start->links || !table)
-	{
-		printf("johnson it's broken\n");
-		printf("start: %p links: %p table: %p\n", start, start->links, table);
-		return (-1);
-	}
+	j = 0;	
 	while (start->links[i])
 	{
-		if (table[j] != 0 && start->links[i]->access == 1)
+		if (table[j] != 0 && start->links[i]->access == 1 && start->flux[i] == 1)
 		{
 			if (mode == 1)
 				table[j]--;
@@ -74,10 +68,10 @@ t_node	*next_path(t_node *current)
 	i = 0;
 	if (current->role == END)
 		return (NULL);
-	if (!current || !current->flux || !current->flux)
-		return (NULL);
 	while (current->links[i])
 	{
+		if (current->links[i]->role == END)
+			return (current->links[i]);
 		if (current->flux[i] == 1 && current->links[i]->access == 1)
 			return (current->links[i]);
 		i++;
@@ -111,13 +105,11 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 			if (ants->room == start && start->access == 1)
 				next = ants->room->links[remaining_space(table, start, 1)];
 			else
-			{
 				next = next_path(ants->room);
-			}
-			ft_printf("L%d-%s ", ants->nb, next->name);
+			ft_printf("L", ants->nb, next->name);
 			ants->room->access = 1;
 			ants->room = next;
-			if (next != end && next != start)
+			if (next != end)
 				ants->room->access = 0;
 		}
 		ants = ants->next;
@@ -134,7 +126,7 @@ int				display_end(t_node *head, long ant_nb, int *table)
 	ant = 0;
 	count = 0;
 	reset_nodes(head);
-	if (table == NULL && next_path(get_start(head)) == NULL)
+	if (table == NULL)
 		return (0);
 	else if (table == NULL)
 	{
@@ -149,7 +141,7 @@ int				display_end(t_node *head, long ant_nb, int *table)
 		write(1, "\n", 1);
 		count++;
 	}
-	printf("Here is the number of line required: %d", count);
+	printf("FINAL |%d", count);
 	free_ants(ants);
 	return (1);
 }

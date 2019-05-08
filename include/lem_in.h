@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 14:37:23 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:52:25 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	print_path_test(t_path *head);
 void	print_path_final(t_path *head);
 void	print_flux(t_node *room);
 
-void	test_flux(t_node *room);
+int		test_flux(t_node *room);
 
 /*
 **	LAST DISPLAY

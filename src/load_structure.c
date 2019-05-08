@@ -6,11 +6,34 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 13:40:31 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/06 17:36:05 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static int	is_linked(t_node *node, t_node *node2)
+{
+	int	i;
+
+	i = 0;
+	if (!node->links || !node2->links)
+		return (1);
+	while (node->links[i])
+	{
+		if (node->links[i] == node2)
+			return (0);
+			i++;
+	}
+	i = 0;
+	while (node2->links[i])
+	{
+		if (node2->links[i] == node)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static t_node	*load_nodes(char *data, size_t *i)
 {
@@ -70,9 +93,10 @@ static int		load_links(t_node *head, char *data)
 			k = 0;
 			while (data[i + k] != '-' && data[i + k])
 				k++;
-			if (!(create_link(get_node(&(data[i]), k, head),
-					get_node(&(data[i + k + 1]), j - (k + 1), head))))
-				return (0);
+			if (is_linked(get_node(&(data[i]), k, head), get_node(&(data[i + k + 1]), j - (k + 1), head)))
+				if (!(create_link(get_node(&(data[i]), k, head),
+								  get_node(&(data[i + k + 1]), j - (k + 1), head))))
+					return (0);
 		}
 		i = i + j + 1;
 	}

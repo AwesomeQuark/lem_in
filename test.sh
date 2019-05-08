@@ -3,7 +3,7 @@
 ######### LEM-IN #########
 clear
 read -p "How many tests ? " NB_TEST
-TYPE="--big" #`select_ -v --big-superposition --big --flow-one --flow-ten --flow-thousand`
+TYPE="--big-superposition" #`select_ -v --big-superposition --big --flow-one --flow-ten --flow-thousand`
 
 I=0
 DELTA_MAX_GEN=0
@@ -21,12 +21,14 @@ while [ $I -lt $NB_TEST ]
 do
 	MAP=$DIR$I
 	./utils/generator $TYPE > $MAP
-	EXPECTED=`./lem-in $MAP | grep "EXPECTED" | cut -d'|' -f2 | cut -d' ' -f2`
-	FINAL=`./lem-in $MAP | grep "FINAL" | cut -d'|' -f2 | cut -d' ' -f2`
-	GENERATOR_EXPECT=`./lem-in $MAP | grep "required" | head -n1 | cut -d':' -f2 | cut -d' ' -f2`
+	./lem-in $MAP > tmp_output
+	EXPECTED=`cat tmp_output | grep "EXPECTED" | cut -d'|' -f2 | cut -d' ' -f2`
+	FINAL=`cat tmp_output | grep "FINAL" | cut -d'|' -f2 | cut -d' ' -f2`
+	GENERATOR_EXPECT=`cat tmp_output | grep "required" | head -n1 | cut -d':' -f2 | cut -d' ' -f2`
 	DELTA_ACTUAL_US=`echo "($FINAL) - ($EXPECTED)" | bc`
 	DELTA_ACTUAL_GEN=`echo "($FINAL) - ($GENERATOR_EXPECT)" | bc`
-	echo "GENERATION $I delta gen:  $DELTA_ACTUAL_GEN ($FINAL - $GENERATOR_EXPECT)  delta us: $DELTA_ACTUAL_US ($FINAL - $EXPECTED)"
+	THEORICAL_DELTA=`echo "($EXPECTED) - ($GENERATOR_EXPECT)" | bc`
+	echo "GENERATION $I delta gen:  $DELTA_ACTUAL_GEN ($FINAL - $GENERATOR_EXPECT)  delta us: $DELTA_ACTUAL_US ($FINAL - $EXPECTED) Theorical delta: $THEORICAL_DELTA ($EXPECTED - $GENERATOR_EXPECT)"
 	if [ $DELTA_ACTUAL_US -le $DELTA_MIN_US ]
 	then
 		DELTA_MIN_US=$DELTA_ACTUAL_US
@@ -45,17 +47,20 @@ do
 	fi
 	TOT_DELTA_GEN=` echo "($TOT_DELTA_GEN) + ($DELTA_ACTUAL_GEN)" | bc`
 	TOT_DELTA_US=` echo "($TOT_DELTA_US) + ($DELTA_ACTUAL_US)" | bc`
+	#TOT_THEORICAL_DELTA=` echo "($TOT_THEORICAL_DELTA) + ($THEORICAL_DELTA)" | bc`
 	I=`echo "($I) + 1" | bc`
 done
 
 MOY_GEN=`echo "$TOT_DELTA_GEN / $I" | bc`
 MOY_US=`echo "$TOT_DELTA_US / $I" | bc` 
+MOY_THEO=`echo "$TOT_THEORICAL_DELTA / $I" | bc`
 
 echo "Tests : $NB_TEST"
 echo "Type : $TYPE"
 echo "//==============\\\\  //==============\\\\"
 echo "||      US      ||  ||  GENERATOR   ||"
-printf "|| MAX : %4s   ||  || MAX : %4s   ||\n" $DELTA_MAX_US $DELTA_MAX_US 
+printf "|| MAX : %4s   ||  || MAX : %4s   ||\n" $DELTA_MAX_US $DELTA_MAX_GEN 
 printf "|| MOY : %4s   ||  || MOY : %4s   ||\n" $MOY_US $MOY_GEN
-printf "|| MIN : %4s   ||  || MIN : %4s   ||\n" $DELTA_MIN_US $DELTA_MIN_US 
+printf "|| MIN : %4s   ||  || MIN : %4s   ||\n" $DELTA_MIN_US $DELTA_MIN_GEN 
 echo "\\\\==============//  \\\\==============//"
+echo "Theorical delta: $MOY_THEO"
