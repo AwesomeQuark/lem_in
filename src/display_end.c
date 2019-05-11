@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/08 16:38:08 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/11 02:52:04 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 				next = ants->room->links[remaining_space(table, start, 1)];
 			else
 				next = next_path(ants->room);
-			ft_printf("L", ants->nb, next->name);
+			ft_printf("L%d-%s ", ants->nb, next->name);
 			ants->room->access = 1;
 			ants->room = next;
 			if (next != end)
