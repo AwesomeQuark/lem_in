@@ -6,7 +6,7 @@
 /*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 00:46:24 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/08 19:37:44 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/11 04:36:03 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ int		compare_tables(int *table, int *prv_tbl)
 		while (prv_tbl[++i] != INT_MIN)
 		{
 			if (prv_tbl[j + i] != INT_MIN && prv_tbl[j + i] < table[j + 1 + i])
+			{
+				free(prv_tbl);
 				return (1);
+			}
 		}
 	}
+	free(prv_tbl);
 	return (0);
 }
