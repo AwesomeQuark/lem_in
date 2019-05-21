@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 15:23:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 16:40:30 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,20 @@ t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-int		update_ants(t_ant *ants, t_node *head, int *table)
+void	print_path(t_ant *ants, t_node *next, int options)
+{
+	if (options & COLOR)
+	{
+		if (next->role == END)
+			ft_printf("%sL%d%s-%s%s%s ", YELLOW, ants->nb, DEF, RED, next->name, DEF);
+		else
+			ft_printf("%sL%d%s-%s%s%s ", YELLOW, ants->nb, DEF, BLUE, next->name, DEF);
+	}
+	else
+		ft_printf("L%d-%s ", ants->nb, next->name);
+}
+
+int		update_ants(t_ant *ants, t_node *head, int *table, int options)
 {
 	static long	next_ant_index = 0;
 	t_node		*next;
@@ -106,7 +119,7 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 				next = ants->room->links[remaining_space(table, start, 1)];
 			else
 				next = next_path(ants->room);
-			ft_printf("L%d-%s ", ants->nb, next->name);
+			print_path(ants, next, options);
 			ants->room->access = 1;
 			ants->room = next;
 			if (next != end)
@@ -125,17 +138,16 @@ int				display_end(t_node *head, long ant_nb, int *table, int options)
 
 	ant = 0;
 	count = 0;
-	options= 0;
 	reset_nodes(head);
 	if (!(ants = allocate_ants(ant_nb, get_end(head))))
 		return (0);
-	while (update_ants(ants, head, table) == 0)
+	while (update_ants(ants, head, table, options) == 0)
 	{
 		write(1, "\n", 1);
 		count++;
 	}
 	if (options & COUNT)
-		printf("%sFINAL%s : %d", RED, DEF, count);
+		ft_printf("\n%sFINAL%s : %d\n", RED, DEF, count);
 	free_ants(ants);
 	return (1);
 }

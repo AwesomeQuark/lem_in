@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 15:12:06 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:53:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct		s_ant
 /*
 **	PARSING FUNCTIONS
 */
-t_node		*load_map(int argc, char ** argv, long *ant_nb);
+t_node		*load_map(int argc, char ** argv, long *ant_nb, int options);
 t_node		*load_structure(char *data, long *ant_nb);
 t_node		*add_node(t_node *head, char *line, int pos);
 void		free_nodes(t_node *head);
