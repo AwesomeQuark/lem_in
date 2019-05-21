@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:25:35 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/06 00:19:43 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/21 18:17:59 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	fill_remaining(int *table, long ant_nb)
 {
-	int		i;
+	size_t	i;
 	int		sum;
 	int		rem;
 
-	i = -1;
+	i = 0;
 	sum = 0;
 	rem = 0;
 	if (table == NULL)
 		return ;
-	while (table[++i] != INT_MIN)
-		sum += table[i];
+	while (table[i] != INT_MIN)
+		sum += table[i++];
 	if (sum == (int)ant_nb)
 		return ;
 	else

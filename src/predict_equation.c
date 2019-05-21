@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/21 17:35:51 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:18:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		*solve_equation(int n_paths, int *table, long ant_nb, int total_len)
 		{
 			table[j + 1 + i] = table[i];
 			table[i] = (ant_nb - (((n_paths - 1) * table[i])
-						- (total_len - table[i]))) / n_paths;
+				- (total_len - table[i]))) / n_paths;
 			table[j + 1 + i] += table[i];
 			if (table[i] < 0)
 				return (table);
