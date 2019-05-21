@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/11 02:52:04 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/21 15:23:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		update_ants(t_ant *ants, t_node *head, int *table)
 	return (finished);
 }
 
-int				display_end(t_node *head, long ant_nb, int *table)
+int				display_end(t_node *head, long ant_nb, int *table, int options)
 {
 	t_ant	*ants;
 	int		ant;
@@ -125,15 +125,8 @@ int				display_end(t_node *head, long ant_nb, int *table)
 
 	ant = 0;
 	count = 0;
+	options= 0;
 	reset_nodes(head);
-	if (table == NULL)
-		return (0);
-	else if (table == NULL)
-	{
-		if (!(table = malloc(sizeof(int) * 1)))
-			return (0);
-		table[0] = ant_nb;
-	}
 	if (!(ants = allocate_ants(ant_nb, get_end(head))))
 		return (0);
 	while (update_ants(ants, head, table) == 0)
@@ -141,7 +134,8 @@ int				display_end(t_node *head, long ant_nb, int *table)
 		write(1, "\n", 1);
 		count++;
 	}
-	printf("FINAL |%d", count);
+	if (options & COUNT)
+		printf("%sFINAL%s : %d", RED, DEF, count);
 	free_ants(ants);
 	return (1);
 }

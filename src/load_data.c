@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:10 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 14:20:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:06:27 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char		*load_raw_data(char *file_name, int argc)
 	int		fd;
 	char	*raw_data;
 
-	if (argc == 2 || argc == 3)
+	if ((argc == 2 && file_name[0] != '-') || argc == 3)
 	{
 		if ((fd = open(file_name, O_RDONLY)) == -1)
 			return ((char *)return_("Failed to open the file"));
@@ -59,7 +59,7 @@ t_node			*load_map(int argc, char **argv, long *ant_nb)
 	char	*raw_data;
 	t_node	*head;
 
-	if (!(raw_data = load_raw_data(argv[1], argc)))
+	if (!(raw_data = load_raw_data(argv[argc - 1], argc)))
 		return (NULL);
 	if (!(verify_data(raw_data)))
 	{

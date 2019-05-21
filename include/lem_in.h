@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:12 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 15:52:25 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:12:06 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <limits.h>
 
 # include <stdio.h> //will need to delete
+
+# define VISU 2
+# define COUNT 4
+# define COLOR 8
+# define SILENT 16
 
 # define START		1
 # define END		2
@@ -151,8 +156,8 @@ int		test_flux(t_node *room);
 **	LAST DISPLAY
 */
 
-int		display_end(t_node *head, long ant_nb, int *table);
-int		display_end_visu(t_node *head, long ant_nb, int size, int *table);
+int		display_end(t_node *head, long ant_nb, int *table, int params);
+int		display_end_visu(t_node *head, long ant_nb, int *table, int params);
 /*
 ** TESTNG PHASE
 */

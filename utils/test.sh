@@ -51,7 +51,7 @@ do
 	I=`echo "($I) + 1" | bc`
 done
 
-MOY_GEN=`echo "$TOT_DELTA_GEN / $I" | bc`
+echo "FINAL: $TOT_DELTA_GEN / $I"
 MOY_US=`echo "$TOT_DELTA_US / $I" | bc` 
 MOY_THEO=`echo "$TOT_THEORICAL_DELTA / $I" | bc`
 

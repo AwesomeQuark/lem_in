@@ -1,6 +1,0 @@
-total : 9.000
-	parsing	: 5.555
-		load_raw_data	: 0.185
-		verify_data		: 2.340
-		load_structure	: 3.000
-	else	: 3.700

@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 18:53:06 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/08 16:28:50 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 15:21:31 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,54 +38,67 @@ void		print_nodes(t_node *head)
 	}
 }
 
-int			main(int argc, char **argv)
+void		do_bfs(t_node *head, int **table, long ant_nb)
 {
-	t_node	*head;
-	long	ant_nb;
 	int		loops;
 	int		diff;
-	int		*table;
 
-	if (!(head = load_map(argc, argv, &ant_nb)))
-		return ((int)return_("Failed to load the map"));
 	loops = count_iterations(head);
 	diff = loops;
-	table = test_function(head, ant_nb, &loops);
+	*table = test_function(head, ant_nb, &loops);
 	diff -= loops;
 	if (loops > 0)
 	{
-		free(table);
+		free(*table);
 		reinit_all(head);
-		table = test_function(head, ant_nb, &diff);
+		*table = test_function(head, ant_nb, &diff);
 	}
-	fill_remaining(table, ant_nb);
-	check_startend(table, ant_nb, get_start(head));
+	fill_remaining(*table, ant_nb);
+	check_startend(*table, ant_nb, get_start(head));
+}
 
-	int i = -1;
-	int	j = 0;
-	int	path = 0;
-	int	max = 0;
-	t_node *start = get_start(head);
-//	print_nodes(head);
-	while (start->links[++i])
+int			get_options(int argc, char **argv)
+{
+	size_t		i;
+	int			params;
+
+	i = 1;
+	params = 0;
+	if (argc != 3 || argv[1][0] != '-')
+		return (32);
+	while (argv[1][i])
 	{
-		if (start->flux[i] == 1)
-		{
-			dprintf(1, "------------\n");
-			ft_printf("room %s to %s %d\n", start->name, start->links[i]->name, i);
-			path = test_flux(start->links[i]);
-			dprintf(1, "ants to send = %d || path len %d || total cycles : %d\n", table[j], path, path + table[j] - 1);
-			dprintf(1, "------------\n");
-			if (path + table[j] - 1 > max)
-				max = path + table[j] - 1;
-			j++;
-		}
+		if (argv[1][i] == 'v')
+			params = params | VISU;
+		else if (argv[1][i] == 'c')
+			params = params | COUNT;
+		else if (argv[1][i] == 'a')
+			params = params | COLOR;
+		else if (argv[1][i] == 's')
+			params = params | SILENT;
+		else
+			return (return_("Usage: ./lem-in [-vcsa] [map.lem | < map.lem]\n"));
+		i++;
 	}
-	printf("EXPECTED |%d\n\n", max);
-	if (argc == 3 && ft_strncmp(argv[2], "-v", 2) == 0)
-		display_end_visu(head, ant_nb, ft_atoi(&argv[2][2]), table);
+	return (params);
+}
+
+int			main(int argc, char **argv)
+{
+	t_node	*head;
+	int		*table;
+	long	ant_nb;
+	int		params;
+
+	if (!(params = get_options(argc, argv)))
+		return (0);
+	if (!(head = load_map(argc, argv, &ant_nb)))
+		return ((int)return_("Failed to load the map"));
+	do_bfs(head, &table, ant_nb);
+	if (params & VISU)
+		display_end_visu(head, ant_nb, table, params);
 	else
-		display_end(head, ant_nb, table);
+		display_end(head, ant_nb, table, params);
 	free_nodes(head);
 	free(table);
 }
