@@ -6,23 +6,24 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:40:30 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:26:28 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "visu.h"
 
-int	remaining_space(int *table, t_node *start, int mode)
+int		remaining_space(int *table, t_node *start, int mode)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 0;	
+	j = 0;
 	while (start->links[i])
 	{
-		if (table[j] != 0 && start->links[i]->access == 1 && start->flux[i] == 1)
+		if (table[j] != 0 && start->links[i]->access == 1
+			&& start->flux[i] == 1)
 		{
 			if (mode == 1)
 				table[j]--;
@@ -84,18 +85,39 @@ void	print_path(t_ant *ants, t_node *next, int options)
 	if (options & COLOR)
 	{
 		if (next->role == END)
-			ft_printf("%sL%d%s-%s%s%s ", YELLOW, ants->nb, DEF, RED, next->name, DEF);
+			ft_printf("%sL%d%s-%s%s%s", YELLOW, ants->nb, DEF, RED,
+				next->name, DEF);
 		else
-			ft_printf("%sL%d%s-%s%s%s ", YELLOW, ants->nb, DEF, BLUE, next->name, DEF);
+			ft_printf("%sL%d%s-%s%s%s", YELLOW, ants->nb, DEF, BLUE,
+				next->name, DEF);
 	}
 	else
-		ft_printf("L%d-%s ", ants->nb, next->name);
+		ft_printf("L%d-%s", ants->nb, next->name);
+}
+
+int		access_room(t_ant *ants, int *table, int options, t_node *head)
+{
+	t_node		*start;
+	t_node		*end;
+	t_node		*next;
+
+	end = get_end(head);
+	start = get_start(head);
+	if (ants->room == start && start->access == 1)
+		next = ants->room->links[remaining_space(table, start, 1)];
+	else
+		next = next_path(ants->room);
+	print_path(ants, next, options);
+	ants->room->access = 1;
+	ants->room = next;
+	if (next != end)
+		ants->room->access = 0;
+	return (1);
 }
 
 int		update_ants(t_ant *ants, t_node *head, int *table, int options)
 {
 	static long	next_ant_index = 0;
-	t_node		*next;
 	int			finished;
 	t_node		*start;
 	t_node		*end;
@@ -111,26 +133,19 @@ int		update_ants(t_ant *ants, t_node *head, int *table, int options)
 			ants->room = start;
 			ants->nb = ++next_ant_index;
 		}
-		if (ants->room != end && (ants->room != start || remaining_space(table, start, 0) != -1)
-		&& next_path(ants->room))
+		if (ants->room != end && (ants->room != start || remaining_space(table,
+			start, 0) != -1) && next_path(ants->room))
 		{
+			!finished && next_ant_index != 1 ? ft_printf(" ") : 0;
 			finished = 0;
-			if (ants->room == start && start->access == 1)
-				next = ants->room->links[remaining_space(table, start, 1)];
-			else
-				next = next_path(ants->room);
-			print_path(ants, next, options);
-			ants->room->access = 1;
-			ants->room = next;
-			if (next != end)
-				ants->room->access = 0;
+			access_room(ants, table, options, head);
 		}
 		ants = ants->next;
 	}
 	return (finished);
 }
 
-int				display_end(t_node *head, long ant_nb, int *table, int options)
+int		display_end(t_node *head, long ant_nb, int *table, int options)
 {
 	t_ant	*ants;
 	int		ant;

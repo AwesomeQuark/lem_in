@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closed_room.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 14:58:02 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/08 18:38:01 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:09:41 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_redundancy(t_node *og, t_node *repl)
 {
 	t_path	*tmp;
 
-	tmp  = og->hist;
+	tmp = og->hist;
 	if (tmp->next)
 	{
 		while (tmp->next->next)

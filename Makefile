@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/05/08 16:05:01 by conoel           ###   ########.fr        #
+#    Updated: 2019/05/21 17:08:42 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC_NAME =	main.c\
 			display_end.c\
 			display_end_visu.c\
 			draw.c\
-			SDL_utils.c\
+			sdl_utils.c\
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}
@@ -57,7 +57,7 @@ LIB_DIR = ./haflib/
 LIB_HEADER = ./haflib/includes/
 LIB = ${addprefix $(LIB_DIR), $(LIB_NAME)}
 
-FLAGS = -Wall -Werror -Wextra -Ofast#-g3 -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -Ofast -g3 #-fsanitize=address
 CC = clang
 
 #################################################################################

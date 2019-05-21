@@ -6,15 +6,14 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 15:03:21 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:34:13 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "visu.h"
+#include "visu.h"
 
 static void	draw_ants(t_node *head, t_visu *var, int *table)
 {
-	//t_node		*next;
 	t_ant		*ants;
 	SDL_Rect	ant;
 	static int	i = 1;
@@ -26,29 +25,18 @@ static void	draw_ants(t_node *head, t_visu *var, int *table)
 	ants = var->ants;
 	while (ants)
 	{
-		//if (ants->room->role == START && ants->room->access == 1 && remaining_space(table, get_start(head), 0) != -1)
-	//		next = ants->room->links[remaining_space(table, get_start(head), 0)];
-	//	else
-	//		next = next_path(ants->room);
-		///if (next == NULL)
-		//{
-		///	ants = ants->next;
-	///		continue ;
-		//}
 		if (ants->room->role != END)
 		{
-			ant.x = (ants->room->x * var->size) - (var->size / 8); ///+ ((((next->x - ants->room->x) * var->size) * i) / STEP) ;
-			ant.y = (ants->room->y * var->size)  - (var->size / 8);//+ ((((next->y - ants->room->y) * var->size) * i) / STEP);
-			SDL_SetRenderDrawColor(var->ren, ants->color % 0xfff0000000 , 0, ants->color % 0x000000fff, SDL_ALPHA_OPAQUE);
+			ant.x = (ants->room->x * var->size) - (var->size / 8);
+			ant.y = (ants->room->y * var->size) - (var->size / 8);
+			SDL_SetRenderDrawColor(var->ren, ants->color % 0xff00000, 0,
+				ants->color % 0x0000ff, SDL_ALPHA_OPAQUE);
 			SDL_RenderDrawRect(var->ren, &ant);
 			SDL_RenderFillRect(var->ren, &ant);
 		}
 		ants = ants->next;
 	}
-	if (i == STEP)
-		i = 1;
-	else
-		i++;
+	i == STEP ? i = 1 : i++;
 }
 
 static void	draw_grid(SDL_Renderer *ren, int size)
@@ -107,7 +95,7 @@ void		draw_map(t_node *head, SDL_Renderer *ren, int size)
 	node.w = size / 2;
 	node.h = size / 2;
 	while (head)
-	{	
+	{
 		if (head->role == START)
 			SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
 		else if (head->role == END)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bghandou <bghandou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:41:41 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/06 02:50:01 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:09:09 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		test_function2(t_node *head, int ant_nb, int *loops, int **table)
 	else if (compare_tables(*table, prv_tbl))
 	{
 		*loops = 0;
-	   return (0);	
+		return (0);
 	}
 	return (0);
 }

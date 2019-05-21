@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/08 18:37:29 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/21 17:35:36 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static char			*get_name(char **name)
+static char		*get_name(char **name)
 {
 	char	*ret;
 	size_t	i;
@@ -33,7 +33,7 @@ static char			*get_name(char **name)
 	return (ret);
 }
 
-static t_node		*new_node(char *line, int role)
+static t_node	*new_node(char *line, int role)
 {
 	t_node	*new;
 	size_t	i;
@@ -59,7 +59,7 @@ static t_node		*new_node(char *line, int role)
 	return (new);
 }
 
-t_node				*add_node(t_node *head, char *line, int role)
+t_node			*add_node(t_node *head, char *line, int role)
 {
 	t_node	*ptr;
 	t_node	*last;
@@ -81,7 +81,7 @@ t_node				*add_node(t_node *head, char *line, int role)
 	return (head);
 }
 
-void		reinit_all(t_node *head)
+void			reinit_all(t_node *head)
 {
 	int		i;
 
@@ -106,4 +106,3 @@ void		reinit_all(t_node *head)
 		head = head->next;
 	}
 }
-

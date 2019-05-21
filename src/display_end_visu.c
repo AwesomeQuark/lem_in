@@ -6,13 +6,13 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 15:29:15 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 16:35:08 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:33:59 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-int					flux_value(t_node *node, char *name)
+int		flux_value(t_node *node, char *name)
 {
 	int	i;
 
@@ -38,7 +38,8 @@ void	free_ants(t_ant *head)
 	}
 }
 
-int					display_end_visu(t_node *head, long ant_nb, int *table, int options)
+int		display_end_visu(t_node *head, long ant_nb, int *table,
+	int options)
 {
 	t_visu		var;
 	int			count;

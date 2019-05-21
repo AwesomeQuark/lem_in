@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 14:18:13 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/04 11:19:05 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:07:21 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		width_map(t_node *head)
 {
 	t_node	*ptr;
-	int 	max;
+	int		max;
 	int		min;
 
 	max = 0;
@@ -41,7 +41,7 @@ int		width_map(t_node *head)
 int		height_map(t_node *head)
 {
 	t_node	*ptr;
-	int 	max;
+	int		max;
 	int		min;
 
 	max = 0;
@@ -71,16 +71,17 @@ int		sdl_start(t_visu *var, int width, int height)
 		ft_printf("Erreur d'initialisation de la SDL : %s", SDL_GetError());
 		return (0);
 	}
-	if (!(var->win = SDL_CreateWindow("Mes couilles", SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, width * var->size, height * var->size, SDL_WINDOW_SHOWN)))
+	if (!(var->win = SDL_CreateWindow("Lem-in", SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED, width * var->size, height * var->size,
+		SDL_WINDOW_SHOWN)))
 	{
-		ft_printf("Erreur de creation de fenetre de la SDL : %s", SDL_GetError());
+		ft_printf("Erreur de creation de fenetre : %s", SDL_GetError());
 		return (0);
 	}
 	if (!(var->ren = SDL_CreateRenderer(var->win, -1, SDL_RENDERER_ACCELERATED
 		| SDL_RENDERER_PRESENTVSYNC)))
 	{
-		ft_printf("Erreur de creation de renderer de la SDL : %s", SDL_GetError());
+		ft_printf("Erreur de creation de renderer : %s", SDL_GetError());
 		return (0);
 	}
 	SDL_SetRenderDrawColor(var->ren, 255, 255, 255, 255);

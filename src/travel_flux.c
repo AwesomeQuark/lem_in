@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:55:44 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/06 16:12:02 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 17:05:55 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	adjust_reverse_flux(t_node **room, int idx)
 	nxt_room->flux[idx_rvse] = 0;
 }
 
-int	test_flux(t_node *room)
+int		test_flux(t_node *room)
 {
 	int		i;
 	int		count;
@@ -68,7 +68,6 @@ int	test_flux(t_node *room)
 			if (room->flux[i] == 1 && room->links[i]->tag <= 0)
 			{
 				count++;
-				//				ft_printf("room %s to %s\n", room->name, room->links[i]->name);
 				if (room->links[i]->role == 0)
 					room->links[i]->tag = 1;
 				room = room->links[i];
