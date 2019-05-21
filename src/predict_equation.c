@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/21 18:18:45 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/21 18:46:08 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,9 @@ int		*solve_equation(int n_paths, int *table, long ant_nb, int total_len)
 				return (table);
 			i++;
 		}
-		return (table);
 	}
 	else
-	{
 		table[0] = ant_nb;
-		return (table);
-	}
 	return (table);
 }
 
