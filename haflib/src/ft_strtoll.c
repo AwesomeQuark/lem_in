@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 17:00:20 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/06 14:20:01 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:27:03 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ long long	ft_strtoll(char *ptr, size_t *index)
 		i++;
 	sign = (ptr[i] == '-') ? -1 : 1;
 	ptr[i] == '-' || ptr[i] == '+' ? i++ : 0;
-	while (ft_isalnum(ptr[i]))
+	while (ft_isdigit(ptr[i]))
 	{
 		ret *= 10;
 		ret += ptr[i++] - '0';

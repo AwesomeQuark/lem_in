@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:46:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 16:00:20 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:32:45 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			is_linked(t_node *node, t_node *node2)
 	int	i;
 
 	i = 0;
-	if (!node->links || !node2->links)
+	if (!node || !node2 || !node->links || !node2->links)
 		return (1);
 	while (node->links[i])
 	{
@@ -54,6 +54,8 @@ int			create_link(t_node *node1, t_node *node2)
 {
 	if (node1 == node2)
 		return (return_("Link between same room"));
+	if (!node1 || !node2)
+		return (return_("Inexistant room in links"));
 	if (!(alloc_links_list(node1, node2)))
 		return (0);
 	if (!(alloc_links_list(node2, node1)))
