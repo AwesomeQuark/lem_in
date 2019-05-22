@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 16:07:27 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 17:11:31 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "haflib.h"
 # include "/Users/conoel/.brew/include/SDL2/SDL.h"
 
-# define SIZE 30
+# define SIZE 55
 # define STEP 100
 # define TIME_MOV 1000
 
