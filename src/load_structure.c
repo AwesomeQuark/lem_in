@@ -6,34 +6,11 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 17:41:17 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:38:03 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 15:51:08 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static int		is_linked(t_node *node, t_node *node2)
-{
-	int	i;
-
-	i = 0;
-	if (!node->links || !node2->links)
-		return (1);
-	while (node->links[i])
-	{
-		if (node->links[i] == node2)
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (node2->links[i])
-	{
-		if (node2->links[i] == node)
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static t_node	*load_nodes(char *data, size_t *i)
 {
@@ -61,47 +38,6 @@ static t_node	*load_nodes(char *data, size_t *i)
 		*i = *i + j + 1;
 	}
 	return (head);
-}
-
-static int		create_link(t_node *node1, t_node *node2)
-{
-	if (node1 == node2)
-		return (return_("Link between same room"));
-	if (!(alloc_links_list(node1, node2)))
-		return (0);
-	if (!(alloc_links_list(node2, node1)))
-		return (0);
-	return (1);
-}
-
-static int		load_links(t_node *head, char *data)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-
-	i = 0;
-	while (data[i])
-	{
-		j = 0;
-		while (data[i + j] != '\n' && data[i + j])
-			j++;
-		if (ft_memchr(&data[i], '-', j) == NULL && data[i] != '#')
-			return (return_("Bad character in the links list\n"));
-		if (data[i] != '#')
-		{
-			k = 0;
-			while (data[i + k] != '-' && data[i + k])
-				k++;
-			if (is_linked(get_node(&(data[i]), k, head), get_node(&(data[i + k
-				+ 1]), j - (k + 1), head)))
-				if (!(create_link(get_node(&(data[i]), k, head),
-					get_node(&(data[i + k + 1]), j - (k + 1), head))))
-					return (0);
-		}
-		i = i + j + 1;
-	}
-	return (1);
 }
 
 t_node			*load_structure(char *data, long *ant_nb)

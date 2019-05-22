@@ -6,7 +6,7 @@
 #    By: conoel <conoel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/10 21:14:13 by conoel            #+#    #+#              #
-#    Updated: 2019/05/21 17:08:42 by conoel           ###   ########.fr        #
+#    Updated: 2019/05/22 15:46:17 by conoel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,11 @@ SRC_NAME =	main.c\
 			predict_equation.c\
 			save_table.c\
 			display_end.c\
+			display_end_utils.c\
 			display_end_visu.c\
 			draw.c\
 			sdl_utils.c\
+			load_links.c
 
 SRC_DIR = ./src/
 SRC = ${addprefix $(SRC_DIR), $(SRC_NAME)}

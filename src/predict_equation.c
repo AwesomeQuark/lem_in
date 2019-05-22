@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 16:22:10 by bghandou          #+#    #+#             */
-/*   Updated: 2019/05/21 18:46:08 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/22 16:07:56 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		reset_or_not(int *table, int ant_nb, t_node **head)
 {
 	int		i;
 	t_node	*start;
-
+			
 	i = -1;
 	start = get_start(*head);
 	while (start->links[++i])

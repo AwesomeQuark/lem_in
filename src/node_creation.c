@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 15:52:28 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:35:36 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 15:44:14 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,10 @@ void			reinit_all(t_node *head)
 		i = -1;
 		head = head->next;
 	}
+}
+
+int				update_finished(int finished, long next_ant_index)
+{
+	(!finished && next_ant_index != 1) ? ft_printf(" ") : 0;
+	return (0);
 }
