@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 16:31:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 15:43:22 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:19:12 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ t_node	*next_path(t_node *current)
 	return (NULL);
 }
 
-void	print_path(t_ant *ants, t_node *next, int options)
+void	print_path(t_ant *ants, t_node *next, int options, t_node *head)
 {
 	if (options & COLOR)
 	{
 		if (next->role == END)
 			ft_printf("%sL%d%s-%s%s%s", YELLOW, ants->nb, DEF, RED,
+				next->name, DEF);
+		else if (!is_linked(next, get_start(head)))
+			ft_printf("%sL%d%s-%s%s%s", YELLOW, ants->nb, DEF, GREEN,
 				next->name, DEF);
 		else
 			ft_printf("%sL%d%s-%s%s%s", YELLOW, ants->nb, DEF, BLUE,
@@ -58,7 +61,7 @@ int		access_room(t_ant *ants, int *table, int options, t_node *head)
 		next = ants->room->links[remaining_space(table, start, 1)];
 	else
 		next = next_path(ants->room);
-	print_path(ants, next, options);
+	print_path(ants, next, options, head);
 	ants->room->access = 1;
 	ants->room = next;
 	if (next != end)

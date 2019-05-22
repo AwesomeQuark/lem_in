@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 18:16:32 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 17:19:07 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/22 18:13:39 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include "haflib.h"
 # include "/Users/conoel/.brew/include/SDL2/SDL.h"
 
-# define SIZE 55
+# define SIZE 30
 # define STEP 1
 # define TIME_MOV 1000
+# define MAX_WIDTH 2560
+# define MAX_HEIGHT 1440
 
 typedef struct		s_visu
 {

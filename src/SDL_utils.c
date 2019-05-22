@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/26 14:18:13 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 16:00:28 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 18:13:17 by conoel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int		height_map(t_node *head)
 
 int		sdl_start(t_visu *var, int width, int height)
 {
+	if (width * var->size > MAX_WIDTH
+		|| height * var->size > MAX_HEIGHT)
+		return (return_("Cannot create the window, too large map !"));
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 	{
 		ft_printf("Erreur d'initialisation de la SDL : %s", SDL_GetError());
