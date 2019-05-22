@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/22 17:04:59 by bghandou         ###   ########.fr       */
+/*   Updated: 2019/05/22 17:23:34 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	draw_links(t_node *head, SDL_Renderer *ren, int size)
 			if (head->flux[i] == 1 || flux_value(head->links[i], head->name))
 				SDL_SetRenderDrawColor(ren, 0, 255, 0, 255);
 			else
-				SDL_SetRenderDrawColor(ren, 70, 100, 110, 200);
+				SDL_SetRenderDrawColor(ren, 50, 100, 90, 200);
 			SDL_RenderDrawLine(ren, head->x * size, head->y * size,
 				head->links[i]->x * size, head->links[i]->y * size);
 			i++;
@@ -97,11 +97,11 @@ void		draw_map(t_node *head, SDL_Renderer *ren, int size)
 	while (head)
 	{
 		if (head->role == START)
-			SDL_SetRenderDrawColor(ren, 0, 0, 255, 255);
+			SDL_SetRenderDrawColor(ren, 20, 20, 240, 255);
 		else if (head->role == END)
-			SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
+			SDL_SetRenderDrawColor(ren, 210, 20, 20, 255);
 		else
-			SDL_SetRenderDrawColor(ren, 100, 100, 100, 255);
+			SDL_SetRenderDrawColor(ren, 170, 170, 170, 255);
 		node.x = (head->x * size) - (size / 4);
 		node.y = (head->y * size) - (size / 4);
 		SDL_RenderDrawRect(ren, &node);
