@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 19:04:41 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 17:34:13 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 17:04:59 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ static void	draw_links(t_node *head, SDL_Renderer *ren, int size)
 		while (head->links[i] != NULL)
 		{
 			if (head->flux[i] == 1 || flux_value(head->links[i], head->name))
-				SDL_SetRenderDrawColor(ren, 0, 250, 0, 255);
+				SDL_SetRenderDrawColor(ren, 0, 255, 0, 255);
 			else
-				SDL_SetRenderDrawColor(ren, 0, 70, 0, 255);
+				SDL_SetRenderDrawColor(ren, 70, 100, 110, 200);
 			SDL_RenderDrawLine(ren, head->x * size, head->y * size,
 				head->links[i]->x * size, head->links[i]->y * size);
 			i++;
