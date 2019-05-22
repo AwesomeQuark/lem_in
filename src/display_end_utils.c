@@ -6,7 +6,7 @@
 /*   By: conoel <conoel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 18:32:38 by conoel            #+#    #+#             */
-/*   Updated: 2019/05/21 18:35:17 by conoel           ###   ########.fr       */
+/*   Updated: 2019/05/22 16:35:48 by bghandou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		remaining_space(int *table, t_node *start, int mode)
 
 	i = 0;
 	j = 0;
-	while (start->links[i])
+	while (start->links && start->links[i])
 	{
 		if (table[j] != 0 && start->links[i]->access == 1
 			&& start->flux[i] == 1)
